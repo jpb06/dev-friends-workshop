@@ -1,4 +1,4 @@
-export const apiUrl = "http://localhost:3001";
+export const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const devsUrl = `${apiUrl}/devs`;
 export const devsByUrl = `${apiUrl}/devsby`;
