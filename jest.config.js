@@ -5,10 +5,12 @@ const {
 
 module.exports = {
   roots: ["<rootDir>/src/"],
-  globalSetup: '<rootDir>/jest.setup.env.ts',
+  globalSetup: "<rootDir>/jest.setup.env.ts",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
-  testPathIgnorePatterns: ["<rootDir>[/\\\\](node_modules|.next|coverage)[/\\\\]"],
+  testPathIgnorePatterns: [
+    "<rootDir>[/\\\\](node_modules|.next|coverage)[/\\\\]",
+  ],
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
   transform: {
     "^.+\\.(ts|tsx)$": "babel-jest",
@@ -22,9 +24,11 @@ module.exports = {
     "\\.(gif|ttf|eot|svg|png)$": "test-file-stub",
     ...pathsToModuleNameMapper(tsconfigPaths, { prefix: "<rootDir>/src" }),
   },
-  coveragePathIgnorePatterns: ["<rootDir>/src/tests-related/", "<rootDir>/src/types/", "<rootDir>/src/pages/"],
-  collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
+  coveragePathIgnorePatterns: [
+    "<rootDir>/src/tests-related/",
+    "<rootDir>/src/types/",
+    "<rootDir>/src/pages/",
   ],
-  coverageReporters: ['json-summary', 'text', 'lcov']
+  collectCoverageFrom: ["src/**/*.{ts,tsx}"],
+  coverageReporters: ["json-summary", "text", "lcov"],
 };
