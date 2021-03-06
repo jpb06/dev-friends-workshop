@@ -1,0 +1,21 @@
+name: checks
+on: [push]
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: yarn install
+      - name: Linter
+        run: yarn lint
+      - name: Types checks
+        run: yarn type-check
+      - name: Tests
+        run: yarn test
