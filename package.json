@@ -12,6 +12,7 @@
     "type-check": "tsc --pretty --noEmit",
     "test": "jest",
     "test:dev": "jest --watchAll --coverage",
+    "test:ci": "jest --runInBand --ci",
     "test-all": "yarn lint && yarn type-check && yarn test",
     "postinstall": "husky install"
   },
