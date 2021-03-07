@@ -14,7 +14,8 @@
     "test:dev": "jest --watchAll --coverage",
     "test:ci": "jest --runInBand --ci",
     "test-all": "yarn lint && yarn type-check && yarn test",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "coverage:badges": "generateBadges"
   },
   "engines": {
     "node": "14.x",
@@ -58,6 +59,7 @@
     "jest-when": "^3.2.0",
     "lint-staged": "^10.5.4",
     "msw": "^0.27.0",
+    "node-jest-badges": "^1.0.7",
     "prettier": "^2.0.2",
     "ts-jest": "^26.5.2",
     "typescript": "^4.2.2"
