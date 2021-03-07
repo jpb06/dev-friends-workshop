@@ -1,5 +1,12 @@
 # Workshop
 
+![Code quality](https://img.shields.io/codefactor/grade/github/jpb06/workshop-react-front?logo=codefactor)
+![Coverage](./badges/coverage-global%20coverage.svg)
+![Github workflow](https://img.shields.io/github/workflow/status/jpb06/workshop-react-front/checks?label=last%20workflow&logo=github-actions)
+![Last deployment](https://img.shields.io/github/deployments/jpb06/workshop-react-front/workshop-react-front?label=last%20deployment&logo=heroku)
+![Last commit](https://img.shields.io/github/last-commit/jpb06/workshop-react-front?logo=git)
+![Commits activity](https://img.shields.io/github/commit-activity/m/jpb06/workshop-react-front?logo=github)
+
 Here is a little workshop to help my team move forward with our frontend :sparkles:
 
 This is a continuation of the [Workshop react FCs repo](https://github.com/jpb06/workshop-react-fcs). Take a look at this archived repo if you want to know more about old implementations like the ones based on redux, for example.
