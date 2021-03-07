@@ -32,7 +32,7 @@ describe("My dev friends component", () => {
     screen.getByRole("progressbar", { name: /circle-loading/i });
   });
 
-  it.only("should display a list of devs once data has been fetched", async () => {
+  it("should display a list of devs once data has been fetched", async () => {
     render(<MyDevFriends />, { wrapper });
 
     await waitForElementToBeRemoved(() =>
