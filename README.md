@@ -11,6 +11,8 @@ Here is a little workshop to help my team move forward with our frontend :sparkl
 
 This is a continuation of the [Workshop react FCs repo](https://github.com/jpb06/workshop-react-fcs). Take a look at this archived repo if you want to know more about old implementations like the ones based on redux, for example.
 
+You can find the [deployed app here](https://workshop-react-front.herokuapp.com).
+
 ## :zap: What is this repo about?
 
 The original repo was created to convince everyone about React 16.8 features: hooks. Using only function components and hook is just great! Then the subject shifted to redux ...
