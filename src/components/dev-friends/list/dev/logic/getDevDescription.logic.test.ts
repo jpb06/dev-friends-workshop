@@ -1,4 +1,4 @@
-import { getDevDescription } from "./getDevDescription";
+import { getDevDescription } from "./getDevDescription.logic";
 
 describe("getDevDescription function", () => {
   it("should return a string describing the dev and his squad", () => {
