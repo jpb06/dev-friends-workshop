@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 import { DevFriendsContextWrapper } from "@tests/wrappers/DevFriendsContext.wrapper";
 
-import { useSquadsSelectionChange } from "./useSquadsSelectionChange.hook";
+import { useSquadsSelectionChange } from "./useSquadsSelectionChange";
 
 describe("Squads selection change hook", () => {
   const setSelectedSquadsMock = jest.fn();

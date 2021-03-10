@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { DevFriendsContext } from "../contexts/DevFriendsContext.context";
+import { DevFriendsContext } from "../contexts/DevFriendsContext";
 
 export const useReportOnReady = (data?: Array<unknown>): void => {
   const { setStatus } = useContext(DevFriendsContext);

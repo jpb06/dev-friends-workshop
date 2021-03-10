@@ -1,27 +1,27 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { DevFriendsContextWrapper } from "@tests/wrappers/DevFriendsContext.wrapper";
 
-import { useReportOnReady } from "./useReportOnReady.hook";
+import { useReportOnErrors } from "./useReportOnErrors";
 
 const setSelectedSquadsMock = jest.fn();
 const setStateMock = jest.fn();
 const wrapper = DevFriendsContextWrapper(setSelectedSquadsMock, setStateMock);
 
 describe("useReportOnErrors hook", () => {
-  it("should not change the status if there is no data", () => {
-    renderHook(() => useReportOnReady(), {
+  it("should not change the status if there is no errors", () => {
+    renderHook(() => useReportOnErrors(false), {
       wrapper,
     });
 
     expect(setStateMock).toHaveBeenCalledTimes(0);
   });
 
-  it("should set status to ready if there is some data", () => {
-    renderHook(() => useReportOnReady([]), {
+  it("should set status as errored if there is errors", () => {
+    renderHook(() => useReportOnErrors(true), {
       wrapper,
     });
 
     expect(setStateMock).toHaveBeenCalledTimes(1);
-    expect(setStateMock).toHaveBeenCalledWith("ready");
+    expect(setStateMock).toHaveBeenCalledWith("errored");
   });
 });

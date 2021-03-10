@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { squadsMockData } from "@tests/data/squads.data";
 import { DevFriendsContextWrapper } from "@tests/wrappers/DevFriendsContext.wrapper";
 
-import { useSelectedSquadsInitialization } from "./useSelectedSquadsInitialization.hook";
+import { useSelectedSquadsInitialization } from "./useSelectedSquadsInitialization";
 
 const setSelectedSquadsMock = jest.fn();
 const wrapper = DevFriendsContextWrapper(setSelectedSquadsMock);
