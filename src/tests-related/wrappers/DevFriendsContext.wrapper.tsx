@@ -1,4 +1,4 @@
-import { DevFriendsContext } from "@components/dev-friends/contexts/DevFriendsContext.context";
+import { DevFriendsContext } from "@components/dev-friends/contexts/DevFriendsContext";
 
 import { useMockedDevFriendsState } from "./useMockedDevFriendsState";
 

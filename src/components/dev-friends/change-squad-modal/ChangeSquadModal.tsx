@@ -12,7 +12,7 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
-import { useModalActions } from "./hooks/useModalActions.hook";
+import { useModalActions } from "./hooks/useModalActions";
 import { IdleState } from "./states/IdleState";
 
 interface ChangeSquadModalProps {

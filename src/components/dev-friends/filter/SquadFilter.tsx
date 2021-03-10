@@ -1,11 +1,11 @@
 import React from "react";
 
-import { useSquadsQuery } from "@api/useSquadsQuery.hook";
-import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors.hook";
+import { useSquadsQuery } from "@api/useSquadsQuery";
+import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors";
 import { Checkbox, FormControlLabel, Grid } from "@material-ui/core";
 
-import { useSelectedSquadsInitialization } from "./hooks/useSelectedSquadsInitialization.hook";
-import { useSquadsSelectionChange } from "./hooks/useSquadsSelectionChange.hook";
+import { useSelectedSquadsInitialization } from "./hooks/useSelectedSquadsInitialization";
+import { useSquadsSelectionChange } from "./hooks/useSquadsSelectionChange";
 import { useSquadFilterStyles } from "./SquadFilter.styles";
 
 export const SquadFilter: React.FC = () => {

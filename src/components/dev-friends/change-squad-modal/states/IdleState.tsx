@@ -1,8 +1,8 @@
 import React from "react";
 import { Dev } from "types/dev.interface";
 
-import { useDevsQuery } from "@api/useDevsQuery.hook";
-import { useSquadsQuery } from "@api/useSquadsQuery.hook";
+import { useDevsQuery } from "@api/useDevsQuery";
+import { useSquadsQuery } from "@api/useSquadsQuery";
 import { CircularLoading } from "@components/generic/circular-loading/CircularLoading";
 import { List } from "@material-ui/core";
 

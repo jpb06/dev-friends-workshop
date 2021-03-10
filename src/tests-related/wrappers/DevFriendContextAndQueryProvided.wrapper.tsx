@@ -1,7 +1,7 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { DevFriendsContext } from "@components/dev-friends/contexts/DevFriendsContext.context";
+import { DevFriendsContext } from "@components/dev-friends/contexts/DevFriendsContext";
 import { Squad } from "@owntypes/squad.interface";
 
 import { getQueryClient } from "./queryClient";

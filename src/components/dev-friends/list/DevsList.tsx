@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Dev as DevType } from "types/dev.interface";
 
-import { useDevsBySquadQuery } from "@api/useDevsBySquadQuery.hook";
-import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors.hook";
-import { useReportOnReady } from "@components/dev-friends/hooks/useReportOnReady.hook";
+import { useDevsBySquadQuery } from "@api/useDevsBySquadQuery";
+import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors";
+import { useReportOnReady } from "@components/dev-friends/hooks/useReportOnReady";
 
 import { ChangeSquadModal } from "../change-squad-modal/ChangeSquadModal";
-import { DevFriendsContext } from "../contexts/DevFriendsContext.context";
+import { DevFriendsContext } from "../contexts/DevFriendsContext";
 import { Dev } from "./dev/Dev";
 
 const useSelectionLogic = (

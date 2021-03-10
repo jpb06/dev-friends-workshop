@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { CardActions, Grid } from "@material-ui/core";
 import { Squad } from "@owntypes/squad.interface";
 
-import { DevFriendsContext } from "./contexts/DevFriendsContext.context";
+import { DevFriendsContext } from "./contexts/DevFriendsContext";
 import { SquadFilter } from "./filter/SquadFilter";
 import { DevsList } from "./list/DevsList";
 import { useMyDevFriendsStyles } from "./MyDevFriends.styles";
