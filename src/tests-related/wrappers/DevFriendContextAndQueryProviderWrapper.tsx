@@ -9,16 +9,16 @@ import { useMockedDevFriendsState } from "./useMockedDevFriendsState";
 
 const queryClient = getQueryClient();
 
-interface DevFriendContextAndQueryProvidedWrapperResult {
+interface DevFriendContextAndQueryProviderWrapperResult {
   wrapper: ({ children }) => JSX.Element;
   queryClient: QueryClient;
 }
 
-export const DevFriendContextAndQueryProvidedWrapper = (
+export const DevFriendContextAndQueryProviderWrapper = (
   setSelectedSquadsMock: jest.Mock<any, any> = jest.fn(),
   setStatusMock: jest.Mock<any, any> = jest.fn(),
   selectedSquad: Array<Squad> | undefined = undefined
-): DevFriendContextAndQueryProvidedWrapperResult => {
+): DevFriendContextAndQueryProviderWrapperResult => {
   const wrapper = ({ children }) => {
     const { selectedSquadsState, statusState } = useMockedDevFriendsState(
       setSelectedSquadsMock,

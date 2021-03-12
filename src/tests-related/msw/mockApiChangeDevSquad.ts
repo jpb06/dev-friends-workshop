@@ -7,8 +7,8 @@ import { Squad } from "@owntypes/squad.interface";
 import { changeDevSquadUrl } from "../../api/rest/api.config";
 
 interface ChangeSquadBody {
-  devId: any;
-  squadId: any;
+  devId: string;
+  squadId: string;
 }
 
 export const mockApiChangeDevSquad = (
