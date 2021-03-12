@@ -4,18 +4,19 @@ import { getDevDescription } from "@components/dev-friends/list/dev/logic/getDev
 import { screen } from "@testing-library/dom";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { devsMockData } from "@tests/data/devs.data";
-import { squadsMockData } from "@tests/data/squads.data";
-import { mockApiChangeDevSquad } from "@tests/msw/api.changeDevSquad.mock";
-import { mockApiGetDevs } from "@tests/msw/api.getDevs.mock";
-import { mockApiGetDevsBy } from "@tests/msw/api.getDevsBy.mock";
-import { mockApiGetSquads } from "@tests/msw/api.getSquads.mock";
-import { DevFriendContextAndQueryProvidedWrapper } from "@tests/wrappers/DevFriendContextAndQueryProvided.wrapper";
-import { setupMswServer } from "@tests/wrappers/setupMswServer";
+import { devsMockData, squadsMockData } from "@tests/data";
+import {
+  mockApiChangeDevSquad,
+  mockApiGetDevs,
+  mockApiGetDevsBy,
+  mockApiGetSquads,
+  setupMswServer,
+} from "@tests/msw";
+import { DevFriendContextAndQueryProviderWrapper } from "@tests/wrappers";
 
 import { DevsList } from "./DevsList";
 
-const { wrapper, queryClient } = DevFriendContextAndQueryProvidedWrapper(
+const { wrapper, queryClient } = DevFriendContextAndQueryProviderWrapper(
   jest.fn(),
   jest.fn(),
   squadsMockData

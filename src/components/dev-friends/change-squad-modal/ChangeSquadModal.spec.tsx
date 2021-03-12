@@ -6,13 +6,14 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { devsMockData } from "@tests/data/devs.data";
-import { squadsMockData } from "@tests/data/squads.data";
-import { mockApiChangeDevSquad } from "@tests/msw/api.changeDevSquad.mock";
-import { mockApiGetDevs } from "@tests/msw/api.getDevs.mock";
-import { mockApiGetSquads } from "@tests/msw/api.getSquads.mock";
-import { QueryProviderWrapper } from "@tests/wrappers/QueryProvider.wrapper";
-import { setupMswServer } from "@tests/wrappers/setupMswServer";
+import { devsMockData, squadsMockData } from "@tests/data";
+import {
+  mockApiChangeDevSquad,
+  mockApiGetDevs,
+  mockApiGetSquads,
+  setupMswServer,
+} from "@tests/msw";
+import { QueryProviderWrapper } from "@tests/wrappers";
 
 import { ChangeSquadModal } from "./ChangeSquadModal";
 

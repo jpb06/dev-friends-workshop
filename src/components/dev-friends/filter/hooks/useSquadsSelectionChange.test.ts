@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react-hooks";
-import { DevFriendsContextWrapper } from "@tests/wrappers/DevFriendsContext.wrapper";
+import { DevFriendsContextWrapper } from "@tests/wrappers";
 
 import { useSquadsSelectionChange } from "./useSquadsSelectionChange";
 
