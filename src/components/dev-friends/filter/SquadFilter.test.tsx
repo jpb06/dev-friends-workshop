@@ -1,7 +1,6 @@
 import React from "react";
 
-import { screen } from "@testing-library/dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { setUseSquadsReturnValue } from "@tests/mocks/mockUseSquadQuery.mock";
 import { DevFriendsContextWrapper } from "@tests/wrappers";
 
