@@ -1,8 +1,7 @@
 import React from "react";
 
 import { getDevDescription } from "@components/dev-friends/list/dev/logic/getDevDescription";
-import { screen } from "@testing-library/dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { devsMockData, squadsMockData } from "@tests/data";
 import {

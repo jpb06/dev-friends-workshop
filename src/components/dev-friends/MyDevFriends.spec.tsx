@@ -1,7 +1,10 @@
 import React from "react";
 
-import { screen } from "@testing-library/dom";
-import { render, waitForElementToBeRemoved } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import { devsMockData, squadsMockData } from "@tests/data";
 import { mockApiGetDevsBy, mockApiGetSquads, setupMswServer } from "@tests/msw";
 import { QueryProviderWrapper } from "@tests/wrappers";

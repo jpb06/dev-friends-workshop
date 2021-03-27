@@ -1,8 +1,7 @@
 import { when } from "jest-when";
 import React from "react";
 
-import { screen } from "@testing-library/dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import { PageLayout } from "./PageLayout";
 
