@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useSquadsQuery } from "@api/useSquadsQuery";
+import { useSquadsQuery } from "@api/main-backend/useSquadsQuery";
 import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors";
 import { Checkbox, FormControlLabel, Grid } from "@material-ui/core";
 

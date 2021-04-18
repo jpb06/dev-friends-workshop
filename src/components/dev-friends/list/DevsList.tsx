@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Dev as DevType } from "types/dev.interface";
 
-import { useDevsBySquadQuery } from "@api/useDevsBySquadQuery";
+import { useDevsBySquadQuery } from "@api/main-backend/useDevsBySquadQuery";
 import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors";
 import { useReportOnReady } from "@components/dev-friends/hooks/useReportOnReady";
+import { Dev as DevType } from "@owntypes/dev.interface";
 
 import { ChangeSquadModal } from "../change-squad-modal/ChangeSquadModal";
 import { DevFriendsContext } from "../contexts/DevFriendsContext";

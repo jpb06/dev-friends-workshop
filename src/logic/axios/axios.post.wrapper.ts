@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export const post = async <TResult>(
+import { handleAxiosError } from "./axios.errors.handler";
+
+export const axiosPost = async <TResult>(
   url: string,
   body: unknown
 ): Promise<TResult> => {
@@ -8,6 +10,6 @@ export const post = async <TResult>(
     const result = await axios.post<TResult>(url, body);
     return result.data;
   } catch (error) {
-    throw { status: error.response.status, data: error.response.data };
+    handleAxiosError(error);
   }
 };

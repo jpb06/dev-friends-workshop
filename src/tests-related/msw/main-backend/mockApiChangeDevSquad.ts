@@ -1,10 +1,9 @@
 import { RequestHandler, rest } from "msw";
-import { Dev } from "types/dev.interface";
 
+import { changeDevSquadUrl } from "@api/main-backend/config";
 import { isNumber } from "@logic/regex";
+import { Dev } from "@owntypes/dev.interface";
 import { Squad } from "@owntypes/squad.interface";
-
-import { changeDevSquadUrl } from "../../api/rest/api.config";
 
 interface ChangeSquadBody {
   devId: string;

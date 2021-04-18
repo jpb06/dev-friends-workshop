@@ -1,10 +1,10 @@
 import React from "react";
-import { Dev } from "types/dev.interface";
 
-import { useDevsQuery } from "@api/useDevsQuery";
-import { useSquadsQuery } from "@api/useSquadsQuery";
+import { useDevsQuery } from "@api/main-backend/useDevsQuery";
+import { useSquadsQuery } from "@api/main-backend/useSquadsQuery";
 import { CircularLoading } from "@components/generic/circular-loading/CircularLoading";
 import { List } from "@material-ui/core";
+import { Dev } from "@owntypes/dev.interface";
 
 import { SquadChoice } from "./squad-choice/SquadChoice";
 

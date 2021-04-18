@@ -7,6 +7,12 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
   "env": {
     "es6": true,
     "browser": true,

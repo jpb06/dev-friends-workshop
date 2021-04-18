@@ -1,6 +1,8 @@
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
-import { changeDevSquad } from "../rest/changeDevSquad";
+import { axiosPost } from "@logic/axios/axios.post.wrapper";
+
+import { changeDevSquadUrl } from "./config";
 
 interface ChangeDevSquadData {
   devId: number;
@@ -15,7 +17,7 @@ export const useChangeDevSquadMutation = (): UseMutationResult<
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
-    (data: ChangeDevSquadData) => changeDevSquad(data.devId, data.squadId),
+    (data: ChangeDevSquadData) => axiosPost<string>(changeDevSquadUrl, data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("devs");

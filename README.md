@@ -30,9 +30,13 @@ The current repo is an import of the react-query branch. We splitted frontend an
 
 ## :zap: Guidelines
 
-- :trumpet: The simpler the better: simple units of code are easier to understand and reason with, thus easier to maintain.
-- :trumpet: Small units of code: by making sure they fit into our screen, we lowkey enforce a code splitting strategy.
-- :trumpet: Do one thing. Do it well: pretty mundane SOLID principle here.
+- :trumpet: **The simpler the better**: simple units of code are easier to understand and reason with, thus easier to maintain.
+- :trumpet: **Small units of code**: by making sure they fit into our screen, we lowkey enforce a code splitting strategy.
+- :trumpet: **Do one thing. Do it well**: pretty mundane SOLID principle here. Less responsibilities means easier understanding and testing.
+- :trumpet: **Deport logic in hooks or in distinct modules**: We increase reusability likelihook by extracting logic. We can also test the realted code in isolation if need be. Proper naming of extracted logic can also help us convey intent and help future readers understanding our code.
+- :trumpet: **One level of imbrication max in components**: More nesting means more execution paths, more complexity and harder tests to write.
+- :trumpet: **Enum rendering!**: Prefer enum rendering when complex conditional rendering is required.
+- :trumpet: **Let's avoid redux if we can**: Redux is a great tool and it can be pretty useful. But often times, it is used incorrectly. Like using it in intrinsically asynchronous scenarios. Let's rely on others solutions for this.
 
 With these in mind, our unit & integration tests will be much easier to write :thumbsup:
 

@@ -1,8 +1,7 @@
 import { RequestHandler, rest } from "msw";
 
+import { squadsUrl } from "@api/main-backend/config";
 import { Squad } from "@owntypes//squad.interface";
-
-import { squadsUrl } from "../../api/rest/api.config";
 
 export const mockApiGetSquads = (
   data: Array<Squad>,

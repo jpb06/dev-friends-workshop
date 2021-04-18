@@ -1,5 +1,4 @@
 import React from "react";
-import { Dev } from "types/dev.interface";
 
 import { BlockingError } from "@components/generic/blocking-error/BlockingError";
 import { CircularLoading } from "@components/generic/circular-loading/CircularLoading";
@@ -11,6 +10,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
+import { Dev } from "@owntypes/dev.interface";
 
 import { useModalActions } from "./hooks/useModalActions";
 import { IdleState } from "./states/IdleState";
