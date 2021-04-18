@@ -3,5 +3,3 @@
 . "$(dirname "$0")/common.sh"
 
 yarn run type-check
-yarn test:ci
-yarn badges
