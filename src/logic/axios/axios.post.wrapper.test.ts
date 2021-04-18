@@ -1,39 +1,38 @@
-import { setupServer } from "msw/node";
-
-import { CustomError } from "@owntypes/api.custom.error.interface";
 import { genericPostUrl } from "@tests/api/config";
+import { setupMswServer } from "@tests/msw";
 import {
   mswGenericPostFailure,
   mswGenericPostSuccess,
 } from "@tests/msw/generic/msw.generic.post";
 
+import { handleAxiosError } from "./axios.errors.handler";
 import { axiosPost } from "./axios.post.wrapper";
 
+jest.mock("./axios.errors.handler");
+
 describe("Axios post wrapper", () => {
-  const server = setupServer(mswGenericPostSuccess());
+  const { instance } = setupMswServer();
 
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  beforeAll(() => instance.listen());
+  afterEach(() => {
+    instance.resetHandlers();
+    jest.clearAllMocks();
+  });
+  afterAll(() => instance.close());
 
-  it("should return the server response when the call succeeded", () => {
-    const promise = axiosPost(genericPostUrl, {});
+  it("should return the server response when the call succeeded", async () => {
+    instance.use(mswGenericPostSuccess());
 
-    expect(promise).resolves.toEqual({ message: "generic post" });
+    const result = await axiosPost(genericPostUrl, {});
+
+    expect(result).toStrictEqual({ message: "generic post" });
   });
 
   it("should return the server response when the call failed", async () => {
-    server.use(mswGenericPostFailure());
+    instance.use(mswGenericPostFailure());
 
-    const promise = axiosPost(genericPostUrl, {});
+    await axiosPost(genericPostUrl, {});
 
-    // using try catch here because we cannot throw an error due to react-query
-    try {
-      await promise;
-    } catch (err) {
-      expect(err).toStrictEqual(
-        new CustomError(400, "generic post error message")
-      );
-    }
+    expect(handleAxiosError).toHaveBeenCalledTimes(1);
   });
 });

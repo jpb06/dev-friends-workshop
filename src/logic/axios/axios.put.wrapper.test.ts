@@ -1,39 +1,38 @@
-import { setupServer } from "msw/node";
-
-import { CustomError } from "@owntypes/api.custom.error.interface";
 import { genericPutUrl } from "@tests/api/config";
+import { setupMswServer } from "@tests/msw";
 import {
   mswGenericPutFailure,
   mswGenericPutSuccess,
 } from "@tests/msw/generic/msw.generic.put";
 
+import { handleAxiosError } from "./axios.errors.handler";
 import { axiosPut } from "./axios.put.wrapper";
 
+jest.mock("./axios.errors.handler");
+
 describe("Axios put wrapper", () => {
-  const server = setupServer(mswGenericPutSuccess());
+  const { instance } = setupMswServer();
 
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  beforeAll(() => instance.listen());
+  afterEach(() => {
+    instance.resetHandlers();
+    jest.clearAllMocks();
+  });
+  afterAll(() => instance.close());
 
-  it("should return the server response when the call succeeded", () => {
-    const promise = axiosPut(genericPutUrl, {});
+  it("should return the server response when the call succeeded", async () => {
+    instance.use(mswGenericPutSuccess());
 
-    expect(promise).resolves.toEqual({ message: "generic put" });
+    const result = await axiosPut(genericPutUrl, {});
+
+    expect(result).toStrictEqual({ message: "generic put" });
   });
 
-  it("should return the server response when the call failed", async () => {
-    server.use(mswGenericPutFailure());
+  it("should call handleAxiosError if there is an error", async () => {
+    instance.use(mswGenericPutFailure());
 
-    const promise = axiosPut(genericPutUrl, {});
+    await axiosPut(genericPutUrl, {});
 
-    // using try catch here because we cannot throw an error due to react-query
-    try {
-      await promise;
-    } catch (err) {
-      expect(err).toStrictEqual(
-        new CustomError(400, "generic put error message")
-      );
-    }
+    expect(handleAxiosError).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,21 +1,35 @@
-import { setupServer } from "msw/node";
-
 import { genericGetUrl } from "@tests/api/config";
-import { mswGenericGetSuccess } from "@tests/msw/generic/msw.generic.get";
+import { setupMswServer } from "@tests/msw";
+import {
+  mswGenericGetFailure,
+  mswGenericGetSuccess,
+} from "@tests/msw/generic/msw.generic.get";
 
+import { handleAxiosError } from "./axios.errors.handler";
 import { axiosGet } from "./axios.get.wrapper";
 
-jest.mock("axios"),
-  describe("Axios get wrapper", () => {
-    const server = setupServer(mswGenericGetSuccess());
+jest.mock("./axios.errors.handler");
 
-    beforeAll(() => server.listen());
-    afterEach(() => server.resetHandlers());
-    afterAll(() => server.close());
+describe("Axios get wrapper", () => {
+  const { instance } = setupMswServer();
 
-    it("should return the server response when the call succeeded", () => {
-      const promise = axiosGet(genericGetUrl);
+  beforeAll(() => instance.listen());
+  afterEach(() => instance.resetHandlers());
+  afterAll(() => instance.close());
 
-      expect(promise).resolves.toEqual({ message: "generic get" });
-    });
+  it("should return the server response when the call succeeded", async () => {
+    instance.use(mswGenericGetSuccess());
+
+    const result = await axiosGet(genericGetUrl, {});
+
+    expect(result).toStrictEqual({ message: "generic get" });
   });
+
+  it("should return the server response when the call failed", async () => {
+    instance.use(mswGenericGetFailure());
+
+    await axiosGet(genericGetUrl, {});
+
+    expect(handleAxiosError).toHaveBeenCalledTimes(1);
+  });
+});
