@@ -6,7 +6,7 @@ import { DevFriendsContextWrapper } from "@tests/wrappers";
 
 import { SquadFilter } from "./SquadFilter";
 
-jest.mock("@api/useSquadsQuery");
+jest.mock("@api/main-backend/useSquadsQuery");
 
 const wrapper = DevFriendsContextWrapper();
 

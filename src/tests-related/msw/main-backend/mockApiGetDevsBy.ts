@@ -1,7 +1,7 @@
 import { RequestHandler, rest } from "msw";
-import { Dev } from "types/dev.interface";
 
-import { devsByUrl } from "../../api/rest/api.config";
+import { devsByUrl } from "@api/main-backend/config";
+import { Dev } from "@owntypes/dev.interface";
 
 export const mockApiGetDevsBy = (
   data: Array<Dev>,
