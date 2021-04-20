@@ -8,5 +8,5 @@ import { Squad } from "@owntypes/squad.interface";
 
 export const setUseDevsBySquadReturnValue = (
   data: Array<Squad>
-): MockedFunction<(squads?: Squad[]) => QueryObserverResult<Dev[], unknown>> =>
+): MockedFunction<(squads?: Squad[]) => QueryObserverResult<Dev[]>> =>
   mocked(useDevsBySquadQuery).mockReturnValueOnce({ data } as any);

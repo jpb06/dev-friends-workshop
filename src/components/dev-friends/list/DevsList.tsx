@@ -3,28 +3,11 @@ import React, { useContext, useState } from "react";
 import { useDevsBySquadQuery } from "@api/main-backend/useDevsBySquadQuery";
 import { useReportOnErrors } from "@components/dev-friends/hooks/useReportOnErrors";
 import { useReportOnReady } from "@components/dev-friends/hooks/useReportOnReady";
-import { Dev as DevType } from "@owntypes/dev.interface";
 
 import { ChangeSquadModal } from "../change-squad-modal/ChangeSquadModal";
 import { DevFriendsContext } from "../contexts/DevFriendsContext";
 import { Dev } from "./dev/Dev";
-
-const useSelectionLogic = (
-  devs: Array<DevType>,
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  const [selectedDev, setSelectedDev] = useState(undefined);
-
-  const handleDevSelected = (id: number) => {
-    setSelectedDev(devs.find((el) => el.id === id));
-    setIsModalOpen(true);
-  };
-
-  return {
-    handleDevSelected,
-    selectedDev,
-  };
-};
+import { useSelectionLogic } from "./hooks/useSelectionLogic";
 
 export const DevsList: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

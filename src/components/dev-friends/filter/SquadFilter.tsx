@@ -14,8 +14,9 @@ export const SquadFilter: React.FC = () => {
   const { data: squads, isError } = useSquadsQuery();
 
   useSelectedSquadsInitialization(squads);
-  const [handleChange, formValues] = useSquadsSelectionChange();
   useReportOnErrors(isError);
+
+  const [handleChange, formValues] = useSquadsSelectionChange();
 
   if (!squads) return null;
 
