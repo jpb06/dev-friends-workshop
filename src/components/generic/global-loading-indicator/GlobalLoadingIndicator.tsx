@@ -8,7 +8,9 @@ export const GlobalLoadingIndicator = (): JSX.Element => {
   const classes = useGlobalLoadingIndicatorStyles();
   const isFetching = useIsFetching();
 
-  if (!isFetching) return null;
+  if (!isFetching) {
+    return null;
+  }
 
   return (
     <LinearProgress

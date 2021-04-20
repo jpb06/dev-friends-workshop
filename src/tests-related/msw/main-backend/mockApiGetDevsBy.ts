@@ -7,6 +7,6 @@ export const mockApiGetDevsBy = (
   data: Array<Dev>,
   status = 200
 ): RequestHandler =>
-  rest.post(devsByUrl, (req, res, ctx) => {
-    return res(ctx.status(status), ctx.json(data));
-  });
+  rest.post(devsByUrl, (req, res, ctx) =>
+    res(ctx.status(status), ctx.json(data))
+  );
