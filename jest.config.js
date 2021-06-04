@@ -8,6 +8,7 @@ module.exports = {
   globalSetup: "<rootDir>/jest.setup.env.ts",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
+  testEnvironment: "jsdom",
   testPathIgnorePatterns: [
     "<rootDir>[/\\\\](node_modules|.next|coverage)[/\\\\]",
   ],
