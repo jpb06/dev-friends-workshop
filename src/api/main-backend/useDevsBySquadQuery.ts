@@ -12,7 +12,9 @@ export const useDevsBySquadQuery = (
   useQuery(
     ["devs", squads],
     () =>
-      axiosPost<Array<Dev>>(devsByUrl, { squads: squads.map((el) => el.id) }),
+      axiosPost<Array<Dev>>(devsByUrl, {
+        idSquads: squads.map((el) => el.id),
+      }),
     {
       enabled: squads !== undefined,
     }
