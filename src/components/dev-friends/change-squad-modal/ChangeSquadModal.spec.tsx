@@ -36,10 +36,9 @@ describe("Change squad modal component", () => {
   afterAll(() => instance.close());
 
   it("should display nothing if there is no dev", () => {
-    render(
-      <ChangeSquadModal isOpen={true} onClose={handleClose} dev={null} />,
-      { wrapper }
-    );
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={null} />, {
+      wrapper,
+    });
 
     expect(
       screen.queryByRole("presentation", { name: /change-squad/i })
@@ -58,7 +57,7 @@ describe("Change squad modal component", () => {
   });
 
   it("should display the modal", () => {
-    render(<ChangeSquadModal isOpen={true} onClose={handleClose} dev={dev} />, {
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={dev} />, {
       wrapper,
     });
 
@@ -67,7 +66,7 @@ describe("Change squad modal component", () => {
   });
 
   it("should display a loading indicator when modal first loads", () => {
-    render(<ChangeSquadModal isOpen={true} onClose={handleClose} dev={dev} />, {
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={dev} />, {
       wrapper,
     });
 
@@ -75,7 +74,7 @@ describe("Change squad modal component", () => {
   });
 
   it("should display a list of squads", async () => {
-    render(<ChangeSquadModal isOpen={true} onClose={handleClose} dev={dev} />, {
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={dev} />, {
       wrapper,
     });
 
@@ -87,7 +86,7 @@ describe("Change squad modal component", () => {
   });
 
   it("should display a loading indicator when changing the dev squad", async () => {
-    render(<ChangeSquadModal isOpen={true} onClose={handleClose} dev={dev} />, {
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={dev} />, {
       wrapper,
     });
 
@@ -100,7 +99,7 @@ describe("Change squad modal component", () => {
   });
 
   it("should close the modal once the mutation has completed", async () => {
-    render(<ChangeSquadModal isOpen={true} onClose={handleClose} dev={dev} />, {
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={dev} />, {
       wrapper,
     });
 
@@ -119,7 +118,7 @@ describe("Change squad modal component", () => {
   });
 
   it("should close the modal", () => {
-    render(<ChangeSquadModal isOpen={true} onClose={handleClose} dev={dev} />, {
+    render(<ChangeSquadModal isOpen onClose={handleClose} dev={dev} />, {
       wrapper,
     });
 

@@ -6,8 +6,8 @@ import { Dev } from "@owntypes/dev.interface";
 import { Squad } from "@owntypes/squad.interface";
 
 interface ChangeSquadBody {
-  devId: string;
-  squadId: string;
+  idDev: string;
+  idSquad: string;
 }
 
 export const mockApiChangeDevSquad = (
@@ -16,12 +16,12 @@ export const mockApiChangeDevSquad = (
 ): RequestHandler =>
   rest.post<ChangeSquadBody, any>(changeDevSquadUrl, async (req, res, ctx) => {
     const isRequestValid =
-      isNumber(req.body.devId) && isNumber(req.body.squadId);
+      isNumber(req.body.idDev) && isNumber(req.body.idSquad);
     if (!isRequestValid)
       return res(ctx.status(400), ctx.json("Invalid request"));
 
-    const devId = parseInt(req.body.devId, 10);
-    const squadId = parseInt(req.body.squadId, 10);
+    const devId = parseInt(req.body.idDev, 10);
+    const squadId = parseInt(req.body.idSquad, 10);
 
     const dev = devs.find((el) => el.id === devId);
     if (!dev) return res(ctx.status(404), ctx.json("Dev not found"));
