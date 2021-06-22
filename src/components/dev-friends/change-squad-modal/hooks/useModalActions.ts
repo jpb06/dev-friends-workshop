@@ -21,7 +21,7 @@ export const useModalActions = (
 
   const handleSquadChanged = async (id: number) => {
     try {
-      await changeDevSquad({ devId: dev?.id, squadId: id });
+      await changeDevSquad({ idDev: dev?.id, idSquad: id });
     } catch (err) {
       return;
     }

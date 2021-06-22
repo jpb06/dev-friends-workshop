@@ -5,8 +5,8 @@ import { axiosPost } from "@logic/axios/axios.post.wrapper";
 import { changeDevSquadUrl } from "./config";
 
 interface ChangeDevSquadData {
-  devId: number;
-  squadId: number;
+  idDev: number;
+  idSquad: number;
 }
 
 export const useChangeDevSquadMutation = (): UseMutationResult<

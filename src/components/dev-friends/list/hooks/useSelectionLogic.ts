@@ -11,9 +11,8 @@ export const useSelectionLogic = (
   devs: Array<DevType>,
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ): SelectionLogicHook => {
-  const [selectedDev, setSelectedDev] = useState<DevType | undefined>(
-    undefined
-  );
+  const [selectedDev, setSelectedDev] =
+    useState<DevType | undefined>(undefined);
 
   const handleDevSelected = (id: number) => {
     setSelectedDev(devs.find((el) => el.id === id));
