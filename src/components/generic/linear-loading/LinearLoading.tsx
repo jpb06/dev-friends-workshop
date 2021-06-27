@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { Grid, LinearProgress } from "@material-ui/core";
+import { Grid, LinearProgress } from '@material-ui/core';
 
-import { useLinearLoadingStyles } from "./LinearLoading.styles";
+import { useLinearLoadingStyles } from './LinearLoading.styles';
 
 export const LinearLoading = (): JSX.Element => {
   const classes = useLinearLoadingStyles();

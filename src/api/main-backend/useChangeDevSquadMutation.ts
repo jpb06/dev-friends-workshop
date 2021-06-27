@@ -1,8 +1,8 @@
-import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 
-import { axiosPost } from "@logic/axios/axios.post.wrapper";
+import { axiosPost } from '@logic/axios/axios.post.wrapper';
 
-import { changeDevSquadUrl } from "./config";
+import { changeDevSquadUrl } from './config';
 
 interface ChangeDevSquadData {
   idDev: number;

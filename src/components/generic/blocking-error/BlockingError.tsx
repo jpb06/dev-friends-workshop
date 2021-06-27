@@ -1,11 +1,11 @@
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx';
+import React from 'react';
 
-import { SvgIconTypeMap } from "@material-ui/core";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import SentimentDissatisfiedIcon from "@material-ui/icons/SentimentDissatisfied";
+import { SvgIconTypeMap } from '@material-ui/core';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 
-import { useBlockingErrorStyles } from "./BlockingError.styles";
+import { useBlockingErrorStyles } from './BlockingError.styles';
 
 interface BlockingErrorProps {
   title: string;

@@ -1,9 +1,9 @@
-import { useIsFetching } from "react-query";
-import { mocked } from "ts-jest/utils";
+import { useIsFetching } from 'react-query';
+import { mocked } from 'ts-jest/utils';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { GlobalLoadingIndicator } from "./GlobalLoadingIndicator";
+import { GlobalLoadingIndicator } from './GlobalLoadingIndicator';
 
 jest.mock("react-query");
 

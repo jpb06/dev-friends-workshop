@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import { Dev } from "./Dev";
-import { getDevDescription } from "./logic/getDevDescription";
+import { Dev } from './Dev';
+import { getDevDescription } from './logic/getDevDescription';
 
 describe("Dev component", () => {
   const onSelected = jest.fn();

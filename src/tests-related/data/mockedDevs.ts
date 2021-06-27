@@ -1,4 +1,4 @@
-import { Dev } from "@owntypes/dev.interface";
+import { Dev } from '@owntypes/dev.interface';
 
 export const devsMockData: Array<Dev> = [
   {

@@ -1,12 +1,9 @@
-import { genericGetUrl } from "@tests/api/config";
-import { setupMswServer } from "@tests/msw";
-import {
-  mswGenericGetFailure,
-  mswGenericGetSuccess,
-} from "@tests/msw/generic/msw.generic.get";
+import { genericGetUrl } from '@tests/api/config';
+import { setupMswServer } from '@tests/msw';
+import { mswGenericGetFailure, mswGenericGetSuccess } from '@tests/msw/generic/msw.generic.get';
 
-import { handleAxiosError } from "./axios.errors.handler";
-import { axiosGet } from "./axios.get.wrapper";
+import { handleAxiosError } from './axios.errors.handler';
+import { axiosGet } from './axios.get.wrapper';
 
 jest.mock("./axios.errors.handler");
 

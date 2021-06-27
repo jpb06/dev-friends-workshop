@@ -1,7 +1,7 @@
-import { AxiosRequestConfig } from "axios";
-import axios from "axios";
+import { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
-import { handleAxiosError } from "./axios.errors.handler";
+import { handleAxiosError } from './axios.errors.handler';
 
 export const axiosGet = async <TResult>(
   url: string,

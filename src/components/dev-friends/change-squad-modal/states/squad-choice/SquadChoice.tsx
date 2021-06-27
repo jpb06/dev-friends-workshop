@@ -1,15 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import {
-  Avatar,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-} from "@material-ui/core";
-import GroupIcon from "@material-ui/icons/Group";
-import { Squad } from "@owntypes/squad.interface";
+import { Avatar, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import GroupIcon from '@material-ui/icons/Group';
+import { Squad } from '@owntypes/squad.interface';
 
-import { useSquadChoiceStyles } from "./SquadChoice.styles";
+import { useSquadChoiceStyles } from './SquadChoice.styles';
 
 interface SquadChoiceProps extends Squad {
   onSquadSelected: (id: number) => void;

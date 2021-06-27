@@ -1,5 +1,5 @@
-import { fade, makeStyles, Theme } from "@material-ui/core";
-import { cyan } from "@material-ui/core/colors";
+import { fade, makeStyles, Theme } from '@material-ui/core';
+import { cyan } from '@material-ui/core/colors';
 
 export const useBlockingErrorStyles = makeStyles((theme: Theme) => ({
   root: {

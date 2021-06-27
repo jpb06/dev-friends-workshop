@@ -1,7 +1,7 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { getQueryClient } from "./queryClient";
+import { getQueryClient } from './queryClient';
 
 interface QueryProviderWrapperResult {
   wrapper: ({ children }) => JSX.Element;

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { CircularLoading } from "./CircularLoading";
+import { CircularLoading } from './CircularLoading';
 
 describe("CircularLoading component", () => {
   it("should display a loading indicator", () => {

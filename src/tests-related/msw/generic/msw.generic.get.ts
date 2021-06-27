@@ -1,6 +1,6 @@
-import { RequestHandler, rest } from "msw";
+import { RequestHandler, rest } from 'msw';
 
-import { genericGetUrl } from "@tests/api/config";
+import { genericGetUrl } from '@tests/api/config';
 
 export const mswGenericGetSuccess = (): RequestHandler =>
   rest.get<unknown>(genericGetUrl, (_, res, ctx) =>

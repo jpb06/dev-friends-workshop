@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { LinearLoading } from "./LinearLoading";
+import { LinearLoading } from './LinearLoading';
 
 describe("LinearLoading component", () => {
   it("should display a loading indicator", () => {

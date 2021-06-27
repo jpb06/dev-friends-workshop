@@ -1,4 +1,4 @@
-import { CustomError } from "@owntypes/api.custom.error.interface";
+import { CustomError } from '@owntypes/api.custom.error.interface';
 
 interface AxiosTerseResponse {
   status: number;

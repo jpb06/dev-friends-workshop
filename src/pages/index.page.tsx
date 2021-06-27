@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { MyDevFriends } from "@components/dev-friends/MyDevFriends";
-import { PageLayout } from "@components/generic/page-layout/PageLayout";
+import { MyDevFriends } from '@components/dev-friends/MyDevFriends';
+import { PageLayout } from '@components/generic/page-layout/PageLayout';
 
 export const Home = (): JSX.Element => (
   <PageLayout>

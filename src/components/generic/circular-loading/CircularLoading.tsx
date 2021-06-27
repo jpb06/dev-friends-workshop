@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { CircularProgress, Grid } from "@material-ui/core";
+import { CircularProgress, Grid } from '@material-ui/core';
 
-import { useCircularLoadingStyles } from "./CircularLoading.styles";
+import { useCircularLoadingStyles } from './CircularLoading.styles';
 
 export const CircularLoading = (): JSX.Element => {
   const classes = useCircularLoadingStyles();

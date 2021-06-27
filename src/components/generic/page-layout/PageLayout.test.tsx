@@ -1,9 +1,9 @@
-import { when } from "jest-when";
-import React from "react";
+import { when } from 'jest-when';
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { PageLayout } from "./PageLayout";
+import { PageLayout } from './PageLayout';
 
 describe("Page layout component", () => {
   it("should display its children", async () => {

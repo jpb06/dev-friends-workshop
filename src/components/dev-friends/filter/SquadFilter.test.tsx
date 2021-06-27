@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
-import { setUseSquadsReturnValue } from "@tests/mocks/mockUseSquadQuery.mock";
-import { DevFriendsContextWrapper } from "@tests/wrappers";
+import { render, screen } from '@testing-library/react';
+import { setUseSquadsReturnValue } from '@tests/mocks/mockUseSquadQuery.mock';
+import { DevFriendsContextWrapper } from '@tests/wrappers';
 
-import { SquadFilter } from "./SquadFilter";
+import { SquadFilter } from './SquadFilter';
 
 jest.mock("@api/main-backend/useSquadsQuery");
 

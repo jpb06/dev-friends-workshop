@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { StatusReport } from "./StatusReport";
+import { StatusReport } from './StatusReport';
 
 describe("Status report component", () => {
   it("should display an error", () => {
