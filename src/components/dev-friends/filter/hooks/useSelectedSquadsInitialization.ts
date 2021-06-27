@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
 
-import { Squad } from "@owntypes/squad.interface";
+import { Squad } from '@owntypes/squad.interface';
 
-import { DevFriendsContext } from "../../contexts/DevFriendsContext";
+import { DevFriendsContext } from '../../contexts/DevFriendsContext';
 
 export const useSelectedSquadsInitialization = (squads: Array<Squad>): void => {
   const { setSelectedSquads } = useContext(DevFriendsContext);
@@ -11,5 +11,5 @@ export const useSelectedSquadsInitialization = (squads: Array<Squad>): void => {
     if (squads !== undefined) {
       setSelectedSquads(squads);
     }
-  }, [squads]);
+  }, [setSelectedSquads, squads]);
 };
