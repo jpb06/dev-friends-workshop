@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "format": "prettier --write .",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "lint": "next lint",
     "type-check": "tsc --pretty --noEmit",
     "test": "jest",
     "test:dev": "jest --watchAll --coverage",
@@ -20,45 +20,39 @@
     "node": "14.x",
     "yarn": "1.22.10"
   },
-  "lint-staged": {
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
-    ]
-  },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
-    "next": "10.2.3",
+    "next": "11.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-query": "^3.16.0"
+    "react-query": "^3.17.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/react-hooks": "^7.0.0",
     "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.23",
-    "@types/jest-when": "^2.7.2",
-    "@types/node": "^15.12.0",
-    "@types/react": "^17.0.9",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
-    "babel-jest": "^27.0.2",
-    "eslint": "^7.27.0",
+    "@types/jest-when": "^2.7.3",
+    "@types/node": "^15.12.4",
+    "@types/react": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "babel-jest": "^27.0.5",
+    "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
     "husky": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.0.4",
+    "jest": "^27.0.5",
     "jest-watch-typeahead": "^0.6.4",
     "jest-when": "^3.3.1",
-    "lint-staged": "^11.0.0",
     "msw": "^0.29.0",
-    "prettier": "^2.3.0",
-    "ts-jest": "^27.0.2",
-    "typescript": "^4.3.2"
+    "prettier": "^2.3.1",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.4"
   }
 }
