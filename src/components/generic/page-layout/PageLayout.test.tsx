@@ -19,13 +19,13 @@ describe("Page layout component", () => {
   it("should remove ssr styles", async () => {
     const removeChildMock = jest.fn(() => ({}));
     document.querySelector = jest.fn();
-    when(document.querySelector as any)
+    when(document.querySelector)
       .calledWith("#jss-server-side")
       .mockReturnValue({
         parentElement: {
           removeChild: removeChildMock,
         },
-      });
+      } as unknown as Element);
 
     render(
       <PageLayout>
