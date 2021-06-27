@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { CardActions, Grid } from "@material-ui/core";
-import { Squad } from "@owntypes/squad.interface";
+import { CardActions, Grid } from '@material-ui/core';
 
-import { DevFriendsContext } from "./contexts/DevFriendsContext";
-import { SquadFilter } from "./filter/SquadFilter";
-import { DevsList } from "./list/DevsList";
-import { useMyDevFriendsStyles } from "./MyDevFriends.styles";
-import { StatusReport } from "./status-report/StatusReport";
+import { DevFriendsContextProvider } from './contexts/DevFriendsContext';
+import { SquadFilter } from './filter/SquadFilter';
+import { DevsList } from './list/DevsList';
+import { useMyDevFriendsStyles } from './MyDevFriends.styles';
+import { StatusReport } from './status-report/StatusReport';
 
 export type DevFriendsStatus = "loading" | "errored" | "ready";
 
 export const MyDevFriends = (): JSX.Element => {
   const classes = useMyDevFriendsStyles();
   const [status, setStatus] = useState<DevFriendsStatus>("loading");
-  const [selectedSquads, setSelectedSquads] = useState<Array<Squad>>(undefined);
 
   return (
-    <DevFriendsContext.Provider
-      value={{ selectedSquads, setSelectedSquads, setStatus }}
-    >
+    <DevFriendsContextProvider setStatus={setStatus}>
       <CardActions>
         <SquadFilter />
       </CardActions>
@@ -33,6 +29,6 @@ export const MyDevFriends = (): JSX.Element => {
         <DevsList />
         <StatusReport status={status} />
       </Grid>
-    </DevFriendsContext.Provider>
+    </DevFriendsContextProvider>
   );
 };

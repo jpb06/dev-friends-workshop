@@ -1,7 +1,9 @@
-import { act, renderHook } from "@testing-library/react-hooks";
-import { DevFriendsContextWrapper } from "@tests/wrappers";
+import { ChangeEvent } from 'react';
 
-import { useSquadsSelectionChange } from "./useSquadsSelectionChange";
+import { act, renderHook } from '@testing-library/react-hooks';
+import { DevFriendsContextWrapper } from '@tests/wrappers';
+
+import { useSquadsSelectionChange } from './useSquadsSelectionChange';
 
 describe("Squads selection change hook", () => {
   const setSelectedSquadsMock = jest.fn();
@@ -32,7 +34,10 @@ describe("Squads selection change hook", () => {
     const handleChange = result.current[0];
 
     act(() => {
-      handleChange({ target: { name: "1" } } as any, false);
+      handleChange(
+        { target: { name: "1" } } as ChangeEvent<HTMLInputElement>,
+        false
+      );
     });
 
     const values = result.current[1];
@@ -57,7 +62,10 @@ describe("Squads selection change hook", () => {
     const handleChange = result.current[0];
 
     act(() => {
-      handleChange({ target: { name: "-94541" } } as any, false);
+      handleChange(
+        { target: { name: "-94541" } } as ChangeEvent<HTMLInputElement>,
+        false
+      );
     });
 
     const values = result.current[1];

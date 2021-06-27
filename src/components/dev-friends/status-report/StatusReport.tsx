@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { DevFriendsStatus } from "@components/dev-friends/MyDevFriends";
-import { BlockingError } from "@components/generic/blocking-error/BlockingError";
-import { CircularLoading } from "@components/generic/circular-loading/CircularLoading";
+import { DevFriendsStatus } from '@components/dev-friends/MyDevFriends';
+import { BlockingError } from '@components/generic/blocking-error/BlockingError';
+import { CircularLoading } from '@components/generic/circular-loading/CircularLoading';
 
 interface StatusReportProps {
   status: DevFriendsStatus;

@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 
-import { DevFriendsContext } from "../../contexts/DevFriendsContext";
+import { DevFriendsContext } from '../../contexts/DevFriendsContext';
 
 type SquadSelectionChangeHookResult = [
   (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void,

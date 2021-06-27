@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Dev as DevType } from "@owntypes/dev.interface";
+import { Dev as DevType } from '@owntypes/dev.interface';
 
 interface SelectionLogicHook {
   handleDevSelected: (id: number) => void;
@@ -11,8 +11,9 @@ export const useSelectionLogic = (
   devs: Array<DevType>,
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ): SelectionLogicHook => {
-  const [selectedDev, setSelectedDev] =
-    useState<DevType | undefined>(undefined);
+  const [selectedDev, setSelectedDev] = useState<DevType | undefined>(
+    undefined
+  );
 
   const handleDevSelected = (id: number) => {
     setSelectedDev(devs.find((el) => el.id === id));

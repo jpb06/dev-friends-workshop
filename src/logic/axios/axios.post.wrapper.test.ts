@@ -1,12 +1,9 @@
-import { genericPostUrl } from "@tests/api/config";
-import { setupMswServer } from "@tests/msw";
-import {
-  mswGenericPostFailure,
-  mswGenericPostSuccess,
-} from "@tests/msw/generic/msw.generic.post";
+import { genericPostUrl } from '@tests/api/config';
+import { setupMswServer } from '@tests/msw';
+import { mswGenericPostFailure, mswGenericPostSuccess } from '@tests/msw/generic/msw.generic.post';
 
-import { handleAxiosError } from "./axios.errors.handler";
-import { axiosPost } from "./axios.post.wrapper";
+import { handleAxiosError } from './axios.errors.handler';
+import { axiosPost } from './axios.post.wrapper';
 
 jest.mock("./axios.errors.handler");
 

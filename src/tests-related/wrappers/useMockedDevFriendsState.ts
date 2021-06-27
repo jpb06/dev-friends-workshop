@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from 'react';
 
-import { DevFriendsStatus } from "@components/dev-friends/MyDevFriends";
-import { Squad } from "@owntypes/squad.interface";
+import { DevFriendsStatus } from '@components/dev-friends/MyDevFriends';
+import { Squad } from '@owntypes/squad.interface';
 
 interface MockedDevFriendsState {
   selectedSquadsState: [Squad[], Dispatch<SetStateAction<Squad[]>>];

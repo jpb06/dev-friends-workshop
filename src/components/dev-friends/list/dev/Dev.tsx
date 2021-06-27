@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { Card, CardContent, CardMedia, Grid } from "@material-ui/core";
-import { Dev as DevType } from "@owntypes/dev.interface";
+import { Card, CardContent, CardMedia, Grid } from '@material-ui/core';
+import { Dev as DevType } from '@owntypes/dev.interface';
 
-import { useDevStyles } from "./Dev.styles";
-import { getDevDescription } from "./logic/getDevDescription";
+import { useDevStyles } from './Dev.styles';
+import { getDevDescription } from './logic/getDevDescription';
 
 interface DevProps extends DevType {
   onSelected: (id: number) => void;

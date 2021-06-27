@@ -1,4 +1,4 @@
-import { handleAxiosError } from "./axios.errors.handler";
+import { handleAxiosError } from './axios.errors.handler';
 
 describe("handleAxiosError function", () => {
   it("should return 500 if there is no response", () => {

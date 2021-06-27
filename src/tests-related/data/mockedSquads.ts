@@ -1,4 +1,4 @@
-import { Squad } from "@owntypes/squad.interface";
+import { Squad } from '@owntypes/squad.interface';
 
 export const squadsMockData: Array<Squad> = [
   {

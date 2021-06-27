@@ -1,9 +1,9 @@
-import { QueryObserverResult } from "react-query";
-import { MockedFunction } from "ts-jest/dist/utils/testing";
-import { mocked } from "ts-jest/utils";
+import { QueryObserverResult } from 'react-query';
+import { MockedFunction } from 'ts-jest/dist/utils/testing';
+import { mocked } from 'ts-jest/utils';
 
-import { useSquadsQuery } from "@api/main-backend/useSquadsQuery";
-import { Squad } from "@owntypes/squad.interface";
+import { useSquadsQuery } from '@api/main-backend/useSquadsQuery';
+import { Squad } from '@owntypes/squad.interface';
 
 export const setUseSquadsReturnValue = (
   data?: Array<Squad>

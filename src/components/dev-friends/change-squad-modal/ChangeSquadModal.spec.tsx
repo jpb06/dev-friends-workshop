@@ -1,21 +1,14 @@
-import React from "react";
+import React from 'react';
 
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { devsMockData, squadsMockData } from '@tests/data';
 import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { devsMockData, squadsMockData } from "@tests/data";
-import {
-  mockApiChangeDevSquad,
-  mockApiGetDevs,
-  mockApiGetSquads,
-  setupMswServer,
-} from "@tests/msw";
-import { QueryProviderWrapper } from "@tests/wrappers";
+    mockApiChangeDevSquad, mockApiGetDevs, mockApiGetSquads, setupMswServer
+} from '@tests/msw';
+import { QueryProviderWrapper } from '@tests/wrappers';
 
-import { ChangeSquadModal } from "./ChangeSquadModal";
+import { ChangeSquadModal } from './ChangeSquadModal';
 
 describe("Change squad modal component", () => {
   const { wrapper, queryClient } = QueryProviderWrapper();

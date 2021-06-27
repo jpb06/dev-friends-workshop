@@ -1,19 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { getDevDescription } from "@components/dev-friends/list/dev/logic/getDevDescription";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { devsMockData, squadsMockData } from "@tests/data";
+import { getDevDescription } from '@components/dev-friends/list/dev/logic/getDevDescription';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { devsMockData, squadsMockData } from '@tests/data';
 import {
-  mockApiChangeDevSquad,
-  mockApiGetDevs,
-  mockApiGetDevsBy,
-  mockApiGetSquads,
-  setupMswServer,
-} from "@tests/msw";
-import { DevFriendContextAndQueryProviderWrapper } from "@tests/wrappers";
+    mockApiChangeDevSquad, mockApiGetDevs, mockApiGetDevsBy, mockApiGetSquads, setupMswServer
+} from '@tests/msw';
+import { DevFriendContextAndQueryProviderWrapper } from '@tests/wrappers';
 
-import { DevsList } from "./DevsList";
+import { DevsList } from './DevsList';
 
 const { wrapper, queryClient } = DevFriendContextAndQueryProviderWrapper(
   jest.fn(),

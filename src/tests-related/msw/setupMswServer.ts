@@ -1,7 +1,7 @@
-import { RequestHandler } from "msw";
-import { SetupServerApi } from "msw/lib/types/node/glossary";
-import { setupServer } from "msw/node";
-import { setLogger } from "react-query";
+import { RequestHandler } from 'msw';
+import { SetupServerApi } from 'msw/lib/types/node/glossary';
+import { setupServer } from 'msw/node';
+import { setLogger } from 'react-query';
 
 interface MswServer {
   instance: SetupServerApi;

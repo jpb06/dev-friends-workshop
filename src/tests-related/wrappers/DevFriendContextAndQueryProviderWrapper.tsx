@@ -1,11 +1,11 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { DevFriendsContext } from "@components/dev-friends/contexts/DevFriendsContext";
-import { Squad } from "@owntypes/squad.interface";
+import { DevFriendsContext } from '@components/dev-friends/contexts/DevFriendsContext';
+import { Squad } from '@owntypes/squad.interface';
 
-import { getQueryClient } from "./queryClient";
-import { useMockedDevFriendsState } from "./useMockedDevFriendsState";
+import { getQueryClient } from './queryClient';
+import { useMockedDevFriendsState } from './useMockedDevFriendsState';
 
 const queryClient = getQueryClient();
 
@@ -20,6 +20,7 @@ export const DevFriendContextAndQueryProviderWrapper = (
   selectedSquad: Array<Squad> | undefined = undefined
 ): DevFriendContextAndQueryProviderWrapperResult => {
   const wrapper = ({ children }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { selectedSquadsState, statusState } = useMockedDevFriendsState(
       setSelectedSquadsMock,
       setStatusMock,

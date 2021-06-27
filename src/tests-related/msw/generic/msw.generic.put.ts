@@ -1,6 +1,6 @@
-import { RequestHandler, rest } from "msw";
+import { RequestHandler, rest } from 'msw';
 
-import { genericPutUrl } from "@tests/api/config";
+import { genericPutUrl } from '@tests/api/config';
 
 export const mswGenericPutSuccess = (): RequestHandler =>
   rest.put<unknown>(genericPutUrl, (_, res, ctx) =>

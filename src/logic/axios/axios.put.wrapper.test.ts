@@ -1,12 +1,9 @@
-import { genericPutUrl } from "@tests/api/config";
-import { setupMswServer } from "@tests/msw";
-import {
-  mswGenericPutFailure,
-  mswGenericPutSuccess,
-} from "@tests/msw/generic/msw.generic.put";
+import { genericPutUrl } from '@tests/api/config';
+import { setupMswServer } from '@tests/msw';
+import { mswGenericPutFailure, mswGenericPutSuccess } from '@tests/msw/generic/msw.generic.put';
 
-import { handleAxiosError } from "./axios.errors.handler";
-import { axiosPut } from "./axios.put.wrapper";
+import { handleAxiosError } from './axios.errors.handler';
+import { axiosPut } from './axios.put.wrapper';
 
 jest.mock("./axios.errors.handler");
 

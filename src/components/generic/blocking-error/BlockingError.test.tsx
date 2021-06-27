@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { BlockingError } from "./BlockingError";
+import { BlockingError } from './BlockingError';
 
 describe("Blocking error component", () => {
   it("should display a title", () => {

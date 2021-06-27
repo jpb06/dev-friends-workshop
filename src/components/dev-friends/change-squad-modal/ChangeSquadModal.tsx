@@ -1,19 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { BlockingError } from "@components/generic/blocking-error/BlockingError";
-import { CircularLoading } from "@components/generic/circular-loading/CircularLoading";
-import { DownTransition } from "@components/generic/down-transition/DownTransition";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@material-ui/core";
-import { Dev } from "@owntypes/dev.interface";
+import { BlockingError } from '@components/generic/blocking-error/BlockingError';
+import { CircularLoading } from '@components/generic/circular-loading/CircularLoading';
+import { DownTransition } from '@components/generic/down-transition/DownTransition';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { Dev } from '@owntypes/dev.interface';
 
-import { useModalActions } from "./hooks/useModalActions";
-import { IdleState } from "./states/IdleState";
+import { useModalActions } from './hooks/useModalActions';
+import { IdleState } from './states/IdleState';
 
 interface ChangeSquadModalProps {
   onClose: () => void;

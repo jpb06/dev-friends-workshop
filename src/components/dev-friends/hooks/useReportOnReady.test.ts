@@ -1,7 +1,7 @@
-import { renderHook } from "@testing-library/react-hooks";
-import { DevFriendsContextWrapper } from "@tests/wrappers";
+import { renderHook } from '@testing-library/react-hooks';
+import { DevFriendsContextWrapper } from '@tests/wrappers';
 
-import { useReportOnReady } from "./useReportOnReady";
+import { useReportOnReady } from './useReportOnReady';
 
 const setSelectedSquadsMock = jest.fn();
 const setStateMock = jest.fn();

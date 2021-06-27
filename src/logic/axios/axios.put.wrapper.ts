@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { handleAxiosError } from "./axios.errors.handler";
+import { handleAxiosError } from './axios.errors.handler';
 
 export const axiosPut = async <TResult>(
   url: string,
