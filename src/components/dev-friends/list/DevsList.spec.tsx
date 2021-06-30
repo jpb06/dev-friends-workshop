@@ -49,6 +49,14 @@ describe("DevsList component", () => {
     expect(screen.queryAllByRole("dev")).toHaveLength(0);
   });
 
+  it("should display something when the search yielded no devs", async () => {
+    instance.use(mockApiGetDevsBy([]));
+
+    render(<DevsList />, { wrapper });
+
+    await screen.findByText(/No developers to display/i);
+  });
+
   it("should display a list of devs", async () => {
     instance.use(mockApiGetDevsBy(devsMockData));
 
