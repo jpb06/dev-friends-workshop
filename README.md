@@ -1,5 +1,6 @@
 # Workshop
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/jpb06/workshop-react-front)
 ![Code quality](https://img.shields.io/codefactor/grade/github/jpb06/workshop-react-front?logo=codefactor)
 ![Coverage](./badges/coverage-global%20coverage.svg)
 ![Github workflow](https://img.shields.io/github/workflow/status/jpb06/workshop-react-front/checks?label=last%20workflow&logo=github-actions)

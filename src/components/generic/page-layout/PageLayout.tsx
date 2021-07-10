@@ -48,7 +48,12 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={appTheme}>
           <CssBaseline />
-          <Grid container direction="row" justify="center" alignItems="center">
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}

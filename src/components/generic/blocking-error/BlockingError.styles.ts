@@ -1,10 +1,10 @@
-import { fade, makeStyles, Theme } from '@material-ui/core';
+import { alpha, makeStyles, Theme } from '@material-ui/core';
 import { cyan } from '@material-ui/core/colors';
 
 export const useBlockingErrorStyles = makeStyles((theme: Theme) => ({
   root: {
     textAlign: "center",
-    color: fade(cyan[700], 0.8),
+    color: alpha(cyan[700], 0.8),
   },
   margins: {
     marginTop: theme.spacing(1),

@@ -29,7 +29,6 @@ export const ChangeSquadModal: React.FC<ChangeSquadModalProps> = ({
 
   return (
     <Dialog
-      disableBackdropClick
       disableEscapeKeyDown
       maxWidth="xs"
       aria-label="change-squad"
