@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-export const appTheme = createMuiTheme({
+export const appTheme = createTheme({
   palette: {
     type: "dark",
     background: { paper: "darkslategray" },
