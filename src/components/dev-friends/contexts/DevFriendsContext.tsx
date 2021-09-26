@@ -1,7 +1,7 @@
 import React, { SetStateAction, useState } from 'react';
 import { Dispatch } from 'react';
 
-import { Squad } from '@owntypes/squad.interface';
+import { Squad } from '@type/squad.interface';
 
 import { DevFriendsStatus } from '../MyDevFriends';
 

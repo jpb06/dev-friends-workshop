@@ -1,35 +1,37 @@
-const { pathsToModuleNameMapper } = require("ts-jest/utils");
+const { pathsToModuleNameMapper } = require('ts-jest/utils');
+
 const {
   compilerOptions: { paths: tsconfigPaths },
-} = require("./tsconfig");
+} = require('./tsconfig');
+
+/** @type {import('@jest/types').Config.InitialOptions} */
 
 module.exports = {
-  roots: ["<rootDir>/src/"],
-  globalSetup: "<rootDir>/jest.setup.env.ts",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
-  moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
-  testEnvironment: "jsdom",
+  roots: ['<rootDir>/src/'],
+  globalSetup: '<rootDir>/jest/jest.setup.env.ts',
+  setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.js'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
-    "<rootDir>[/\\\\](node_modules|.next|coverage)[/\\\\]",
+    '<rootDir>[/\\\\](node_modules|.next|coverage)[/\\\\]',
   ],
-  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
   transform: {
-    "^.+\\.(ts|tsx)$": "babel-jest",
+    '^.+\\.(ts|tsx)$': 'babel-jest',
   },
   watchPlugins: [
-    "jest-watch-typeahead/filename",
-    "jest-watch-typeahead/testname",
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
   ],
   moduleNameMapper: {
-    "\\.(css|less|sass|scss)$": "identity-obj-proxy",
-    "\\.(gif|ttf|eot|svg|png)$": "test-file-stub",
-    ...pathsToModuleNameMapper(tsconfigPaths, { prefix: "<rootDir>/src" }),
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/jest/modules-mappers/file.stub.ts',
+    ...pathsToModuleNameMapper(tsconfigPaths, { prefix: '<rootDir>/src' }),
   },
   coveragePathIgnorePatterns: [
-    "<rootDir>/src/tests-related/",
-    "<rootDir>/src/types/",
-    "<rootDir>/src/pages/",
+    '<rootDir>/src/tests-related/',
+    '<rootDir>/src/types/',
+    '<rootDir>/src/pages/',
   ],
-  collectCoverageFrom: ["src/**/*.{ts,tsx}"],
-  coverageReporters: ["json-summary", "text", "lcov"],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  coverageReporters: ['json-summary', 'text', 'lcov'],
 };

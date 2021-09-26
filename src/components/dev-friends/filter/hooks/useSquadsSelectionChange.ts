@@ -15,7 +15,7 @@ export const useSquadsSelectionChange = (): SquadSelectionChangeHookResult => {
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
   ) => {
-    setStatus("loading");
+    setStatus('loading');
     const index = parseInt(event.target.name, 10);
     if (Number.isNaN(index) || ![0, 1, 2, 3].includes(index)) return;
 

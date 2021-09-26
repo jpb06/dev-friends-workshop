@@ -1,11 +1,11 @@
+import { act, renderHook } from '@testing-library/react-hooks';
 import { ChangeEvent } from 'react';
 
-import { act, renderHook } from '@testing-library/react-hooks';
 import { DevFriendsContextWrapper } from '@tests/wrappers';
 
 import { useSquadsSelectionChange } from './useSquadsSelectionChange';
 
-describe("Squads selection change hook", () => {
+describe('Squads selection change hook', () => {
   const setSelectedSquadsMock = jest.fn();
   const setStatusMock = jest.fn();
   const wrapper = DevFriendsContextWrapper(
@@ -17,7 +17,7 @@ describe("Squads selection change hook", () => {
     jest.clearAllMocks();
   });
 
-  it("should return a function and the default selected state for squads", () => {
+  it('should return a function and the default selected state for squads', () => {
     const { result } = renderHook(() => useSquadsSelectionChange(), {
       wrapper,
     });
@@ -26,7 +26,7 @@ describe("Squads selection change hook", () => {
     expect(result.current[1]).toStrictEqual([true, true, true, true]);
   });
 
-  it("should modify selected squads", () => {
+  it('should modify selected squads', () => {
     const { result } = renderHook(() => useSquadsSelectionChange(), {
       wrapper,
     });
@@ -35,7 +35,7 @@ describe("Squads selection change hook", () => {
 
     act(() => {
       handleChange(
-        { target: { name: "1" } } as ChangeEvent<HTMLInputElement>,
+        { target: { name: '1' } } as ChangeEvent<HTMLInputElement>,
         false
       );
     });
@@ -51,10 +51,10 @@ describe("Squads selection change hook", () => {
     ]);
 
     expect(setStatusMock).toHaveBeenCalledTimes(1);
-    expect(setStatusMock).toHaveBeenLastCalledWith("loading");
+    expect(setStatusMock).toHaveBeenLastCalledWith('loading');
   });
 
-  it("should do nothing when passed an invalid target name", () => {
+  it('should do nothing when passed an invalid target name', () => {
     const { result } = renderHook(() => useSquadsSelectionChange(), {
       wrapper,
     });
@@ -63,7 +63,7 @@ describe("Squads selection change hook", () => {
 
     act(() => {
       handleChange(
-        { target: { name: "-94541" } } as ChangeEvent<HTMLInputElement>,
+        { target: { name: '-94541' } } as ChangeEvent<HTMLInputElement>,
         false
       );
     });
@@ -73,6 +73,6 @@ describe("Squads selection change hook", () => {
     expect(values).toStrictEqual([true, true, true, true]);
     expect(setSelectedSquadsMock).toHaveBeenCalledTimes(0);
     expect(setStatusMock).toHaveBeenCalledTimes(1);
-    expect(setStatusMock).toHaveBeenCalledWith("loading");
+    expect(setStatusMock).toHaveBeenCalledWith('loading');
   });
 });

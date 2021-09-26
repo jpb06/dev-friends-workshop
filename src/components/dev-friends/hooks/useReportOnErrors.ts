@@ -7,7 +7,7 @@ export const useReportOnErrors = (isError: boolean): void => {
 
   useEffect(() => {
     if (isError) {
-      setStatus("errored");
+      setStatus('errored');
     }
   }, [isError, setStatus]);
 };

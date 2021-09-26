@@ -1,12 +1,15 @@
 # Workshop
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/jpb06/workshop-react-front)
-![Code quality](https://img.shields.io/codefactor/grade/github/jpb06/workshop-react-front?logo=codefactor)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=jpb06_workshop-react-front)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=security_rating)](https://sonarcloud.io/dashboard?id=jpb06_workshop-react-front)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=jpb06_workshop-react-front)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=code_smells)](https://sonarcloud.io/dashboard?id=jpb06_workshop-react-front)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=jpb06_workshop-react-front)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=coverage)](https://sonarcloud.io/dashboard?id=jpb06_workshop-react-front)
 ![Coverage](./badges/coverage-global%20coverage.svg)
 ![Github workflow](https://img.shields.io/github/workflow/status/jpb06/workshop-react-front/checks?label=last%20workflow&logo=github-actions)
-![Last deployment](https://img.shields.io/github/deployments/jpb06/workshop-react-front/workshop-react-front?label=last%20deployment&logo=heroku)
 ![Last commit](https://img.shields.io/github/last-commit/jpb06/workshop-react-front?logo=git)
-![Commits activity](https://img.shields.io/github/commit-activity/m/jpb06/workshop-react-front?logo=github)
 
 Here is a little workshop to help my team move forward with our frontend :sparkles:
 

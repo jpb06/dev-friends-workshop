@@ -1,18 +1,17 @@
+import { CardActions, Grid } from '@material-ui/core';
 import React, { useState } from 'react';
 
-import { CardActions, Grid } from '@material-ui/core';
-
+import { useMyDevFriendsStyles } from './MyDevFriends.styles';
 import { DevFriendsContextProvider } from './contexts/DevFriendsContext';
 import { SquadFilter } from './filter/SquadFilter';
 import { DevsList } from './list/DevsList';
-import { useMyDevFriendsStyles } from './MyDevFriends.styles';
 import { StatusReport } from './status-report/StatusReport';
 
-export type DevFriendsStatus = "loading" | "errored" | "ready";
+export type DevFriendsStatus = 'loading' | 'errored' | 'ready';
 
 export const MyDevFriends = (): JSX.Element => {
   const classes = useMyDevFriendsStyles();
-  const [status, setStatus] = useState<DevFriendsStatus>("loading");
+  const [status, setStatus] = useState<DevFriendsStatus>('loading');
 
   return (
     <DevFriendsContextProvider setStatus={setStatus}>

@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
+
 import { squadsMockData } from '@tests/data';
 import { DevFriendsContextWrapper } from '@tests/wrappers';
 
@@ -7,12 +8,12 @@ import { useSelectedSquadsInitialization } from './useSelectedSquadsInitializati
 const setSelectedSquadsMock = jest.fn();
 const wrapper = DevFriendsContextWrapper(setSelectedSquadsMock);
 
-describe("Selected squads initialization hook", () => {
+describe('Selected squads initialization hook', () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
-  it("should not update the context if there is no selected squads", () => {
+  it('should not update the context if there is no selected squads', () => {
     renderHook(() => useSelectedSquadsInitialization(undefined), {
       wrapper,
     });
@@ -20,7 +21,7 @@ describe("Selected squads initialization hook", () => {
     expect(setSelectedSquadsMock).toHaveBeenCalledTimes(0);
   });
 
-  it("should update the context once if passed selected squads", () => {
+  it('should update the context once if passed selected squads', () => {
     renderHook(() => useSelectedSquadsInitialization(squadsMockData), {
       wrapper,
     });

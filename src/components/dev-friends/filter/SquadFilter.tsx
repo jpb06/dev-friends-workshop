@@ -1,12 +1,12 @@
+import { Checkbox, FormControlLabel, Grid } from '@material-ui/core';
 import React from 'react';
 
 import { useSquadsQuery } from '@api/main-backend/useSquadsQuery';
 import { useReportOnErrors } from '@components/dev-friends/hooks/useReportOnErrors';
-import { Checkbox, FormControlLabel, Grid } from '@material-ui/core';
 
+import { useSquadFilterStyles } from './SquadFilter.styles';
 import { useSelectedSquadsInitialization } from './hooks/useSelectedSquadsInitialization';
 import { useSquadsSelectionChange } from './hooks/useSquadsSelectionChange';
-import { useSquadFilterStyles } from './SquadFilter.styles';
 
 export const SquadFilter: React.FC = () => {
   const classes = useSquadFilterStyles();

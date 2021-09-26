@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Dev as DevType } from '@owntypes/dev.interface';
+import { Dev as DevType } from '@type/dev.interface';
 
 interface SelectionLogicHook {
   handleDevSelected: (id: number) => void;

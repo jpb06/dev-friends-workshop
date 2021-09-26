@@ -2,8 +2,8 @@ import { RequestHandler, rest } from 'msw';
 
 import { changeDevSquadUrl } from '@api/main-backend/config';
 import { isNumber } from '@logic/regex';
-import { Dev } from '@owntypes/dev.interface';
-import { Squad } from '@owntypes/squad.interface';
+import { Dev } from '@type/dev.interface';
+import { Squad } from '@type/squad.interface';
 
 interface ChangeSquadBody {
   idDev: string;
@@ -18,16 +18,16 @@ export const mockApiChangeDevSquad = (
     const isRequestValid =
       isNumber(req.body.idDev) && isNumber(req.body.idSquad);
     if (!isRequestValid)
-      return res(ctx.status(400), ctx.json("Invalid request"));
+      return res(ctx.status(400), ctx.json('Invalid request'));
 
     const devId = parseInt(req.body.idDev, 10);
     const squadId = parseInt(req.body.idSquad, 10);
 
     const dev = devs.find((el) => el.id === devId);
-    if (!dev) return res(ctx.status(404), ctx.json("Dev not found"));
+    if (!dev) return res(ctx.status(404), ctx.json('Dev not found'));
 
     const squad = squads.find((el) => el.id === squadId);
-    if (!squad) return res(ctx.status(404), ctx.json("Squad not found"));
+    if (!squad) return res(ctx.status(404), ctx.json('Squad not found'));
 
     return res(
       ctx.status(200),
