@@ -4,10 +4,12 @@ const {
   compilerOptions: { paths: tsconfigPaths },
 } = require('./tsconfig');
 
+/** @type {import('@jest/types').Config.InitialOptions} */
+
 module.exports = {
   roots: ['<rootDir>/src/'],
-  globalSetup: '<rootDir>/jest.setup.env.ts',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  globalSetup: '<rootDir>/jest/jest.setup.env.ts',
+  setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.js'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
@@ -22,8 +24,7 @@ module.exports = {
     'jest-watch-typeahead/testname',
   ],
   moduleNameMapper: {
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': 'test-file-stub',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/jest/modules-mappers/file.stub.ts',
     ...pathsToModuleNameMapper(tsconfigPaths, { prefix: '<rootDir>/src' }),
   },
   coveragePathIgnorePatterns: [
