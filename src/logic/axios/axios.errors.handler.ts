@@ -1,4 +1,4 @@
-import { CustomError } from '@owntypes/api.custom.error.interface';
+import { CustomError } from '@type/api.custom.error.interface';
 
 interface AxiosTerseResponse {
   status: number;
@@ -14,7 +14,7 @@ interface AxiosTerseError {
 
 export const handleAxiosError = (error: AxiosTerseError): never => {
   if (!error.response) {
-    throw new CustomError(500, "Internal server error");
+    throw new CustomError(500, 'Internal server error');
   }
 
   throw new CustomError(

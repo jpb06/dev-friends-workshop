@@ -5,8 +5,9 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import GroupIcon from '@material-ui/icons/Group';
-import { Squad } from '@owntypes/squad.interface';
 import React from 'react';
+
+import { Squad } from '@type/squad.interface';
 
 import { useSquadChoiceStyles } from './SquadChoice.styles';
 

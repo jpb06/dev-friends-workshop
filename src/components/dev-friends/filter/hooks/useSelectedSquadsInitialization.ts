@@ -1,5 +1,6 @@
-import { Squad } from '@owntypes/squad.interface';
 import { useContext, useEffect } from 'react';
+
+import { Squad } from '@type/squad.interface';
 
 import { DevFriendsContext } from '../../contexts/DevFriendsContext';
 

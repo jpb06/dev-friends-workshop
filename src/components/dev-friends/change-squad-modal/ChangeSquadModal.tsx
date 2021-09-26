@@ -5,12 +5,12 @@ import {
   DialogContent,
   DialogTitle,
 } from '@material-ui/core';
-import { Dev } from '@owntypes/dev.interface';
 import React from 'react';
 
 import { BlockingError } from '@components/generic/blocking-error/BlockingError';
 import { CircularLoading } from '@components/generic/circular-loading/CircularLoading';
 import { DownTransition } from '@components/generic/down-transition/DownTransition';
+import { Dev } from '@type/dev.interface';
 
 import { useModalActions } from './hooks/useModalActions';
 import { IdleState } from './states/IdleState';
