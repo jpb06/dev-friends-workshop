@@ -1,6 +1,5 @@
-import { useIsFetching } from 'react-query';
-
 import { LinearProgress } from '@material-ui/core';
+import { useIsFetching } from 'react-query';
 
 import { useGlobalLoadingIndicatorStyles } from './GlobalLoadingIndicator.styles';
 

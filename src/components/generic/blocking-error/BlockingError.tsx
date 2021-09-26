@@ -1,9 +1,8 @@
-import clsx from 'clsx';
-import React from 'react';
-
 import { SvgIconTypeMap } from '@material-ui/core';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
+import clsx from 'clsx';
+import React from 'react';
 
 import { useBlockingErrorStyles } from './BlockingError.styles';
 

@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { Grid, LinearProgress } from '@material-ui/core';
+import React from 'react';
 
 import { useLinearLoadingStyles } from './LinearLoading.styles';
 

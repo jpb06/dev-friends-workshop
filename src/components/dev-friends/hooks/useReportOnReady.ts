@@ -10,6 +10,6 @@ export const useReportOnReady = (data?: Array<unknown>): void => {
       return;
     }
 
-    setStatus("ready");
+    setStatus('ready');
   }, [data, setStatus]);
 };

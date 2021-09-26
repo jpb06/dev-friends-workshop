@@ -1,25 +1,25 @@
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
 import { setUseSquadsReturnValue } from '@tests/mocks/mockUseSquadQuery.mock';
 import { DevFriendsContextWrapper } from '@tests/wrappers';
 
 import { SquadFilter } from './SquadFilter';
 
-jest.mock("@api/main-backend/useSquadsQuery");
+jest.mock('@api/main-backend/useSquadsQuery');
 
 const wrapper = DevFriendsContextWrapper();
 
-describe("SquadFilter component", () => {
-  it("should display nothing if there is no squads", () => {
+describe('SquadFilter component', () => {
+  it('should display nothing if there is no squads', () => {
     setUseSquadsReturnValue();
 
     render(<SquadFilter />, { wrapper });
 
-    expect(screen.queryAllByRole("checkbox")).toHaveLength(0);
+    expect(screen.queryByRole('checkbox')).not.toBeInTheDocument();
   });
 
-  it("should display one checkbox per squad", () => {
+  it('should display one checkbox per squad', () => {
     setUseSquadsReturnValue([
       { id: 1, squad: 1 },
       { id: 2, squad: 2 },
@@ -28,9 +28,9 @@ describe("SquadFilter component", () => {
 
     render(<SquadFilter />, { wrapper });
 
-    expect(screen.queryAllByRole("checkbox")).toHaveLength(3);
-    screen.getByRole("checkbox", { name: "Squad 1" });
-    screen.getByRole("checkbox", { name: "Squad 2" });
-    screen.getByRole("checkbox", { name: "Squad 3" });
+    expect(screen.queryAllByRole('checkbox')).toHaveLength(3);
+    screen.getByRole('checkbox', { name: 'Squad 1' });
+    screen.getByRole('checkbox', { name: 'Squad 2' });
+    screen.getByRole('checkbox', { name: 'Squad 3' });
   });
 });

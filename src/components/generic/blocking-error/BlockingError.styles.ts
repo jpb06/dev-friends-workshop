@@ -3,7 +3,7 @@ import { cyan } from '@material-ui/core/colors';
 
 export const useBlockingErrorStyles = makeStyles((theme: Theme) => ({
   root: {
-    textAlign: "center",
+    textAlign: 'center',
     color: alpha(cyan[700], 0.8),
   },
   margins: {
@@ -11,24 +11,24 @@ export const useBlockingErrorStyles = makeStyles((theme: Theme) => ({
     marginBottom: theme.spacing(5),
   },
   title: {
-    fontSize: "xx-large",
+    fontSize: 'xx-large',
     fontweight: 600,
   },
   message: {
-    color: "white",
+    color: 'white',
   },
   errorIcon: {
     height: 100,
     width: 100,
   },
   spinner: {
-    animationName: "$spin",
-    animationDuration: "600ms",
-    animationIterationCount: "1",
-    animationTimingFunction: "linear",
+    animationName: '$spin',
+    animationDuration: '600ms',
+    animationIterationCount: '1',
+    animationTimingFunction: 'linear',
   },
-  "@keyframes spin": {
-    from: { transform: "rotate(180deg)" },
-    to: { transform: "rotate(0deg)" },
+  '@keyframes spin': {
+    from: { transform: 'rotate(180deg)' },
+    to: { transform: 'rotate(0deg)' },
   },
 }));

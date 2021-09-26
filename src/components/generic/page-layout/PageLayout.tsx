@@ -1,10 +1,16 @@
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  CssBaseline,
+  Grid,
+  ThemeProvider,
+  Typography,
+} from '@material-ui/core';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import {
-    Card, CardContent, CardMedia, CssBaseline, Grid, ThemeProvider, Typography
-} from '@material-ui/core';
 import { appTheme } from '@styles/create.theme';
 
 import { GlobalLoadingIndicator } from '../global-loading-indicator/GlobalLoadingIndicator';
@@ -29,7 +35,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
 
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement?.removeChild(jssStyles);
     }
