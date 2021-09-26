@@ -16,10 +16,10 @@
     "baseUrl": "src",
     "paths": {
       "@api/*": ["api/*"],
-      "@logic/*": ["logic/*"],
       "@components/*": ["components/*"],
+      "@logic/*": ["logic/*"],
       "@tests/*": ["tests-related/*"],
-      "@owntypes/*": ["types/*"],
+      "@type/*": ["types/*"],
       "@styles/*": ["styles/*"]
     }
   },
