@@ -47,7 +47,7 @@ rules:
       alphabetize:
         order: 'asc'
       pathGroups:
-        - pattern: '{@api/**,@components/**,@logic/**,@type/**,@tests/**,@styles/**}'
+        - pattern: '{@api/**,@templates,@organisms,@molecules,@providers,@logic/**,@tests/**,@msw,@theme}'
           group: internal
           position: before
       pathGroupsExcludedImportTypes:

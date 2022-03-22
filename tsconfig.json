@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -15,14 +19,45 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
-      "@api/*": ["api/*"],
-      "@components/*": ["components/*"],
-      "@logic/*": ["logic/*"],
-      "@tests/*": ["tests-related/*"],
-      "@type/*": ["types/*"],
-      "@styles/*": ["styles/*"]
-    }
+      "@api/*": [
+        "api/*"
+      ],
+      "@templates": [
+        "templates/index.ts"
+      ],
+      "@organisms": [
+        "organisms/index.ts"
+      ],
+      "@molecules": [
+        "molecules/index.ts"
+      ],
+      "@providers": [
+        "providers/index.ts"
+      ],
+      "@logic/*": [
+        "logic/*"
+      ],
+      "@tests/*": [
+        "tests/*"
+      ],
+      "@msw": [
+        "api/main-backend/msw-handlers.ts"
+      ],
+      "@theme": [
+        "theme"
+      ]
+    },
+    "incremental": true
   },
-  "exclude": ["node_modules", ".next", "out"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./shared/**/*.ts"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "./shared/**/*.ts"
+  ]
 }

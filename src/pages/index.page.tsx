@@ -1,12 +1,8 @@
+import { NextPage } from 'next';
 import React from 'react';
 
-import { MyDevFriends } from '@components/dev-friends/MyDevFriends';
-import { PageLayout } from '@components/generic/page-layout/PageLayout';
+import { MyDevFriends } from '@templates';
 
-export const Home = (): JSX.Element => (
-  <PageLayout>
-    <MyDevFriends />
-  </PageLayout>
-);
+const Home: NextPage = () => <MyDevFriends />;
 
 export default Home;
