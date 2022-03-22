@@ -12,7 +12,7 @@ export const useDevsBySquadQuery = (squads?: Array<SquadDto>) =>
     key: ['devs', squads],
     url: path,
     method: 'POST',
-    data: squads?.map((el) => el.id),
+    data: { idSquads: squads?.map((el) => el.id) },
     options: {
       enabled: squads !== undefined,
     },
