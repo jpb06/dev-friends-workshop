@@ -24,7 +24,7 @@ export const useSquadsSelectionChange = (): SquadSelectionChangeHookResult => {
     setFormValues(newValues);
 
     const selectedSquads = newValues
-      .map((el, index) => (el ? index + 1 : undefined))
+      .map((el, i) => (el ? i + 1 : undefined))
       .filter((el) => el !== undefined)
       .map((el) => ({ id: el, squad: el }));
     setSelectedSquads(selectedSquads);

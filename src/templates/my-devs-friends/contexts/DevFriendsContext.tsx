@@ -1,5 +1,4 @@
-import React, { SetStateAction, useState } from 'react';
-import { Dispatch } from 'react';
+import React, { SetStateAction, useState, Dispatch } from 'react';
 
 import { SquadDto } from '@api/main-backend/specs/api-types';
 
