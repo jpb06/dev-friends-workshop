@@ -39,7 +39,6 @@ const customJestConfig = {
     '!./src/api/msw.handlers.ts',
     '!./src/api/**/*.msw-handler.ts',
     '!./src/api/**/msw-handlers.ts',
-    '!./src/molecules/providers/**',
     '!./src/tests/**',
     '!./src/**/mock-data/**',
     '!./src/pages/**',
