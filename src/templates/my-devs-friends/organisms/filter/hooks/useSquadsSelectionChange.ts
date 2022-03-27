@@ -17,7 +17,9 @@ export const useSquadsSelectionChange = (): SquadSelectionChangeHookResult => {
   ) => {
     setStatus('loading');
     const index = parseInt(event.target.name, 10);
-    if (Number.isNaN(index) || ![0, 1, 2, 3].includes(index)) return;
+    if (Number.isNaN(index) || ![0, 1, 2, 3].includes(index)) {
+      return;
+    }
 
     const newValues = [...formValues];
     newValues[index] = checked;

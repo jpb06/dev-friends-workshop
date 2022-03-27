@@ -7,11 +7,11 @@ import { useReportOnErrors } from '../../hooks/useReportOnErrors';
 import { useSelectedSquadsInitialization } from './hooks/useSelectedSquadsInitialization';
 import { useSquadsSelectionChange } from './hooks/useSquadsSelectionChange';
 
-export const SquadFilter: React.FC = () => {
-  const { data: squads, isError } = useSquadsQuery();
+export const SquadFilter = () => {
+  const { data: squads, isError, isFetched } = useSquadsQuery();
 
   useSelectedSquadsInitialization(squads);
-  useReportOnErrors(isError);
+  useReportOnErrors(isError, isFetched, squads);
 
   const [handleChange, formValues] = useSquadsSelectionChange();
 

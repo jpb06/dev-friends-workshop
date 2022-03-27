@@ -8,6 +8,7 @@ import {
   devsQueryHandler,
   squadsQueryHandler,
 } from '@msw';
+
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
@@ -32,8 +33,8 @@ describe('My dev friends component', () => {
   it('should display a checkbox by fetched squad', async () => {
     render();
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     for (const { squad } of squadsMockData) {
@@ -48,8 +49,8 @@ describe('My dev friends component', () => {
 
     render();
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     await screen.findByText(/oh no!/i);
@@ -63,8 +64,8 @@ describe('My dev friends component', () => {
 
     render();
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     for (const { firstName } of devsMockData) {
@@ -77,8 +78,8 @@ describe('My dev friends component', () => {
 
     render();
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     await screen.findByText(/oh no!/i);
@@ -95,8 +96,8 @@ describe('My dev friends component', () => {
 
     render();
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     const squad1Checkbox = await screen.findByRole('checkbox', {
@@ -104,8 +105,8 @@ describe('My dev friends component', () => {
     });
     userEvent.click(squad1Checkbox);
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     const squad1Devs = devsMockData.filter((dev) => dev.squad === 1);
@@ -134,8 +135,8 @@ describe('My dev friends component', () => {
 
     render();
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     const button = await screen.findByRole('img', {
@@ -143,8 +144,8 @@ describe('My dev friends component', () => {
     });
     userEvent.click(button);
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     screen.getByRole('presentation', { name: /change-squad/i });
@@ -156,11 +157,11 @@ describe('My dev friends component', () => {
     });
     userEvent.click(squad2Button);
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
-    await waitForElementToBeRemoved(
-      screen.getByRole('presentation', { name: /change-squad/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('presentation', { name: /change-squad/i })
     );
   });
 });

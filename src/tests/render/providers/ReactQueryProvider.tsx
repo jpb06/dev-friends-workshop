@@ -33,7 +33,7 @@ export const ReactQueryProvider = (): ReactQueryProviderProps => {
   // Create client in render to prevent cache sharing accross the tests
   const queryClient = createTestQueryClient()
 
-  const wrapper: React.FC = ({ children }) => (
+  const wrapper= ({ children }) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   )
 

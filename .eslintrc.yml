@@ -1,21 +1,24 @@
+root: true
+
 parser: '@typescript-eslint/parser'
+
+parserOptions:
+  project: './tsconfig.json'
 
 plugins:
   - '@typescript-eslint'
   - prettier
   - jest
   - jest-dom
-  - import
 
 extends:
-  - eslint:recommended
-  - plugin:@typescript-eslint/recommended
+  - next
   - plugin:prettier/recommended
+  - plugin:@typescript-eslint/recommended
   - plugin:jest/recommended
   - plugin:jest/style
   - plugin:jest-dom/recommended
   - plugin:import/typescript
-  - plugin:@next/next/recommended
 
 env:
   es6: true
@@ -28,16 +31,29 @@ settings:
     version: detect
 
 rules:
+  no-restricted-syntax:
+    - error
+    - selector: CallExpression[callee.object.name='localStorage']
+      message: "Do not use 'localStorage' directly, use useLocalStorage hook instead. You can disable the rule if you can't use a hook in your file (tests or interceptors for ex)"
+    - selector: MemberExpression[object.name='window'][property.name='localStorage']
+      message: "Do not use 'localStorage' directly, use useLocalStorage hook instead. You can disable the rule if you can't use a hook in your file (tests or interceptors for ex)"
+  curly:
+    - error
+    - all
   '@typescript-eslint/explicit-function-return-type': off
   '@typescript-eslint/explicit-member-accessibility': off
   '@typescript-eslint/indent': off
   '@typescript-eslint/member-delimiter-style': off
-  '@typescript-eslint/no-explicit-any': off
+  '@typescript-eslint/no-explicit-any': error
+  '@typescript-eslint/no-floating-promises':
+    - error
+    - ignoreVoid: true
   '@typescript-eslint/no-var-requires': off
   '@typescript-eslint/no-use-before-define': off
   '@typescript-eslint/no-unused-vars':
     - error
     - argsIgnorePattern: '^_'
+  '@typescript-eslint/no-empty-interface': off
   import/no-unresolved: off
   import/order:
     - error
@@ -50,17 +66,14 @@ rules:
       alphabetize:
         order: 'asc'
       pathGroups:
-        - pattern: '{@api/**,@templates,@organisms,@molecules,@providers,@logic/**,@tests/**,@msw,@theme}'
+        - pattern: '{@api/**,@api,@molecules,@organisms,@templates,@providers,@tests/**,@logic/**,@theme}'
           group: internal
-          position: before
+          position: after
       pathGroupsExcludedImportTypes:
         - builtin
   no-console:
     - error
     - allow: [warn, error]
-  prettier/prettier:
-    - error
-    - endOfLine: auto
   react/react-in-jsx-scope: off
   react/display-name: off
   react/prop-types: off
@@ -71,3 +84,4 @@ rules:
         - expect*
         - waitForElementToBeRemoved
         - screen.findBy*
+        - result.findBy*

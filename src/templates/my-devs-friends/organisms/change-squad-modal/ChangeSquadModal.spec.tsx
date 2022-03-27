@@ -2,13 +2,14 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { DevDto } from '@api/main-backend/specs/api-types';
 import {
   devsQueryHandler,
   squadsQueryHandler,
   changeDevSquadMutationHandler,
   devsBySquadQueryHandler,
 } from '@msw';
+
+import { DevDto } from '@api/main-backend/specs/api-types';
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
@@ -103,8 +104,8 @@ describe('Change squad modal component', () => {
     const button = screen.getByRole('button', { name: /squad 2 1 members/i });
     userEvent.click(button);
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     screen.getByRole('list', { name: /squads list/i });
@@ -122,8 +123,8 @@ describe('Change squad modal component', () => {
 
     await screen.findByRole('progressbar', { name: /circle-loading/i });
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     expect(handleClose).toHaveBeenCalledTimes(1);
@@ -139,10 +140,8 @@ describe('Change squad modal component', () => {
     const button = screen.getByRole('button', { name: /squad 2 1 members/i });
     userEvent.click(button);
 
-    await screen.findByRole('progressbar', { name: /circle-loading/i });
-
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     await screen.findByText(/oh no!/i);

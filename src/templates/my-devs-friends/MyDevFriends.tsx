@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 
 import { DevFriendsContextProvider } from './contexts/DevFriendsContext';
 import { StatusReport } from './molecules/status-report/StatusReport';
-import { SquadFilter } from './organisms/filter/SquadFilter';
-import { DevsList } from './organisms/list/DevsList';
+import { SquadFilter, DevsList } from './organisms';
 
 export type DevFriendsStatus = 'loading' | 'errored' | 'ready';
 

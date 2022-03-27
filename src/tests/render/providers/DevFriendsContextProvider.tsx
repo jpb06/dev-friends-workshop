@@ -14,7 +14,7 @@ export const DevFriendsContextProvider = ({
   setStatus,
   setSelectedSquads,
 }: DevFriendsContextProviderProps): WrapperResult => {
-  const Wrapper: React.FC = ({ children }) => {
+  const Wrapper = ({ children }) => {
     return (
       <DevFriendsContext.Provider
         value={{

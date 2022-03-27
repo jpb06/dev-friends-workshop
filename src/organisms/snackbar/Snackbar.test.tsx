@@ -7,7 +7,7 @@ import { appRender } from '@tests/render/appRender';
 
 import { SnackbarContext, WithSnackbar } from './Snackbar.context';
 
-const SnackbarWrapper: React.FC = () => (
+const SnackbarWrapper = () => (
   <WithSnackbar>
     <Clicker severity="error" />
     <Clicker severity="info" />
@@ -66,6 +66,8 @@ describe('Snackbar component', () => {
 
     userEvent.click(screen.getByRole('button', { name: 'Close' }));
 
-    await waitForElementToBeRemoved(screen.getByText('warning message'));
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText('warning message')
+    );
   });
 });

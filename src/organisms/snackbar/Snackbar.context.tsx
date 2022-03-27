@@ -25,7 +25,7 @@ export type State = {
   messageInfo?: SnackbarMessage;
 };
 
-export const WithSnackbar: React.FC = ({ children }) => {
+export const WithSnackbar = ({ children }) => {
   const [snackPack, setSnackPack] = useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = useState(false);
   const [messageInfo, setMessageInfo] = useState<SnackbarMessage | undefined>(

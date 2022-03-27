@@ -2,12 +2,16 @@ import { useContext, useEffect } from 'react';
 
 import { DevFriendsContext } from '../contexts/DevFriendsContext';
 
-export const useReportOnErrors = (isError: boolean): void => {
+export const useReportOnErrors = (
+  isError: boolean,
+  isFetched: boolean,
+  data?: Array<unknown>
+): void => {
   const { setStatus } = useContext(DevFriendsContext);
 
   useEffect(() => {
-    if (isError) {
+    if (isError || (isFetched && !data)) {
       setStatus('errored');
     }
-  }, [isError, setStatus]);
+  }, [isError, isFetched, data, setStatus]);
 };

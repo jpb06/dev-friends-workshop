@@ -29,7 +29,9 @@ export const IdleState: React.FC<IdleStateProps> = ({
   } = useDevsQuery();
 
   const isLoading = isSquadsLoading || isDevsLoading;
-  if (isLoading) return <CircularLoading />;
+  if (isLoading) {
+    return <CircularLoading />;
+  }
 
   const isError = isDevsError || isSquadsError;
   if (isError) {

@@ -10,7 +10,7 @@ import React from 'react';
 
 import { Brand, GlobalLoadingIndicator } from '@molecules';
 
-export const FullpageBox: React.FC = ({ children }) => (
+export const FullpageBox = ({ children }) => (
   <Grid
     container
     spacing={0}

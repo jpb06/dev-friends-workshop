@@ -1,5 +1,5 @@
 import InfoIcon from '@mui/icons-material/Info';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useDevsBySquadQuery } from '@api/main-backend';
 import { GlobalIndicator } from '@molecules';
@@ -10,12 +10,12 @@ import { useReportOnReady } from '../../hooks/useReportOnReady';
 import { ChangeSquadModal } from '../change-squad-modal/ChangeSquadModal';
 import { DevSkeleton } from './dev-skeleton/DevSkeleton';
 import { Dev } from './dev/Dev';
-import { useSelectionLogic } from './hooks/useSelectionLogic';
+import { useDevSelectionForChangeSquad } from './hooks/useDevSelectionForChangeSquad';
 
-export const DevsList: React.FC = () => {
+export const DevsList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { selectedSquads, setStatus } = useContext(DevFriendsContext);
+  const { selectedSquads } = useContext(DevFriendsContext);
 
   const {
     data: devs,
@@ -23,9 +23,9 @@ export const DevsList: React.FC = () => {
     isFetched,
   } = useDevsBySquadQuery(selectedSquads);
 
-  useReportOnErrors(isError);
+  useReportOnErrors(isError, isFetched, devs);
   useReportOnReady(devs);
-  const { selectedDev, handleDevSelected } = useSelectionLogic(
+  const { selectedDev, handleDevSelected } = useDevSelectionForChangeSquad(
     devs,
     setIsModalOpen
   );
@@ -33,12 +33,6 @@ export const DevsList: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
-  useEffect(() => {
-    if (isFetched && !devs) {
-      setStatus('errored');
-    }
-  }, [devs, isFetched]);
 
   if (!isFetched || !devs) {
     return null;

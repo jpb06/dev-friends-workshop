@@ -7,7 +7,7 @@ interface SelectionLogicHook {
   selectedDev: DevDto | undefined;
 }
 
-export const useSelectionLogic = (
+export const useDevSelectionForChangeSquad = (
   devs: Array<DevDto>,
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ): SelectionLogicHook => {

@@ -12,6 +12,7 @@ import {
   devsQueryHandler,
   squadsQueryHandler,
 } from '@msw';
+
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
@@ -60,11 +61,10 @@ describe('DevsList component', () => {
     render();
 
     await waitFor(() => {
-      expect(setStatus).toHaveBeenCalledTimes(2);
+      expect(setStatus).toHaveBeenCalledTimes(1);
     });
 
     expect(setStatus).toHaveBeenNthCalledWith(1, 'errored');
-    expect(setStatus).toHaveBeenNthCalledWith(2, 'errored');
   });
 
   it('should display something when the search yielded no devs', async () => {
@@ -149,8 +149,8 @@ describe('DevsList component', () => {
 
     await screen.findByRole('presentation', { name: /change-squad/i });
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
     screen.getByRole('list', { name: /squads list/i });
@@ -181,8 +181,8 @@ describe('DevsList component', () => {
     });
     userEvent.click(squad5Button);
 
-    await waitForElementToBeRemoved(
-      screen.getByRole('presentation', { name: /change-squad/i })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('presentation', { name: /change-squad/i })
     );
   });
 });
