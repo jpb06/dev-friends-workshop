@@ -23,15 +23,16 @@ export const SquadChoice: React.FC<SquadChoiceProps> = ({
       <ListItemAvatar>
         <Avatar
           sx={{
-            backgroundColor: appTheme.palette.secondary.main,
+            backgroundColor: appTheme.colors.darkCyan,
           }}
         >
-          <GroupIcon color="primary" />
+          <GroupIcon color="primary" sx={{ color: appTheme.colors.white }} />
         </Avatar>
       </ListItemAvatar>
       <ListItemText
         primary={`Squad ${squad}`}
         secondary={`${membersCount} members`}
+        secondaryTypographyProps={{ color: appTheme.colors.cyan }}
       />
     </ListItem>
   );

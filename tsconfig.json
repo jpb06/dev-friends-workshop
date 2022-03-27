@@ -17,34 +17,34 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
       "@api/*": [
-        "api/*"
-      ],
-      "@templates": [
-        "templates/index.ts"
-      ],
-      "@organisms": [
-        "organisms/index.ts"
-      ],
-      "@molecules": [
-        "molecules/index.ts"
-      ],
-      "@providers": [
-        "providers/index.ts"
-      ],
-      "@logic/*": [
-        "logic/*"
-      ],
-      "@tests/*": [
-        "tests/*"
+        "src/api/*"
       ],
       "@msw": [
-        "api/main-backend/msw-handlers.ts"
+        "src/api/main-backend/msw-handlers.ts"
+      ],
+      "@templates": [
+        "src/templates/index.ts"
+      ],
+      "@organisms": [
+        "src/organisms/index.ts"
+      ],
+      "@molecules": [
+        "src/molecules/index.ts"
+      ],
+      "@providers": [
+        "src/providers/index.ts"
+      ],
+      "@logic/*": [
+        "src/logic/*"
+      ],
+      "@tests/*": [
+        "src/tests/*"
       ],
       "@theme": [
-        "theme"
+        "src/theme"
       ]
     },
     "incremental": true

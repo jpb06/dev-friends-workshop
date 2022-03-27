@@ -19,11 +19,11 @@ export const MyDevFriends = () => {
       <Grid
         container
         spacing={1}
-        justifyContent="center"
-        alignItems="center"
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="flex-start"
         sx={{
-          marginTop: 10,
-          padding: 10,
+          padding: 1,
         }}
       >
         <DevsList />

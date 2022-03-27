@@ -7,6 +7,8 @@ describe('CircularLoading component', () => {
   it('should display a loading indicator', () => {
     render(<CircularLoading />);
 
-    screen.getByRole('progressbar', { name: 'circle-loading' });
+    expect(
+      screen.getByRole('progressbar', { name: 'circle-loading' })
+    ).toBeInTheDocument();
   });
 });

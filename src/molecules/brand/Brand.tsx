@@ -1,4 +1,4 @@
-import { Build } from '@mui/icons-material';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
@@ -33,7 +33,7 @@ export const Brand: React.FC<BrandProps> = ({
         sx={{ mb: withBottomMargin ? 2 : 0 }}
       >
         <Grid item>
-          <Build sx={withMainColor} />
+          <EmojiPeopleIcon sx={withMainColor} />
         </Grid>
         <Grid item>
           <Typography
@@ -43,7 +43,7 @@ export const Brand: React.FC<BrandProps> = ({
               ...withMainColor,
             }}
           >
-            Sandbox
+            My dev friends
           </Typography>
         </Grid>
       </Grid>
@@ -51,11 +51,11 @@ export const Brand: React.FC<BrandProps> = ({
         <Grid
           item
           sx={{
-            fontSize: 12,
+            fontSize: 15,
             ...withThemeColor('darkCyan'),
           }}
         >
-          storybook / msw
+          Sandbox
         </Grid>
       </Grid>
     </>

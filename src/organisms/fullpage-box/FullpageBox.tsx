@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import { Brand } from '@molecules';
+import { Brand, GlobalLoadingIndicator } from '@molecules';
 
 export const FullpageBox: React.FC = ({ children }) => (
   <Grid
@@ -39,6 +39,7 @@ export const FullpageBox: React.FC = ({ children }) => (
         }}
         image="/img/banner.jpg"
       />
+      <GlobalLoadingIndicator />
       <CardContent>
         <Grid container justifyContent="center" direction="row">
           <Brand color="amber" centered big />

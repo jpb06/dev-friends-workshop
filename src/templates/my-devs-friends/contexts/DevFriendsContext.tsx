@@ -22,7 +22,11 @@ export const DevFriendsContextProvider: React.FC<
 
   return (
     <DevFriendsContext.Provider
-      value={{ selectedSquads, setSelectedSquads, setStatus }}
+      value={{
+        selectedSquads,
+        setSelectedSquads,
+        setStatus,
+      }}
     >
       {children}
     </DevFriendsContext.Provider>

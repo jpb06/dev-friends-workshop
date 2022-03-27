@@ -5,13 +5,13 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material';
-import { BlockingError } from 'molecules/blocking-error/BlockingError';
-import { CircularLoading } from 'molecules/circular-loading/CircularLoading';
-import { DownTransition } from 'molecules/down-transition/DownTransition';
 import React from 'react';
 
 import { DevDto } from '@api/main-backend/specs/api-types';
+import { CircularLoading, DownTransition } from '@molecules';
+import { appTheme } from '@theme';
 
+import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
 import { useModalActions } from './hooks/useModalActions';
 import { IdleState } from './states/IdleState';
 
@@ -31,7 +31,9 @@ export const ChangeSquadModal: React.FC<ChangeSquadModalProps> = ({
     dev
   );
 
-  if (!dev) return null;
+  if (!dev) {
+    return null;
+  }
 
   return (
     <Dialog
@@ -40,8 +42,12 @@ export const ChangeSquadModal: React.FC<ChangeSquadModalProps> = ({
       aria-label="change-squad"
       open={isOpen}
       TransitionComponent={DownTransition}
+      sx={{ '& .MuiDialog-paper': { backgroundColor: 'black' } }}
     >
-      <DialogTitle id="change-squad-title">
+      <DialogTitle
+        id="change-squad-title"
+        sx={{ color: appTheme.colors.amber }}
+      >
         Move {dev.firstName} to another squad
       </DialogTitle>
       <DialogContent dividers>
@@ -50,10 +56,9 @@ export const ChangeSquadModal: React.FC<ChangeSquadModalProps> = ({
             idle: <IdleState dev={dev} onSquadChanged={handleSquadChanged} />,
             loading: <CircularLoading />,
             error: (
-              <BlockingError
-                title="Oh no!"
-                content={`We were unable to modify ${dev.firstName}'s squad. Sorry!`}
-              />
+              <ErrorBlock title="Oh no!">
+                Something went wrong... Sorry!
+              </ErrorBlock>
             ),
           }[status]
         }

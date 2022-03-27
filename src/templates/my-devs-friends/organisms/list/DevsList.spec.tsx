@@ -1,46 +1,85 @@
-import { render, screen } from '@testing-library/react';
+import {
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { getDevDescription } from 'templates/my-devs-friends/organisms/list/dev/logic/getDevDescription';
 
-import { devsBySquadQueryHandler } from '@msw';
-import { devsMockData } from '@tests/mock-data';
+import {
+  changeDevSquadMutationHandler,
+  devsBySquadQueryHandler,
+  devsQueryHandler,
+  squadsQueryHandler,
+} from '@msw';
+import { devsMockData, squadsMockData } from '@tests/mock-data';
+import { appRender } from '@tests/render/appRender';
+import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
 
 import { DevsList } from './DevsList';
+import { getDevDescription } from './dev/logic/getDevDescription';
 
 describe('DevsList component', () => {
-  afterEach(async () => {
+  const setStatus = jest.fn();
+  const render = () => {
+    const { wrapper } = DevFriendsContextProvider({
+      selectedSquads: [],
+      setStatus,
+      setSelectedSquads: jest.fn(),
+    });
+
+    return appRender(<DevsList />, {
+      providers: ['reactQuery'],
+      additionalWrappers: [wrapper],
+    });
+  };
+
+  afterEach(() => {
     jest.resetAllMocks();
   });
 
   it('should display nothing if there is no data', () => {
-    devsBySquadQueryHandler([], 400, true);
+    devsBySquadQueryHandler({ result: [], status: 400 });
 
-    render(<DevsList />);
+    render();
 
     expect(screen.queryByRole('dev')).not.toBeInTheDocument();
   });
 
   it('should display nothing if there is no devs', () => {
-    devsBySquadQueryHandler([], 200, true);
+    devsBySquadQueryHandler({ result: [] });
 
-    render(<DevsList />);
+    render();
 
     expect(screen.queryByRole('dev')).not.toBeInTheDocument();
   });
 
+  it('should display nothing if devs fetching failed', async () => {
+    devsBySquadQueryHandler({ result: {}, status: 500 });
+
+    render();
+
+    await waitFor(() => {
+      expect(setStatus).toHaveBeenCalledTimes(2);
+    });
+
+    expect(setStatus).toHaveBeenNthCalledWith(1, 'errored');
+    expect(setStatus).toHaveBeenNthCalledWith(2, 'errored');
+  });
+
   it('should display something when the search yielded no devs', async () => {
-    devsBySquadQueryHandler([], 200, true);
+    devsBySquadQueryHandler({ result: [] });
 
-    render(<DevsList />);
+    render();
 
-    await screen.findByText(/No developers to display/i);
+    await screen.findByText(/no results/i);
+    screen.getAllByTestId('InfoIcon');
   });
 
   it('should display a list of devs', async () => {
-    devsBySquadQueryHandler(devsMockData, 200, true);
+    devsBySquadQueryHandler({ result: devsMockData });
 
-    render(<DevsList />);
+    render();
 
     const devs = await screen.findAllByRole('dev');
     expect(devs).toHaveLength(2);
@@ -54,31 +93,96 @@ describe('DevsList component', () => {
   });
 
   it('should open the modal when a dev is selected', async () => {
-    devsBySquadQueryHandler(devsMockData, 200, true);
+    devsBySquadQueryHandler({ result: devsMockData });
+    devsQueryHandler(devsMockData, 200);
+    squadsQueryHandler(squadsMockData, 200);
 
-    render(<DevsList />);
+    const dev = devsMockData[0];
+
+    render();
 
     const button = await screen.findByRole('img', {
-      name: devsMockData[0].firstName,
+      name: dev.firstName,
     });
     userEvent.click(button);
 
     await screen.findByRole('presentation', { name: /change-squad/i });
+    screen.getByRole('progressbar', { name: /circle-loading/i });
+    screen.getByRole('heading', {
+      name: `Move ${dev.firstName} to another squad`,
+    });
+    screen.getByRole('button', { name: 'Nevermind' });
   });
 
   it('should close the modal', async () => {
-    devsBySquadQueryHandler(devsMockData, 200, true);
+    devsBySquadQueryHandler({ result: devsMockData });
+    devsQueryHandler(devsMockData, 200);
+    squadsQueryHandler(squadsMockData, 200);
 
-    render(<DevsList />);
+    render();
 
     const devButton = await screen.findByRole('img', {
       name: devsMockData[0].firstName,
     });
+
     userEvent.click(devButton);
 
     await screen.findByRole('presentation', { name: /change-squad/i });
 
     const closeModalButton = screen.getByRole('button', { name: /nevermind/i });
     userEvent.click(closeModalButton);
+  });
+
+  it('should display the list of squads our chosen dev can join', async () => {
+    devsBySquadQueryHandler({ result: devsMockData });
+    devsQueryHandler(devsMockData, 200);
+    squadsQueryHandler(squadsMockData, 200);
+
+    const dev = devsMockData[0];
+
+    render();
+
+    const button = await screen.findByRole('img', {
+      name: dev.firstName,
+    });
+    userEvent.click(button);
+
+    await screen.findByRole('presentation', { name: /change-squad/i });
+
+    await waitForElementToBeRemoved(
+      screen.getByRole('progressbar', { name: /circle-loading/i })
+    );
+
+    screen.getByRole('list', { name: /squads list/i });
+
+    screen.getByRole('button', { name: `Squad 2 1 members` });
+    screen.getByRole('button', { name: `Squad 5 0 members` });
+  });
+
+  it('should move the dev to another squad', async () => {
+    devsBySquadQueryHandler({ result: devsMockData });
+    devsQueryHandler(devsMockData, 200);
+    squadsQueryHandler(squadsMockData, 200);
+    changeDevSquadMutationHandler({ cool: 'bro' }, 200);
+
+    const dev = devsMockData[0];
+
+    render();
+
+    const button = await screen.findByRole('img', {
+      name: dev.firstName,
+    });
+    userEvent.click(button);
+
+    await screen.findByRole('presentation', { name: /change-squad/i });
+
+    const squad5Button = await screen.findByRole('button', {
+      name: `Squad 5 0 members`,
+    });
+    userEvent.click(squad5Button);
+
+    await waitForElementToBeRemoved(
+      screen.getByRole('presentation', { name: /change-squad/i })
+    );
   });
 });

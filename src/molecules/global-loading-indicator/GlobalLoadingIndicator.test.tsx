@@ -22,6 +22,8 @@ describe('Global loading indicator component', () => {
 
     render(<GlobalLoadingIndicator />);
 
-    screen.getByRole('progressbar', { name: /app-is-loading/i });
+    expect(
+      screen.getByRole('progressbar', { name: /app-is-loading/i })
+    ).toBeInTheDocument();
   });
 });

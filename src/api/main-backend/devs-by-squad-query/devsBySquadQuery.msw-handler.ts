@@ -2,11 +2,26 @@ import { DefaultRequestBody } from 'msw';
 
 import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 
+import { DevDto } from '../specs/api-types';
 import { path } from './../specs/DevsController/getDevelopersBySquads';
 
-export const devsBySquadQueryHandler = (
-  result: DefaultRequestBody,
+type DevsBySquadQueryHandlerProps = {
+  result: DefaultRequestBody;
+  resultFilter?: (dev: DevDto) => boolean;
+  status?: number;
+  applyToServer?: boolean;
+};
+
+export const devsBySquadQueryHandler = ({
+  result,
+  resultFilter,
   status = 200,
-  applyToServer = true
-) =>
-  genericPostHandler({ url: path, status, result: { result }, applyToServer });
+  applyToServer = true,
+}: DevsBySquadQueryHandlerProps) =>
+  genericPostHandler({
+    url: path,
+    status,
+    result,
+    resultFilter,
+    applyToServer,
+  });

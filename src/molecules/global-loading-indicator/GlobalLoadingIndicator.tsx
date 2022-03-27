@@ -9,10 +9,6 @@ export const GlobalLoadingIndicator = () => {
   }
 
   return (
-    <LinearProgress
-      color="secondary"
-      title="app-is-loading"
-      sx={{ height: 8 }}
-    />
+    <LinearProgress color="primary" title="app-is-loading" sx={{ height: 8 }} />
   );
 };

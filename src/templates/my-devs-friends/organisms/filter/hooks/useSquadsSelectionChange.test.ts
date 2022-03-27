@@ -1,9 +1,27 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act } from '@testing-library/react-hooks';
 import { ChangeEvent } from 'react';
+
+import { appRenderHook } from '@tests/render/appRenderHook';
+import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
 
 import { useSquadsSelectionChange } from './useSquadsSelectionChange';
 
 describe('Squads selection change hook', () => {
+  const setStatusMock = jest.fn();
+  const setSelectedSquadsMock = jest.fn();
+
+  const renderHook = (callBack: (props: unknown) => unknown) => {
+    const { wrapper } = DevFriendsContextProvider({
+      selectedSquads: [],
+      setStatus: setStatusMock,
+      setSelectedSquads: setSelectedSquadsMock,
+    });
+
+    return appRenderHook(callBack, {
+      additionalWrappers: [wrapper],
+    });
+  };
+
   afterEach(() => {
     jest.clearAllMocks();
   });

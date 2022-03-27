@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material';
-import { amber, cyan, orange, red } from '@mui/material/colors';
+import { amber, cyan, orange, red, teal } from '@mui/material/colors';
 
 import { AppTheme } from './types/app-theme.type';
 
@@ -20,7 +20,9 @@ export const appTheme: AppTheme = {
     white: '#fff',
     amber: amber[800],
     cyan: cyan[300],
-    darkCyan: cyan[700],
+    darkCyan: cyan[900],
     orange: orange[600],
+    lightRed: red[400],
+    teal: teal[900],
   },
 };

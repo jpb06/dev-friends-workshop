@@ -1,12 +1,24 @@
-import { renderHook } from '@testing-library/react-hooks';
-
 import { squadsMockData } from '@tests/mock-data';
+import { appRenderHook } from '@tests/render/appRenderHook';
+import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
 
 import { useSelectedSquadsInitialization } from './useSelectedSquadsInitialization';
 
-const setSelectedSquadsMock = jest.fn();
-
 describe('Selected squads initialization hook', () => {
+  const setSelectedSquadsMock = jest.fn();
+
+  const renderHook = (callBack: (props: unknown) => unknown) => {
+    const { wrapper } = DevFriendsContextProvider({
+      selectedSquads: [],
+      setStatus: jest.fn(),
+      setSelectedSquads: setSelectedSquadsMock,
+    });
+
+    return appRenderHook(callBack, {
+      additionalWrappers: [wrapper],
+    });
+  };
+
   beforeEach(() => {
     jest.resetAllMocks();
   });

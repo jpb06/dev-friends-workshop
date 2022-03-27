@@ -7,14 +7,18 @@ describe('Status report component', () => {
   it('should display an error', () => {
     render(<StatusReport status="errored" />);
 
-    screen.getByText(/oh no!/i);
-    screen.getByText(/something went wrong... sorry!/i);
+    expect(screen.getByText(/oh no!/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/something went wrong... sorry!/i)
+    ).toBeInTheDocument();
   });
 
   it('should display a loading indicator', () => {
     render(<StatusReport status="loading" />);
 
-    screen.getByRole('progressbar', { name: 'circle-loading' });
+    expect(
+      screen.getByRole('progressbar', { name: 'circle-loading' })
+    ).toBeInTheDocument();
   });
 
   it('should display nothing', () => {

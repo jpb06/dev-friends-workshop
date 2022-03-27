@@ -16,7 +16,9 @@ describe('Dev component', () => {
       <Dev id={1} firstName={firstName} squad={squad} onSelected={onSelected} />
     );
 
-    screen.getByRole('dev', { name: getDevDescription({ firstName, squad }) });
+    expect(
+      screen.getByRole('dev', { name: getDevDescription({ firstName, squad }) })
+    ).toBeInTheDocument();
   });
 
   it('should display a picture for the dev', () => {
@@ -27,7 +29,7 @@ describe('Dev component', () => {
       <Dev id={1} firstName={firstName} squad={squad} onSelected={onSelected} />
     );
 
-    screen.getByRole('img', { name: firstName });
+    expect(screen.getByRole('img', { name: firstName })).toBeInTheDocument();
   });
 
   it('should call onSelected when clicked', () => {

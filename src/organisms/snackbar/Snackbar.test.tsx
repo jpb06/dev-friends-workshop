@@ -3,7 +3,7 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useContext } from 'react';
 
-import { render } from '@tests/render/render';
+import { appRender } from '@tests/render/appRender';
 
 import { SnackbarContext, WithSnackbar } from './Snackbar.context';
 
@@ -33,7 +33,7 @@ describe('Snackbar component', () => {
     ['success', 'SuccessOutlinedIcon'],
     ['warning', 'ReportProblemOutlinedIcon'],
   ])('%s', async (severity, iconId) => {
-    render(<SnackbarWrapper />);
+    appRender(<SnackbarWrapper />);
 
     const button = screen.getByRole('button', { name: severity });
     userEvent.click(button);
@@ -43,7 +43,7 @@ describe('Snackbar component', () => {
   });
 
   it('should display a warning and then an error', async () => {
-    render(<SnackbarWrapper />);
+    appRender(<SnackbarWrapper />);
 
     userEvent.click(screen.getByRole('button', { name: 'warning' }));
 
@@ -57,7 +57,7 @@ describe('Snackbar component', () => {
   });
 
   it('should close a displayed snackbar', async () => {
-    render(<SnackbarWrapper />);
+    appRender(<SnackbarWrapper />);
 
     userEvent.click(screen.getByRole('button', { name: 'warning' }));
 
@@ -66,8 +66,6 @@ describe('Snackbar component', () => {
 
     userEvent.click(screen.getByRole('button', { name: 'Close' }));
 
-    await waitForElementToBeRemoved(() =>
-      screen.queryByText('warning message')
-    );
+    await waitForElementToBeRemoved(screen.getByText('warning message'));
   });
 });

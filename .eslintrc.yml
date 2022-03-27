@@ -3,6 +3,7 @@ parser: '@typescript-eslint/parser'
 plugins:
   - '@typescript-eslint'
   - prettier
+  - jest
   - jest-dom
   - import
 
@@ -10,6 +11,8 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:prettier/recommended
+  - plugin:jest/recommended
+  - plugin:jest/style
   - plugin:jest-dom/recommended
   - plugin:import/typescript
   - plugin:@next/next/recommended
@@ -61,3 +64,10 @@ rules:
   react/react-in-jsx-scope: off
   react/display-name: off
   react/prop-types: off
+  jest/expect-expect:
+    - error
+    - assertFunctionNames:
+        - expect
+        - expect*
+        - waitForElementToBeRemoved
+        - screen.findBy*
