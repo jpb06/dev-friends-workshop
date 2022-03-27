@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState, Dispatch } from 'react';
+import React, { useState } from 'react';
 
 import { SquadDto } from '@api/main-backend/specs/api-types';
 
@@ -7,16 +7,16 @@ import { DevFriendsStatus } from '../MyDevFriends';
 export const DevFriendsContext = React.createContext<{
   selectedSquads: Array<SquadDto>;
   setSelectedSquads: React.Dispatch<Array<SquadDto>>;
+  status: DevFriendsStatus;
   setStatus: React.Dispatch<React.SetStateAction<DevFriendsStatus>>;
 }>(undefined);
 
-interface DevFriendsContextProviderProps {
-  setStatus: Dispatch<SetStateAction<DevFriendsStatus>>;
-}
+interface DevFriendsContextProviderProps {}
 
 export const DevFriendsContextProvider: React.FC<
   DevFriendsContextProviderProps
-> = ({ children, setStatus }) => {
+> = ({ children }) => {
+  const [status, setStatus] = useState<DevFriendsStatus>('loading');
   const [selectedSquads, setSelectedSquads] = useState<SquadDto[]>(undefined);
 
   return (
@@ -24,6 +24,7 @@ export const DevFriendsContextProvider: React.FC<
       value={{
         selectedSquads,
         setSelectedSquads,
+        status,
         setStatus,
       }}
     >

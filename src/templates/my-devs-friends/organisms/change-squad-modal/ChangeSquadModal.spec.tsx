@@ -22,7 +22,7 @@ describe('Change squad modal component', () => {
 
   const render = (isOpen: boolean, dev: DevDto | null) => {
     return appRender(
-      <DevFriendsContextProvider setStatus={jest.fn()}>
+      <DevFriendsContextProvider>
         <ChangeSquadModal isOpen={isOpen} onClose={handleClose} dev={dev} />
       </DevFriendsContextProvider>,
       {

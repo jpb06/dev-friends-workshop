@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { CircularLoading } from '@molecules';
 
-import { DevFriendsStatus } from '../../MyDevFriends';
+import { DevFriendsContext } from '../../contexts/DevFriendsContext';
 import { ErrorBlock } from '../error-block/ErrorBlock';
 
-interface StatusReportProps {
-  status: DevFriendsStatus;
-}
+export const StatusReport = () => {
+  const { status } = useContext(DevFriendsContext);
 
-export const StatusReport: React.FC<StatusReportProps> = ({ status }) => (
-  <>
-    {
+  return (
+    <>
       {
-        loading: <CircularLoading />,
-        errored: (
-          <ErrorBlock title="Oh no!">Something went wrong... Sorry!</ErrorBlock>
-        ),
-      }[status]
-    }
-  </>
-);
+        {
+          loading: <CircularLoading />,
+          errored: (
+            <ErrorBlock title="Oh no!">
+              Something went wrong... Sorry!
+            </ErrorBlock>
+          ),
+        }[status]
+      }
+    </>
+  );
+};

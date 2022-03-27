@@ -13,7 +13,7 @@ import { appTheme } from '@theme';
 
 import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
 import { useModalActions } from './hooks/useModalActions';
-import { IdleState } from './states/IdleState';
+import { TargetSquadSelection } from './target-squad-selection/TargetSquadSelection';
 
 interface ChangeSquadModalProps {
   onClose: () => void;
@@ -53,7 +53,12 @@ export const ChangeSquadModal: React.FC<ChangeSquadModalProps> = ({
       <DialogContent dividers>
         {
           {
-            idle: <IdleState dev={dev} onSquadChanged={handleSquadChanged} />,
+            idle: (
+              <TargetSquadSelection
+                dev={dev}
+                onSquadChanged={handleSquadChanged}
+              />
+            ),
             loading: <CircularLoading />,
             error: (
               <ErrorBlock title="Oh no!">

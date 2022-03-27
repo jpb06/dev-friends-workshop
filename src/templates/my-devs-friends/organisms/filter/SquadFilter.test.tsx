@@ -11,7 +11,7 @@ import { SquadFilter } from './SquadFilter';
 describe('SquadFilter component', () => {
   const render = () => {
     return appRender(
-      <DevFriendsContextProvider setStatus={jest.fn()}>
+      <DevFriendsContextProvider>
         <SquadFilter />
       </DevFriendsContextProvider>,
       {

@@ -9,11 +9,11 @@ import { DevDto } from '@api/main-backend/specs/api-types';
 
 import { DevFriendsContext } from '../../../contexts/DevFriendsContext';
 
-interface ModalActions {
+type ModalActions = {
   handleSquadChanged: (id: number) => void;
   handleCancel: () => void;
   status: MutationStatus;
-}
+};
 
 export const useModalActions = (
   onClose: () => void,

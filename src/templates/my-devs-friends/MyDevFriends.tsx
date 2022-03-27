@@ -1,5 +1,5 @@
 import { CardActions, Grid } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { DevFriendsContextProvider } from './contexts/DevFriendsContext';
 import { StatusReport } from './molecules/status-report/StatusReport';
@@ -8,10 +8,8 @@ import { SquadFilter, DevsList } from './organisms';
 export type DevFriendsStatus = 'loading' | 'errored' | 'ready';
 
 export const MyDevFriends = () => {
-  const [status, setStatus] = useState<DevFriendsStatus>('loading');
-
   return (
-    <DevFriendsContextProvider setStatus={setStatus}>
+    <DevFriendsContextProvider>
       <CardActions>
         <SquadFilter />
       </CardActions>
@@ -26,7 +24,7 @@ export const MyDevFriends = () => {
         }}
       >
         <DevsList />
-        <StatusReport status={status} />
+        <StatusReport />
       </Grid>
     </DevFriendsContextProvider>
   );

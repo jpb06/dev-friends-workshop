@@ -12,6 +12,7 @@ describe('Squads selection change hook', () => {
 
   const renderHook = (callBack: (props: unknown) => unknown) => {
     const { wrapper } = DevFriendsContextProvider({
+      status: 'loading',
       selectedSquads: [],
       setStatus: setStatusMock,
       setSelectedSquads: setSelectedSquadsMock,

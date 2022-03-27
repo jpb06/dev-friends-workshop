@@ -24,6 +24,7 @@ describe('DevsList component', () => {
   const setStatus = jest.fn();
   const render = () => {
     const { wrapper } = DevFriendsContextProvider({
+      status: 'loading',
       selectedSquads: [],
       setStatus,
       setSelectedSquads: jest.fn(),

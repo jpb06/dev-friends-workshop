@@ -1,11 +1,28 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 
+import { appRender } from '@tests/render/appRender';
+import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
+
+import { DevFriendsStatus } from '../../MyDevFriends';
 import { StatusReport } from './StatusReport';
 
 describe('Status report component', () => {
+  const render = (status: DevFriendsStatus) => {
+    const { wrapper } = DevFriendsContextProvider({
+      status,
+      selectedSquads: [],
+      setStatus: jest.fn(),
+      setSelectedSquads: jest.fn(),
+    });
+
+    return appRender(<StatusReport />, {
+      additionalWrappers: [wrapper],
+    });
+  };
+
   it('should display an error', () => {
-    render(<StatusReport status="errored" />);
+    render('errored');
 
     expect(screen.getByText(/oh no!/i)).toBeInTheDocument();
     expect(
@@ -14,7 +31,7 @@ describe('Status report component', () => {
   });
 
   it('should display a loading indicator', () => {
-    render(<StatusReport status="loading" />);
+    render('loading');
 
     expect(
       screen.getByRole('progressbar', { name: 'circle-loading' })
@@ -22,7 +39,7 @@ describe('Status report component', () => {
   });
 
   it('should display nothing', () => {
-    render(<StatusReport status="ready" />);
+    render('ready');
 
     expect(screen.queryByText(/oh no!/i)).not.toBeInTheDocument();
     expect(
