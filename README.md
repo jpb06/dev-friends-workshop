@@ -7,7 +7,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
-![Coverage](./badges/coverage-global%20coverage.svg)
+![Coverage](./badges/coverage-jest%20coverage.svg)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
@@ -20,7 +20,7 @@ Here is a little workshop to help my team move forward with our frontend :sparkl
 
 This is a continuation of the [Workshop react FCs repo](https://github.com/jpb06/workshop-react-fcs). Take a look at this archived repo if you want to know more about old implementations like the ones based on redux, for example.
 
-You can find the [deployed app here](https://workshop-react-front.herokuapp.com).
+You can find the [deployed app here](https://workshop-react-front.vercel.app).
 
 ## ⚡ What is this repo about?
 
