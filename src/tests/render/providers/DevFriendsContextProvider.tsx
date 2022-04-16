@@ -2,7 +2,7 @@ import { SquadDto } from '@api/main-backend/specs/api-types';
 import { DevFriendsStatus } from '@templates';
 
 import { DevFriendsContext } from './../../../templates/my-devs-friends/contexts/DevFriendsContext';
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
 interface DevFriendsContextProviderProps {
   status: DevFriendsStatus;
@@ -11,14 +11,15 @@ interface DevFriendsContextProviderProps {
   setStatus: jest.Mock<unknown>;
 }
 
-export const DevFriendsContextProvider = ({
-  status,
-  selectedSquads,
-  setStatus,
-  setSelectedSquads,
-}: DevFriendsContextProviderProps): WrapperResult => {
-  const Wrapper = ({ children }) => {
-    return (
+export const DevFriendsContextProvider =
+  ({
+    status,
+    selectedSquads,
+    setStatus,
+    setSelectedSquads,
+  }: DevFriendsContextProviderProps): TestWrapper =>
+  ({ children }) =>
+    (
       <DevFriendsContext.Provider
         value={{
           selectedSquads,
@@ -30,7 +31,3 @@ export const DevFriendsContextProvider = ({
         {children}
       </DevFriendsContext.Provider>
     );
-  };
-
-  return { wrapper: Wrapper };
-};
