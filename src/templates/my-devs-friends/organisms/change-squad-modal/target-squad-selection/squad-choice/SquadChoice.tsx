@@ -10,12 +10,12 @@ interface SquadChoiceProps extends SquadDto {
   membersCount: number;
 }
 
-export const SquadChoice: React.FC<SquadChoiceProps> = ({
+export const SquadChoice = ({
   onSquadSelected,
   id,
   squad,
   membersCount,
-}) => {
+}: SquadChoiceProps) => {
   const handleClick = () => onSquadSelected(id);
 
   return (

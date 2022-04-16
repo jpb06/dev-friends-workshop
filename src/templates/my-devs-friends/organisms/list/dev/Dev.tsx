@@ -17,12 +17,7 @@ interface DevProps extends DevDto {
   onSelected: (id: number) => void;
 }
 
-export const Dev: React.FC<DevProps> = ({
-  onSelected,
-  id,
-  firstName,
-  squad,
-}) => {
+export const Dev = ({ onSelected, id, firstName, squad }: DevProps) => {
   const description = getDevDescription({ firstName, squad });
 
   const handleClick = () => {
