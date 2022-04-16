@@ -1,18 +1,14 @@
-import {
-  renderHook,
-  RenderHookResult,
-  WrapperComponent,
-} from '@testing-library/react-hooks';
+import { renderHook, RenderHookResult } from '@testing-library/react';
 
 import { applyWrappers, ApplyWrappersProps } from './util/applyWrappers';
 
-export const appRenderHook = <TProps, TResult>(
+export const appRenderHook = <TResult, TProps>(
   callback: (props: TProps) => TResult,
   options?: ApplyWrappersProps
-): RenderHookResult<TProps, TResult> => {
+): RenderHookResult<TResult, TProps> => {
   const wrapper = applyWrappers(options);
 
   return renderHook(callback, {
-    wrapper: wrapper as WrapperComponent<TProps>,
+    wrapper,
   });
 };

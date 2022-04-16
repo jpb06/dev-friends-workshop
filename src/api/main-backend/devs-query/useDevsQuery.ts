@@ -8,7 +8,7 @@ import {
 
 export const useDevsQuery = () =>
   useAxiosQuery<GetAllDevelopersSuccess, GetAllDevelopersError>({
-    key: 'devs',
+    key: ['devs'],
     url: path,
     method: 'GET',
   });

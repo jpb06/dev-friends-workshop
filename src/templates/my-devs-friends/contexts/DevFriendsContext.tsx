@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 
 import { SquadDto } from '@api/main-backend/specs/api-types';
 
@@ -13,9 +13,9 @@ export const DevFriendsContext = React.createContext<{
 
 interface DevFriendsContextProviderProps {}
 
-export const DevFriendsContextProvider: React.FC<
-  DevFriendsContextProviderProps
-> = ({ children }) => {
+export const DevFriendsContextProvider = ({
+  children,
+}: PropsWithChildren<DevFriendsContextProviderProps>) => {
   const [status, setStatus] = useState<DevFriendsStatus>('loading');
   const [selectedSquads, setSelectedSquads] = useState<SquadDto[]>(undefined);
 

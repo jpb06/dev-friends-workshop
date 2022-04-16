@@ -21,11 +21,11 @@ interface ChangeSquadModalProps {
   dev?: DevDto;
 }
 
-export const ChangeSquadModal: React.FC<ChangeSquadModalProps> = ({
+export const ChangeSquadModal = ({
   onClose,
   isOpen,
   dev,
-}) => {
+}: ChangeSquadModalProps) => {
   const { handleSquadChanged, handleCancel, status } = useModalActions(
     onClose,
     dev

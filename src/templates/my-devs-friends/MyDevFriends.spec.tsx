@@ -1,5 +1,4 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import {
@@ -94,7 +93,7 @@ describe('My dev friends component', () => {
       resultFilter: (d) => d.squad !== 1,
     });
 
-    render();
+    const { user } = render();
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('progressbar', { name: /circle-loading/i })
@@ -103,7 +102,8 @@ describe('My dev friends component', () => {
     const squad1Checkbox = await screen.findByRole('checkbox', {
       name: `Squad 1`,
     });
-    userEvent.click(squad1Checkbox);
+
+    await user.click(squad1Checkbox);
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('progressbar', { name: /circle-loading/i })
@@ -133,7 +133,7 @@ describe('My dev friends component', () => {
     });
     changeDevSquadMutationHandler({});
 
-    render();
+    const { user } = render();
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('progressbar', { name: /circle-loading/i })
@@ -142,7 +142,7 @@ describe('My dev friends component', () => {
     const button = await screen.findByRole('img', {
       name: devsMockData[0].firstName,
     });
-    userEvent.click(button);
+    await user.click(button);
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('progressbar', { name: /circle-loading/i })
@@ -155,7 +155,7 @@ describe('My dev friends component', () => {
     const squad2Button = screen.getByRole('button', {
       name: 'Squad 2 1 members',
     });
-    userEvent.click(squad2Button);
+    await user.click(squad2Button);
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('progressbar', { name: /circle-loading/i })

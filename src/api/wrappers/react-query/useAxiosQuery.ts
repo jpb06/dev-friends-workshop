@@ -6,7 +6,7 @@ import { QueryResult } from '../axios/types/query-result.type';
 import { UnWrapResult } from '../axios/types/unwrap-result.type';
 
 type AxiosQueryParams<TSuccess, TError> = {
-  key: string | Array<unknown>;
+  key: Array<unknown>;
   url: string;
   method: Method;
   data?: unknown;

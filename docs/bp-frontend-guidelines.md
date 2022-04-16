@@ -18,12 +18,30 @@ class MyComponent extends React.Component {
 }
 ```
 
-### Use proper types (`React.FC`). Do not use `JSX.Element`
+### Use proper types. Do not use `React.FC`. Do not use `JSX.Element`
 
 #### ✅ Do
 
 ```tsx
-export const MyComponent: React.FC = () => {
+type MyComponentProps = {
+  // ...
+}
+
+export const MyComponent = ({ ... }: MyComponentProps) => {
+  // ...
+};
+```
+
+If we need to pass children, we can use `PropsWithChildren`:
+
+```tsx
+import { PropsWithChildren } from 'react';
+
+type MyComponentProps = {
+  // ...
+}
+
+export const MyComponent = ({ children, ... }: PropsWithChildren<MyComponentProps>) => {
   // ...
 };
 ```
@@ -36,20 +54,25 @@ export const MyComponent = (): JSX.Element => {
 };
 ```
 
-### Use React.FC to define props type and de-structure them asap
+or
+
+```tsx
+export const MyComponent: React.FC = () => {
+  // ...
+};
+```
+
+### De-structure props asap
 
 #### ✅ Do
 
 ```tsx
-interface MyComponentProps {
+type MyComponentProps = {
   myProps: string;
   isCool: boolean;
-}
+};
 
-export const MyComponent: React.FC<MyComponentProps> = ({
-  myProps,
-  isCool,
-}) => {
+export const MyComponent = ({ myProps, isCool }: MyComponentProps) => {
   // ...
 };
 ```
@@ -57,7 +80,7 @@ export const MyComponent: React.FC<MyComponentProps> = ({
 #### ❌ Don't
 
 ```tsx
-interface MyComponentProps {}
+type MyComponentProps = {};
 
 export const MyComponent = (props: MyComponentProps): JSX.Element => {
   // ...
@@ -87,29 +110,25 @@ export const OneLiner = () => {
 ```tsx
 // ./MySubComponent.tsx
 
-interface MySubComponentProps {
+type MySubComponentProps = {
   myProps: string;
   isCool: boolean;
-}
+};
 
-export const MySubComponent: React.FC<MySubComponentProps> = ({
-  myProps,
-  isCool,
-}) => <>I am a sub component</>;
+export const MySubComponent = ({ myProps, isCool }: MySubComponentProps) => (
+  <>I am a sub component</>
+);
 ```
 
 ```tsx
 // ./MyComponent.tsx
 
-interface MyComponentProps {
+type MyComponentProps = {
   myProps: string;
   isCool: boolean;
-}
+};
 
-export const MyComponent: React.FC<MyComponentProps> = ({
-  myProps,
-  isCool,
-}) => (
+export const MyComponent = ({ myProps, isCool }: MyComponentProps) => (
   <>
     <MySubComponent />
   </>
@@ -119,25 +138,21 @@ export const MyComponent: React.FC<MyComponentProps> = ({
 #### ❌ Don't
 
 ```tsx
-interface MySubComponentProps {
+type MySubComponentProps = {
   myProps: string;
   isCool: boolean;
-}
+};
 
-export const MySubComponent: React.FC<MySubComponentProps> = ({
-  myProps,
-  isCool,
-}) => <>I am a sub component </>;
+export const MySubComponent = ({ myProps, isCool }: MySubComponentProps) => (
+  <>I am a sub component </>
+);
 
 interface MyComponentProps {
   myProps: string;
   isCool: boolean;
 }
 
-export const MyComponent: React.FC<MyComponentProps> = ({
-  myProps,
-  isCool,
-}) => (
+export const MyComponent = ({ myProps, isCool }: MyComponentProps) => (
   <>
     <MySubComponent />
   </>
@@ -159,7 +174,7 @@ type OrderSummaryProps = {
   status: Status;
 };
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ status }) => (
+const OrderSummary = ({ status }: OrderSummaryProps) => (
   <>
     {
       {

@@ -13,10 +13,10 @@ interface TargetSquadSelectionProps {
   dev: DevDto;
 }
 
-export const TargetSquadSelection: React.FC<TargetSquadSelectionProps> = ({
+export const TargetSquadSelection = ({
   onSquadChanged,
   dev,
-}) => {
+}: TargetSquadSelectionProps) => {
   const squads = useSquadsQuery();
   const devs = useDevsQuery();
 

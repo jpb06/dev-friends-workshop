@@ -1,22 +1,25 @@
 import { AlertColor, Button } from '@mui/material';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { useContext } from 'react';
 
-import { appRender } from '@tests/render/appRender';
+import { appRender } from '@tests/render';
 
 import { SnackbarContext, WithSnackbar } from './Snackbar.context';
 
 const SnackbarWrapper = () => (
   <WithSnackbar>
-    <Clicker severity="error" />
-    <Clicker severity="info" />
-    <Clicker severity="success" />
-    <Clicker severity="warning" />
+    <>
+      <Clicker severity="error" />
+      <Clicker severity="info" />
+      <Clicker severity="success" />
+      <Clicker severity="warning" />
+    </>
   </WithSnackbar>
 );
 
-const Clicker: React.FC<{ severity: AlertColor }> = ({ severity }) => {
+type ClickerProps = { severity: AlertColor };
+
+const Clicker = ({ severity }: ClickerProps) => {
   const showSnackbar = useContext(SnackbarContext);
 
   const handleClick = () => {
@@ -33,38 +36,38 @@ describe('Snackbar component', () => {
     ['success', 'SuccessOutlinedIcon'],
     ['warning', 'ReportProblemOutlinedIcon'],
   ])('%s', async (severity, iconId) => {
-    appRender(<SnackbarWrapper />);
+    const { user } = appRender(<SnackbarWrapper />);
 
     const button = screen.getByRole('button', { name: severity });
-    userEvent.click(button);
+    await user.click(button);
 
     await screen.findByText(`${severity} message`);
     expect(screen.getByTestId(iconId)).toBeInTheDocument();
   });
 
   it('should display a warning and then an error', async () => {
-    appRender(<SnackbarWrapper />);
+    const { user } = appRender(<SnackbarWrapper />);
 
-    userEvent.click(screen.getByRole('button', { name: 'warning' }));
+    await user.click(screen.getByRole('button', { name: 'warning' }));
 
     await screen.findByText('warning message');
     expect(screen.getByTestId('ReportProblemOutlinedIcon')).toBeInTheDocument();
 
-    userEvent.click(screen.getByRole('button', { name: 'error' }));
+    await user.click(screen.getByRole('button', { name: 'error' }));
 
     await screen.findByText('error message');
     expect(screen.getByTestId('ErrorOutlineIcon')).toBeInTheDocument();
   });
 
   it('should close a displayed snackbar', async () => {
-    appRender(<SnackbarWrapper />);
+    const { user } = appRender(<SnackbarWrapper />);
 
-    userEvent.click(screen.getByRole('button', { name: 'warning' }));
+    await user.click(screen.getByRole('button', { name: 'warning' }));
 
     await screen.findByText('warning message');
-    expect(screen.getByTestId('ReportProblemOutlinedIcon')).toBeInTheDocument();
+    await screen.findByTestId('ReportProblemOutlinedIcon');
 
-    userEvent.click(screen.getByRole('button', { name: 'Close' }));
+    await user.click(screen.getByRole('button', { name: 'Close' }));
 
     await waitForElementToBeRemoved(() =>
       screen.queryByText('warning message')
