@@ -3,7 +3,6 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import {
@@ -100,12 +99,12 @@ describe('DevsList component', () => {
 
     const dev = devsMockData[0];
 
-    render();
+    const { user } = render();
 
     const button = await screen.findByRole('img', {
       name: dev.firstName,
     });
-    userEvent.click(button);
+    await user.click(button);
 
     await screen.findByRole('presentation', { name: /change-squad/i });
     screen.getByRole('progressbar', { name: /circle-loading/i });
@@ -120,18 +119,18 @@ describe('DevsList component', () => {
     devsQueryHandler(devsMockData, 200);
     squadsQueryHandler(squadsMockData, 200);
 
-    render();
+    const { user } = render();
 
     const devButton = await screen.findByRole('img', {
       name: devsMockData[0].firstName,
     });
 
-    userEvent.click(devButton);
+    await user.click(devButton);
 
     await screen.findByRole('presentation', { name: /change-squad/i });
 
     const closeModalButton = screen.getByRole('button', { name: /nevermind/i });
-    userEvent.click(closeModalButton);
+    await user.click(closeModalButton);
   });
 
   it('should display the list of squads our chosen dev can join', async () => {
@@ -141,12 +140,12 @@ describe('DevsList component', () => {
 
     const dev = devsMockData[0];
 
-    render();
+    const { user } = render();
 
     const button = await screen.findByRole('img', {
       name: dev.firstName,
     });
-    userEvent.click(button);
+    await user.click(button);
 
     await screen.findByRole('presentation', { name: /change-squad/i });
 
@@ -168,19 +167,19 @@ describe('DevsList component', () => {
 
     const dev = devsMockData[0];
 
-    render();
+    const { user } = render();
 
     const button = await screen.findByRole('img', {
       name: dev.firstName,
     });
-    userEvent.click(button);
+    await user.click(button);
 
     await screen.findByRole('presentation', { name: /change-squad/i });
 
     const squad5Button = await screen.findByRole('button', {
       name: `Squad 5 0 members`,
     });
-    userEvent.click(squad5Button);
+    await user.click(squad5Button);
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('presentation', { name: /change-squad/i })

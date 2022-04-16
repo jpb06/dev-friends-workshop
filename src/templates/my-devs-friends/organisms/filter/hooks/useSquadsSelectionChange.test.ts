@@ -1,4 +1,4 @@
-import { act } from '@testing-library/react-hooks';
+import { act } from '@testing-library/react';
 import { ChangeEvent } from 'react';
 
 import { appRenderHook } from '@tests/render/appRenderHook';
@@ -19,6 +19,7 @@ describe('Squads selection change hook', () => {
     });
 
     return appRenderHook(callBack, {
+      providers: ['reactQuery'],
       additionalWrappers: [wrapper],
     });
   };
