@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 export interface WrapperResult {
-  wrapper: React.FC;
+  wrapper: ({ children }: PropsWithChildren<unknown>) => JSX.Element;
 }
