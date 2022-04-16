@@ -8,7 +8,7 @@ describe('Selected squads initialization hook', () => {
   const setSelectedSquadsMock = jest.fn();
 
   const renderHook = (callBack: (props: unknown) => unknown) => {
-    const { wrapper } = DevFriendsContextProvider({
+    const wrapper = DevFriendsContextProvider({
       status: 'loading',
       selectedSquads: [],
       setStatus: jest.fn(),

@@ -9,7 +9,7 @@ import { StatusReport } from './StatusReport';
 
 describe('Status report component', () => {
   const render = (status: DevFriendsStatus) => {
-    const { wrapper } = DevFriendsContextProvider({
+    const wrapper = DevFriendsContextProvider({
       status,
       selectedSquads: [],
       setStatus: jest.fn(),

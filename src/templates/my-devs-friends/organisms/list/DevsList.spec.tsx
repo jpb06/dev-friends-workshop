@@ -22,7 +22,7 @@ import { getDevDescription } from './dev/logic/getDevDescription';
 describe('DevsList component', () => {
   const setStatus = jest.fn();
   const render = () => {
-    const { wrapper } = DevFriendsContextProvider({
+    const wrapper = DevFriendsContextProvider({
       status: 'loading',
       selectedSquads: [],
       setStatus,

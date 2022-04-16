@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
 const createTestQueryClient = () => {
   return new QueryClient({
@@ -24,8 +24,9 @@ const createTestQueryClient = () => {
   });
 };
 
-export const ReactQueryProvider = (): WrapperResult => {
-  const wrapper = ({ children }: PropsWithChildren<unknown>) => {
+export const ReactQueryProvider =
+  (): TestWrapper =>
+  ({ children }: PropsWithChildren<unknown>) => {
     // Create client in render to prevent cache sharing accross the tests
     const queryClient = createTestQueryClient();
 
@@ -33,6 +34,3 @@ export const ReactQueryProvider = (): WrapperResult => {
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
   };
-
-  return { wrapper };
-};
