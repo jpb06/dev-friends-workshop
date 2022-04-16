@@ -21,7 +21,7 @@ export const useChangeDevSquadMutation = () => {
     method: 'POST',
     options: {
       onSuccess: () => {
-        void queryClient.invalidateQueries('devs');
+        void queryClient.invalidateQueries(['devs']);
       },
     },
   });

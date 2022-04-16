@@ -8,7 +8,7 @@ import {
 
 export const useSquadsQuery = () =>
   useAxiosQuery<GetAllSquadsSuccess, GetAllSquadsError>({
-    key: 'squads',
+    key: ['squads'],
     url: path,
     method: 'GET',
   });
