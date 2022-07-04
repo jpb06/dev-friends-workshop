@@ -158,9 +158,6 @@ describe('My dev friends component', () => {
     await user.click(squad2Button);
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
-    );
-    await waitForElementToBeRemoved(() =>
       screen.queryByRole('presentation', { name: /change-squad/i })
     );
   });
