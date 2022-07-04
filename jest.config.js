@@ -13,8 +13,24 @@ const customJestConfig = {
   rootDir: '.',
   globalSetup: '<rootDir>/jest/jest.setup.env.ts',
   setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.ts'],
+  testEnvironment: 'jest-environment-jsdom',
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+    '^.+\\.[tj]sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+          },
+          target: 'es2021',
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      },
+    ],
   },
   moduleNameMapper: {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/jest/modules-mappers/file.stub.ts',
