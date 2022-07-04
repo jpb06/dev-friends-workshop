@@ -44,7 +44,6 @@ const customJestConfig = {
     '^@tests/(.*)$': '<rootDir>/src/tests/$1',
     '^@theme$': '<rootDir>/src/theme',
   },
-  testEnvironment: 'jest-environment-jsdom',
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
