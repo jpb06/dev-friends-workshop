@@ -1,4 +1,4 @@
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 
 import {
@@ -141,10 +141,6 @@ describe('Change squad modal component', () => {
 
     const button = screen.getByRole('button', { name: /squad 2 1 members/i });
     await user.click(button);
-
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
-    );
 
     await screen.findByText(/oh no!/i);
     screen.getByText(/something went wrong... Sorry!/i);

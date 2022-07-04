@@ -46,10 +46,13 @@ jobs:
         run: yarn policies set-version 1.22.18
 
       - name: Install dependencies
-        run: yarn install --prefer-offline
+        run: yarn install --frozen-lockfile
 
       - name: Linting
         run: yarn lint
+
+      - name: Types check
+        run: yarn type-check
 
       - name: Tests
         run: yarn test:ci
