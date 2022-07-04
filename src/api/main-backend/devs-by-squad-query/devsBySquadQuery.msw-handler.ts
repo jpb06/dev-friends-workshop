@@ -1,4 +1,4 @@
-import { DefaultRequestBody } from 'msw';
+import { DefaultBodyType } from 'msw';
 
 import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 
@@ -6,7 +6,7 @@ import { DevDto } from '../specs/api-types';
 import { path } from './../specs/DevsController/getDevelopersBySquads';
 
 type DevsBySquadQueryHandlerProps = {
-  result: DefaultRequestBody;
+  result: DefaultBodyType;
   resultFilter?: (dev: DevDto) => boolean;
   status?: number;
   applyToServer?: boolean;

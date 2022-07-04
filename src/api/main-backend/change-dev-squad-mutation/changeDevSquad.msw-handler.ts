@@ -1,11 +1,11 @@
-import { DefaultRequestBody } from 'msw';
+import { DefaultBodyType } from 'msw';
 
 import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 
 import { path } from './../specs/DevsController/changeDeveloperSquad';
 
 export const changeDevSquadMutationHandler = (
-  result: DefaultRequestBody,
+  result: DefaultBodyType,
   status = 200,
   applyToServer = true
 ) =>

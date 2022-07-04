@@ -1,11 +1,11 @@
-import { DefaultRequestBody, rest } from 'msw';
+import { DefaultBodyType, rest } from 'msw';
 
 import { applyHandlerToServer } from './applyHandlerToServer';
 
 type GenericPostHandlerParams<T> = {
   url: string;
   status: number;
-  result: DefaultRequestBody;
+  result: DefaultBodyType;
   resultFilter?: (item: T) => boolean;
   applyToServer?: boolean;
 };
