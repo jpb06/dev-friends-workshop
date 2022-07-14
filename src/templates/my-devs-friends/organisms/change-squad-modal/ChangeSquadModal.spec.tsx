@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import React from 'react';
 
 import {
@@ -92,45 +92,47 @@ describe('Change squad modal component', () => {
     screen.getByText(/yolo man currently belongs to squad 1/i);
   });
 
-  // https://github.com/mswjs/msw/issues/1143
+  //https://github.com/mswjs/msw/issues/1143
 
-  // it('should display a loading indicator when changing the dev squad', async () => {
-  //   devsBySquadQueryHandler({ result: devsMockData });
+  it('should display a loading indicator when changing the dev squad', async () => {
+    devsBySquadQueryHandler({ result: devsMockData });
 
-  //   const { user } = render(true, dev);
+    const { user } = render(true, dev);
 
-  //   await screen.findByRole('list', { name: /squads list/i });
+    await screen.findByRole('list', { name: /squads list/i });
 
-  //   const button = screen.getByRole('button', { name: /squad 2 1 members/i });
-  //   await user.click(button);
+    const button = screen.getByRole('button', { name: /squad 2 1 members/i });
+    await user.click(button);
 
-  //   await waitForElementToBeRemoved(() =>
-  //     screen.queryByRole('progressbar', { name: /circle-loading/i })
-  //   );
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
+    );
 
-  //   expect(
-  //     screen.getByRole('list', { name: /squads list/i })
-  //   ).toBeInTheDocument();
-  // });
+    expect(
+      screen.getByRole('list', { name: /squads list/i })
+    ).toBeInTheDocument();
+  });
 
-  // it('should close the modal once the mutation has completed', async () => {
-  //   devsBySquadQueryHandler({ result: devsMockData });
+  //https://github.com/mswjs/msw/issues/1143
 
-  //   const { user } = render(true, dev);
+  it('should close the modal once the mutation has completed', async () => {
+    devsBySquadQueryHandler({ result: devsMockData });
 
-  //   await screen.findByRole('list', { name: /squads list/i });
+    const { user } = render(true, dev);
 
-  //   const button = screen.getByRole('button', { name: /squad 2 1 members/i });
-  //   await user.click(button);
+    await screen.findByRole('list', { name: /squads list/i });
 
-  //   await screen.findByRole('progressbar', { name: /circle-loading/i });
+    const button = screen.getByRole('button', { name: /squad 2 1 members/i });
+    await user.click(button);
 
-  //   await waitForElementToBeRemoved(() =>
-  //     screen.queryByRole('progressbar', { name: /circle-loading/i })
-  //   );
+    await screen.findByRole('progressbar', { name: /circle-loading/i });
 
-  //   expect(handleClose).toHaveBeenCalledTimes(1);
-  // });
+    await waitForElementToBeRemoved(() =>
+      screen.queryByRole('progressbar', { name: /circle-loading/i })
+    );
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
 
   it('should display an error message when mutation failed', async () => {
     changeDevSquadMutationHandler({}, 500);
