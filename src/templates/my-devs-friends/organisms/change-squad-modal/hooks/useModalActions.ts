@@ -1,5 +1,5 @@
+import { MutationStatus } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
-import { MutationStatus } from 'react-query';
 
 import {
   useChangeDevSquadMutation,
