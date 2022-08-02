@@ -1,5 +1,5 @@
 import { LinearProgress } from '@mui/material';
-import { useIsFetching } from 'react-query';
+import { useIsFetching } from '@tanstack/react-query';
 
 export const GlobalLoadingIndicator = () => {
   const isFetching = useIsFetching();

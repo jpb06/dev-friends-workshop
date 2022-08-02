@@ -1,10 +1,10 @@
+import { useIsFetching } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { mocked } from 'jest-mock';
-import { useIsFetching } from 'react-query';
 
 import { GlobalLoadingIndicator } from './GlobalLoadingIndicator';
 
-jest.mock('react-query');
+jest.mock('@tanstack/react-query');
 
 describe('Global loading indicator component', () => {
   it('should not display a loading indicator when there is no XHR calls', () => {

@@ -1,5 +1,5 @@
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { Method } from 'axios';
-import { useMutation, UseMutationOptions } from 'react-query';
 
 import { axiosRequest } from '../axios/axios-request';
 import { MutationResult } from '../axios/types/mutation-result.type';
