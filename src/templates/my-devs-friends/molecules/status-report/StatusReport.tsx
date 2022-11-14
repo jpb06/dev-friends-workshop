@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import { useAtom } from 'jotai';
+import React from 'react';
 
 import { CircularLoading } from '@molecules';
 
-import { DevFriendsContext } from '../../contexts/DevFriendsContext';
+import { uiStatusAtom } from '../../../../state/ui-status.atom';
 import { ErrorBlock } from '../error-block/ErrorBlock';
 
 export const StatusReport = () => {
-  const { status } = useContext(DevFriendsContext);
+  const [uiStatus] = useAtom(uiStatusAtom);
 
   return (
     <>
@@ -18,7 +19,7 @@ export const StatusReport = () => {
               Something went wrong... Sorry!
             </ErrorBlock>
           ),
-        }[status]
+        }[uiStatus]
       }
     </>
   );

@@ -1,7 +1,8 @@
 import { axiosRequest } from './axios-request';
-import { genericGetUrl, getHandler } from './get.msw-handler';
+import { getHandler } from './get.msw-handler';
 
 describe('axiosRequest function', () => {
+  const path = '/get';
   const data = 'cool';
   const method = 'GET';
 
@@ -10,7 +11,7 @@ describe('axiosRequest function', () => {
 
     await expect(
       axiosRequest({
-        url: genericGetUrl,
+        url: path,
         method,
       })
     ).rejects.toStrictEqual(data);
@@ -21,10 +22,10 @@ describe('axiosRequest function', () => {
 
     await expect(
       axiosRequest({
-        url: genericGetUrl,
+        url: path,
         method,
       })
-    ).rejects.toThrow(`${method} ${genericGetUrl} returned no result`);
+    ).rejects.toThrow(`${method} ${path} returned no result`);
   });
 
   it('should return result', async () => {
@@ -33,7 +34,7 @@ describe('axiosRequest function', () => {
     });
 
     const result = await axiosRequest({
-      url: genericGetUrl,
+      url: path,
       method: 'GET',
     });
 

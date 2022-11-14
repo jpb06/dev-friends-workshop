@@ -2,7 +2,7 @@ import { List } from '@mui/material';
 import React from 'react';
 
 import { useDevsQuery, useSquadsQuery } from '@api/main-backend';
-import { DevDto } from '@api/main-backend/specs/api-types';
+import { DevDto, SquadDto } from '@api/main-backend/specs/api-types';
 import { CircularLoading } from '@molecules';
 
 import { ErrorBlock } from '../../../molecules/error-block/ErrorBlock';
@@ -32,20 +32,22 @@ export const TargetSquadSelection = ({
     );
   }
 
+  const squad = squads.data.find((s) => s.id === dev.idSquad) as SquadDto;
+
   return (
     <>
       <>
-        {dev.firstName} currently belongs to squad {dev.squad}
+        {dev.firstName} currently belongs to squad {squad.name}
       </>
       <List aria-label="Squads list">
         {squads.data
-          .filter((squad) => squad.id !== dev.squad)
+          .filter((squad) => squad.id !== dev.idSquad)
           .map((squad) => (
             <SquadChoice
               onSquadSelected={onSquadChanged}
               key={squad.id}
               membersCount={
-                devs.data.filter((el) => el.squad === squad.id).length
+                devs.data.filter((el) => el.idSquad === squad.id).length
               }
               {...squad}
             />

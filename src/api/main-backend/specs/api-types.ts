@@ -1,6 +1,9 @@
+/* eslint-disable */
+/* tslint:disable */
+
 export interface SquadDto {
   id: number;
-  squad: number;
+  name: string;
 }
 export interface AllSquadsResultDto {
   result: Array<SquadDto>;
@@ -11,8 +14,9 @@ export interface ApiResponseDto {
 }
 export interface DevDto {
   id: number;
+  idSquad: number;
   firstName: string;
-  squad: number;
+  avatar: string;
 }
 export interface SquadsDevelopersResultDto {
   result: Array<DevDto>;

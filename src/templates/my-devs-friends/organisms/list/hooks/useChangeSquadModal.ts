@@ -2,18 +2,22 @@ import { useState } from 'react';
 
 import { DevDto } from '@api/main-backend/specs/api-types';
 
-interface SelectionLogicHook {
+interface ChangeSquadModalHookResult {
   handleDevSelected: (id: number) => void;
   selectedDev: DevDto | undefined;
 }
 
-export const useDevSelectionForChangeSquad = (
-  devs: Array<DevDto>,
+export const useChangeSquadModal = (
+  devs: Array<DevDto> | undefined,
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-): SelectionLogicHook => {
+): ChangeSquadModalHookResult => {
   const [selectedDev, setSelectedDev] = useState<DevDto | undefined>(undefined);
 
   const handleDevSelected = (id: number) => {
+    if (!devs) {
+      return;
+    }
+
     setSelectedDev(devs.find((el) => el.id === id));
     setIsModalOpen(true);
   };

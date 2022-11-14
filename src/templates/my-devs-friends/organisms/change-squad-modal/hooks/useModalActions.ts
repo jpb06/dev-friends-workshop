@@ -1,13 +1,11 @@
 import { MutationStatus } from '@tanstack/react-query';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 import {
   useChangeDevSquadMutation,
   useDevsBySquadQuery,
 } from '@api/main-backend';
 import { DevDto } from '@api/main-backend/specs/api-types';
-
-import { DevFriendsContext } from '../../../contexts/DevFriendsContext';
 
 type ModalActions = {
   handleSquadChanged: (id: number) => void;
@@ -19,12 +17,15 @@ export const useModalActions = (
   onClose: () => void,
   dev?: DevDto
 ): ModalActions => {
-  const { selectedSquads } = useContext(DevFriendsContext);
-  const { refetch } = useDevsBySquadQuery(selectedSquads);
+  const { refetch } = useDevsBySquadQuery();
   const { mutateAsync: changeDevSquad, reset } = useChangeDevSquadMutation();
   const [status, setStatus] = useState<MutationStatus>('idle');
 
   const handleSquadChanged = async (id: number) => {
+    if (!dev) {
+      return;
+    }
+
     try {
       setStatus('loading');
       await changeDevSquad({ idDev: dev?.id, idSquad: id });

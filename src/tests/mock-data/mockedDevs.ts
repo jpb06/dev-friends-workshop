@@ -1,14 +1,18 @@
+import { faker } from '@faker-js/faker';
+
 import { DevDto } from '@api/main-backend/specs/api-types';
 
 export const devsMockData: Array<DevDto> = [
   {
     id: 1,
+    idSquad: 1,
     firstName: 'Yolo man',
-    squad: 1,
+    avatar: faker.image.avatar(),
   },
   {
     id: 2,
+    idSquad: 2,
     firstName: 'Cool girl',
-    squad: 2,
+    avatar: faker.image.avatar(),
   },
 ];

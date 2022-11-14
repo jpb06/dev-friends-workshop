@@ -13,7 +13,7 @@ interface SquadChoiceProps extends SquadDto {
 export const SquadChoice = ({
   onSquadSelected,
   id,
-  squad,
+  name,
   membersCount,
 }: SquadChoiceProps) => {
   const handleClick = () => onSquadSelected(id);
@@ -30,7 +30,7 @@ export const SquadChoice = ({
         </Avatar>
       </ListItemAvatar>
       <ListItemText
-        primary={`Squad ${squad}`}
+        primary={name}
         secondary={`${membersCount} members`}
         secondaryTypographyProps={{ color: appTheme.colors.cyan }}
       />

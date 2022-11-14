@@ -1,5 +1,6 @@
 import { DefaultBodyType, rest } from 'msw';
 
+import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 import { applyHandlerToServer } from './applyHandlerToServer';
 
 type GenericGetHandlerParams = {
@@ -15,7 +16,7 @@ export const genericGetHandler = ({
   result,
   applyToServer = true,
 }: GenericGetHandlerParams) => {
-  const handler = rest.get(url, (_, res, ctx) =>
+  const handler = rest.get(`${mainBackendUrl}${url}`, (_, res, ctx) =>
     res(ctx.status(status), ctx.json(result))
   );
 

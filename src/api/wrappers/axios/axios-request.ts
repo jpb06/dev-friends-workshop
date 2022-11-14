@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, Method } from 'axios';
 
 import { delay } from '@logic/delay';
 
+import { mainBackendUrl } from '../../main-backend/main-backend-url.constant';
 import { UnWrapResult } from './types/unwrap-result.type';
 
 type AxiosRequestProps = {
@@ -23,7 +24,7 @@ export const axiosRequest = async <TResult>({
     const [response] = await Promise.all([
       axios.request<WithResult<UnWrapResult<TResult>>>({
         method,
-        url,
+        url: `${mainBackendUrl}${url}`,
         data,
         ...config,
       }),

@@ -1,19 +1,10 @@
 import { Checkbox, FormControlLabel, Grid } from '@mui/material';
 import React from 'react';
 
-import { useSquadsQuery } from '@api/main-backend';
-
-import { useReportOnErrors } from '../../hooks/useReportOnErrors';
-import { useSelectedSquadsInitialization } from './hooks/useSelectedSquadsInitialization';
-import { useSquadsSelectionChange } from './hooks/useSquadsSelectionChange';
+import { useSquadsFilterForm } from './hooks/useSquadsFilterForm';
 
 export const SquadFilter = () => {
-  const { data: squads, isError, isFetched } = useSquadsQuery();
-
-  useSelectedSquadsInitialization(squads);
-  useReportOnErrors(isError, isFetched, squads);
-
-  const [handleChange, formValues] = useSquadsSelectionChange();
+  const { handleChange, formValues, squads } = useSquadsFilterForm();
 
   if (!squads) {
     return null;
@@ -21,8 +12,8 @@ export const SquadFilter = () => {
 
   return (
     <Grid container spacing={1} justifyContent="center" alignItems="center">
-      {squads.map((el, index) => (
-        <Grid item key={el.id}>
+      {squads.map(({ id, name }, index) => (
+        <Grid item key={id}>
           <FormControlLabel
             control={
               <Checkbox
@@ -34,7 +25,7 @@ export const SquadFilter = () => {
                 }}
               />
             }
-            label={`Squad ${el.squad}`}
+            label={name}
           />
         </Grid>
       ))}

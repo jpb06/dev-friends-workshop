@@ -85,3 +85,4 @@ rules:
         - waitForElementToBeRemoved
         - screen.findBy*
         - result.findBy*
+        - findDev
