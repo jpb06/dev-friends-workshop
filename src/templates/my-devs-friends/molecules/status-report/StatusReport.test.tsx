@@ -1,25 +1,18 @@
 import { screen } from '@testing-library/react';
+import { Atom } from 'jotai';
 import React from 'react';
 
 import { appRender } from '@tests/render/appRender';
-import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
 
-import { DevFriendsStatus } from '../../MyDevFriends';
+import { UiStatus, uiStatusAtom } from '../../../../state/ui-status.atom';
 import { StatusReport } from './StatusReport';
 
 describe('Status report component', () => {
-  const render = (status: DevFriendsStatus) => {
-    const wrapper = DevFriendsContextProvider({
-      status,
-      selectedSquads: [],
-      setStatus: jest.fn(),
-      setSelectedSquads: jest.fn(),
+  const render = (status: UiStatus) =>
+    appRender(<StatusReport />, {
+      providers: ['jotai'],
+      atoms: [[uiStatusAtom, status]] as Array<[Atom<unknown>, unknown]>,
     });
-
-    return appRender(<StatusReport />, {
-      additionalWrappers: [wrapper],
-    });
-  };
 
   it('should display an error', () => {
     render('errored');

@@ -2,9 +2,9 @@ import { DefaultBodyType } from 'msw';
 
 import { genericGetHandler } from '@tests/msw/handlers/generic-get.handler';
 
-import { path } from './../specs/DevsController/getAllDevelopers';
+import { path } from '../../specs/SquadsController/getAllSquads';
 
-export const devsQueryHandler = (
+export const squadsQueryHandler = (
   result: DefaultBodyType,
   status = 200,
   applyToServer = true

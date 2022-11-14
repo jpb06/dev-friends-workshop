@@ -1,8 +1,9 @@
 import { DefaultBodyType, rest } from 'msw';
 
 import { applyHandlerToServer } from '../../../tests/msw/handlers/applyHandlerToServer';
+import { mainBackendUrl } from '../../main-backend/main-backend-url.constant';
 
-export const genericGetUrl = 'https://cool.org/get';
+export const genericGetUrl = `${mainBackendUrl}/get`;
 
 export const getHandler = (
   status: number,

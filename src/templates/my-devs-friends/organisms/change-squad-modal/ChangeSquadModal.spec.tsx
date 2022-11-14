@@ -12,20 +12,18 @@ import { DevDto } from '@api/main-backend/specs/api-types';
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
-import { DevFriendsContextProvider } from '../../contexts/DevFriendsContext';
 import { ChangeSquadModal } from './ChangeSquadModal';
 
 describe('Change squad modal component', () => {
   const dev = devsMockData[0];
   const handleClose = jest.fn();
 
-  const render = (isOpen: boolean, dev: DevDto | null) =>
+  const render = (isOpen: boolean, dev?: DevDto) =>
     appRender(
-      <DevFriendsContextProvider>
-        <ChangeSquadModal isOpen={isOpen} onClose={handleClose} dev={dev} />
-      </DevFriendsContextProvider>,
+      <ChangeSquadModal isOpen={isOpen} onClose={handleClose} dev={dev} />,
       {
         providers: ['reactQuery'],
+        atoms: [],
       }
     );
 
@@ -37,7 +35,7 @@ describe('Change squad modal component', () => {
   });
 
   it('should display nothing if there is no dev', () => {
-    render(true, null);
+    render(true);
 
     expect(
       screen.queryByRole('presentation', { name: /change-squad/i })
@@ -86,13 +84,16 @@ describe('Change squad modal component', () => {
     render(true, dev);
 
     await screen.findByRole('list', { name: /squads list/i });
-    screen.getByRole('button', { name: /squad 2 1 members/i });
-    screen.getByRole('button', { name: /squad 5 0 members/i });
+    screen.getByRole('button', { name: /cool 1 members/i });
+    screen.getByRole('button', { name: /bros 0 members/i });
 
-    screen.getByText(/yolo man currently belongs to squad 1/i);
+    screen.getByText(/yolo man currently belongs to squad yolo/i);
   });
 
   //https://github.com/mswjs/msw/issues/1143
+  // This test trigger two warnings:
+  // Error: captured a request without a matching request handler:
+  // GET http://localhost:3001/squads
 
   it('should display a loading indicator when changing the dev squad', async () => {
     devsBySquadQueryHandler({ result: devsMockData });
@@ -101,7 +102,7 @@ describe('Change squad modal component', () => {
 
     await screen.findByRole('list', { name: /squads list/i });
 
-    const button = screen.getByRole('button', { name: /squad 2 1 members/i });
+    const button = screen.getByRole('button', { name: /cool 1 members/i });
     await user.click(button);
 
     await waitForElementToBeRemoved(() =>
@@ -114,6 +115,9 @@ describe('Change squad modal component', () => {
   });
 
   //https://github.com/mswjs/msw/issues/1143
+  // This test trigger two warnings:
+  // Error: captured a request without a matching request handler:
+  // GET http://localhost:3001/squads
 
   it('should close the modal once the mutation has completed', async () => {
     devsBySquadQueryHandler({ result: devsMockData });
@@ -122,7 +126,7 @@ describe('Change squad modal component', () => {
 
     await screen.findByRole('list', { name: /squads list/i });
 
-    const button = screen.getByRole('button', { name: /squad 2 1 members/i });
+    const button = screen.getByRole('button', { name: /cool 1 members/i });
     await user.click(button);
 
     await screen.findByRole('progressbar', { name: /circle-loading/i });
@@ -141,7 +145,7 @@ describe('Change squad modal component', () => {
 
     await screen.findByRole('list', { name: /squads list/i });
 
-    const button = screen.getByRole('button', { name: /squad 2 1 members/i });
+    const button = screen.getByRole('button', { name: /cool 1 members/i });
     await user.click(button);
 
     await screen.findByText(/oh no!/i);

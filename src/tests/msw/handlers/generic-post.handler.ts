@@ -1,5 +1,6 @@
 import { DefaultBodyType, rest } from 'msw';
 
+import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 import { applyHandlerToServer } from './applyHandlerToServer';
 
 type GenericPostHandlerParams<T> = {
@@ -17,7 +18,7 @@ export const genericPostHandler = <T>({
   resultFilter,
   applyToServer = true,
 }: GenericPostHandlerParams<T>) => {
-  const handler = rest.post(url, (_, res, ctx) => {
+  const handler = rest.post(`${mainBackendUrl}${url}`, (_, res, ctx) => {
     if (resultFilter) {
       return res(
         ctx.status(status),

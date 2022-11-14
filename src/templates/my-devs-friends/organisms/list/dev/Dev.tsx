@@ -11,14 +11,23 @@ import React from 'react';
 import { DevDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
 
-import { getDevDescription } from './logic/getDevDescription';
+import { useSquadsQuery } from '../../../../../api/main-backend';
+import { useDevDescription } from './hooks/useDevDescription';
 
 interface DevProps extends DevDto {
   onSelected: (id: number) => void;
 }
 
-export const Dev = ({ onSelected, id, firstName, squad }: DevProps) => {
-  const description = getDevDescription({ firstName, squad });
+export const Dev = ({
+  onSelected,
+  id,
+  idSquad,
+  firstName,
+  avatar,
+}: DevProps) => {
+  const { data: squads } = useSquadsQuery();
+
+  const { squad, description } = useDevDescription(idSquad, firstName, squads);
 
   const handleClick = () => {
     onSelected(id);
@@ -35,7 +44,7 @@ export const Dev = ({ onSelected, id, firstName, squad }: DevProps) => {
           }}
         >
           <CardMedia
-            image={`https://picsum.photos/seed/${firstName}/300`}
+            image={avatar}
             role="img"
             title={firstName}
             onClick={handleClick}
@@ -48,10 +57,9 @@ export const Dev = ({ onSelected, id, firstName, squad }: DevProps) => {
             <Typography variant="body1" sx={{ color: appTheme.colors.amber }}>
               {firstName}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: appTheme.colors.cyan }}
-            >{`Squad ${squad}`}</Typography>
+            <Typography variant="body2" sx={{ color: appTheme.colors.cyan }}>
+              {squad}
+            </Typography>
           </CardContent>
         </Card>
       </Zoom>

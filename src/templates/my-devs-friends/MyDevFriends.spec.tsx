@@ -1,4 +1,5 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { Atom } from 'jotai';
 import React from 'react';
 
 import {
@@ -11,11 +12,17 @@ import {
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
+import { uiStatusAtom } from '../../state/ui-status.atom';
 import { MyDevFriends } from './MyDevFriends';
 
 describe('My dev friends component', () => {
-  const render = () =>
-    appRender(<MyDevFriends />, { providers: ['reactQuery'] });
+  const render = () => {
+    const initialState: [Atom<unknown>, unknown] = [uiStatusAtom, 'loading'];
+    return appRender(<MyDevFriends />, {
+      providers: ['reactQuery', 'jotai'],
+      atoms: [initialState],
+    });
+  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -36,10 +43,8 @@ describe('My dev friends component', () => {
       screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
-    for (const { squad } of squadsMockData) {
-      expect(
-        screen.getByRole('checkbox', { name: `Squad ${squad}` })
-      ).toBeInTheDocument();
+    for (const { name } of squadsMockData) {
+      expect(screen.getByRole('checkbox', { name })).toBeInTheDocument();
     }
   });
 
@@ -90,7 +95,7 @@ describe('My dev friends component', () => {
   it('should filter devs', async () => {
     devsBySquadQueryHandler({
       result: devsMockData,
-      resultFilter: (d) => d.squad !== 1,
+      resultFilter: (d) => d.idSquad !== 1,
     });
 
     const { user } = render();
@@ -100,7 +105,7 @@ describe('My dev friends component', () => {
     );
 
     const squad1Checkbox = await screen.findByRole('checkbox', {
-      name: `Squad 1`,
+      name: squadsMockData[0].name,
     });
 
     await user.click(squad1Checkbox);
@@ -109,7 +114,7 @@ describe('My dev friends component', () => {
       screen.queryByRole('progressbar', { name: /circle-loading/i })
     );
 
-    const squad1Devs = devsMockData.filter((dev) => dev.squad === 1);
+    const squad1Devs = devsMockData.filter((dev) => dev.idSquad === 1);
 
     for (const { firstName } of squad1Devs) {
       expect(
@@ -117,7 +122,7 @@ describe('My dev friends component', () => {
       ).not.toBeInTheDocument();
     }
 
-    const othersDevs = devsMockData.filter((dev) => dev.squad !== 1);
+    const othersDevs = devsMockData.filter((dev) => dev.idSquad !== 1);
     for (const { firstName } of othersDevs) {
       expect(
         screen.queryByRole('img', { name: firstName })
@@ -153,7 +158,7 @@ describe('My dev friends component', () => {
     screen.getByRole('list', { name: /squads list/i });
 
     const squad2Button = screen.getByRole('button', {
-      name: 'Squad 2 1 members',
+      name: `${squadsMockData[1].name} 1 members`,
     });
     await user.click(squad2Button);
 

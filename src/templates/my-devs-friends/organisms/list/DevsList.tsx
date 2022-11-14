@@ -1,31 +1,24 @@
 import InfoIcon from '@mui/icons-material/Info';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useDevsBySquadQuery } from '@api/main-backend';
 import { GlobalIndicator } from '@molecules';
 
-import { DevFriendsContext } from '../../contexts/DevFriendsContext';
 import { useReportOnErrors } from '../../hooks/useReportOnErrors';
 import { useReportOnReady } from '../../hooks/useReportOnReady';
 import { ChangeSquadModal } from '../change-squad-modal/ChangeSquadModal';
 import { DevSkeleton } from './dev-skeleton/DevSkeleton';
 import { Dev } from './dev/Dev';
-import { useDevSelectionForChangeSquad } from './hooks/useDevSelectionForChangeSquad';
+import { useChangeSquadModal } from './hooks/useChangeSquadModal';
 
 export const DevsList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { selectedSquads } = useContext(DevFriendsContext);
-
-  const {
-    data: devs,
-    isError,
-    isFetched,
-  } = useDevsBySquadQuery(selectedSquads);
+  const { data: devs, isError, isFetched } = useDevsBySquadQuery();
 
   useReportOnErrors(isError, isFetched, devs);
   useReportOnReady(devs);
-  const { selectedDev, handleDevSelected } = useDevSelectionForChangeSquad(
+  const { selectedDev, handleDevSelected } = useChangeSquadModal(
     devs,
     setIsModalOpen
   );

@@ -1,17 +1,18 @@
-import { useContext, useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 
-import { DevFriendsContext } from '../contexts/DevFriendsContext';
+import { uiStatusAtom } from '../../../state/ui-status.atom';
 
 export const useReportOnErrors = (
   isError: boolean,
   isFetched: boolean,
   data?: Array<unknown>
 ): void => {
-  const { setStatus } = useContext(DevFriendsContext);
+  const [, setUiStatus] = useAtom(uiStatusAtom);
 
   useEffect(() => {
     if (isError || (isFetched && !data)) {
-      setStatus('errored');
+      setUiStatus('errored');
     }
-  }, [isError, isFetched, data, setStatus]);
+  }, [isError, isFetched, data, setUiStatus]);
 };

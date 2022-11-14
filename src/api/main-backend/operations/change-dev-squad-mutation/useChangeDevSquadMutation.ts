@@ -7,7 +7,7 @@ import {
   ChangeDeveloperSquadSuccess,
   ChangeDeveloperSquadError,
   RequestBody,
-} from './../specs/DevsController/changeDeveloperSquad';
+} from './../../specs/DevsController/changeDeveloperSquad';
 
 export const useChangeDevSquadMutation = () => {
   const queryClient = useQueryClient();

@@ -4,7 +4,7 @@ import {
   path,
   GetAllDevelopersSuccess,
   GetAllDevelopersError,
-} from './../specs/DevsController/getAllDevelopers';
+} from './../../specs/DevsController/getAllDevelopers';
 
 export const useDevsQuery = () =>
   useAxiosQuery<GetAllDevelopersSuccess, GetAllDevelopersError>({

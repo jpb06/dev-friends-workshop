@@ -1,47 +1,50 @@
 import { screen } from '@testing-library/react';
+import { Atom } from 'jotai';
 import React from 'react';
 
 import { appRender } from '@tests/render';
 
+import { squadsQueryHandler } from '../../../../../api/main-backend/msw-handlers';
+import { findDev } from '../../../../../tests/assertions/findDev.assertion';
+import { devsMockData, squadsMockData } from '../../../../../tests/mock-data';
 import { Dev } from './Dev';
-import { getDevDescription } from './logic/getDevDescription';
 
 describe('Dev component', () => {
+  const dev = devsMockData[0];
   const onSelected = jest.fn();
 
-  it('should display a dev', () => {
-    const firstName = 'Yolo man';
-    const squad = 1;
+  const render = (
+    Component: JSX.Element,
+    initialState?: Array<[Atom<unknown>, unknown]>
+  ) => {
+    return appRender(Component, {
+      providers: ['reactQuery', 'jotai'],
+      atoms: initialState,
+    });
+  };
 
-    appRender(
-      <Dev id={1} firstName={firstName} squad={squad} onSelected={onSelected} />
-    );
+  beforeEach(() => {
+    squadsQueryHandler(squadsMockData);
+  });
 
-    expect(
-      screen.getByRole('dev', { name: getDevDescription({ firstName, squad }) })
-    ).toBeInTheDocument();
+  it('should display a dev', async () => {
+    render(<Dev {...dev} onSelected={onSelected} />);
+
+    await findDev(dev);
   });
 
   it('should display a picture for the dev', () => {
-    const firstName = 'Yolo man';
-    const squad = 1;
+    render(<Dev {...dev} onSelected={onSelected} />);
 
-    appRender(
-      <Dev id={1} firstName={firstName} squad={squad} onSelected={onSelected} />
-    );
-
-    expect(screen.getByRole('img', { name: firstName })).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: dev.firstName })
+    ).toBeInTheDocument();
   });
 
   it('should call onSelected when clicked', async () => {
-    const firstName = 'Yolo man';
-    const squad = 1;
+    const { user } = render(<Dev {...dev} onSelected={onSelected} />);
 
-    const { user } = appRender(
-      <Dev id={1} firstName={firstName} squad={squad} onSelected={onSelected} />
-    );
-
-    const button = screen.getByRole('img', { name: firstName });
+    const button = screen.getByRole('img', { name: dev.firstName });
     await user.click(button);
 
     expect(onSelected).toHaveBeenCalledTimes(1);

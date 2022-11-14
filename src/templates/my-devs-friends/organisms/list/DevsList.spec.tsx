@@ -3,6 +3,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
+import { Atom } from 'jotai';
 import React from 'react';
 
 import {
@@ -14,24 +15,16 @@ import {
 
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
-import { DevFriendsContextProvider } from '@tests/render/providers/DevFriendsContextProvider';
 
+import { selectedSquadsAtom } from '../../../../state/selected-squads.atom';
+import { findDev } from '../../../../tests/assertions/findDev.assertion';
 import { DevsList } from './DevsList';
-import { getDevDescription } from './dev/logic/getDevDescription';
 
 describe('DevsList component', () => {
-  const setStatus = jest.fn();
-  const render = () => {
-    const wrapper = DevFriendsContextProvider({
-      status: 'loading',
-      selectedSquads: [],
-      setStatus,
-      setSelectedSquads: jest.fn(),
-    });
-
+  const render = (initialState?: Array<[Atom<unknown>, unknown]>) => {
     return appRender(<DevsList />, {
-      providers: ['reactQuery'],
-      additionalWrappers: [wrapper],
+      providers: ['reactQuery', 'jotai'],
+      atoms: initialState,
     });
   };
 
@@ -58,48 +51,45 @@ describe('DevsList component', () => {
   it('should display nothing if devs fetching failed', async () => {
     devsBySquadQueryHandler({ result: {}, status: 500 });
 
+    render([[selectedSquadsAtom, squadsMockData]]);
+
     render();
 
     await waitFor(() => {
-      expect(setStatus).toHaveBeenCalledTimes(1);
+      expect(screen.queryByRole('dev')).not.toBeInTheDocument();
     });
-
-    expect(setStatus).toHaveBeenNthCalledWith(1, 'errored');
   });
 
   it('should display something when the search yielded no devs', async () => {
     devsBySquadQueryHandler({ result: [] });
 
-    render();
+    render([[selectedSquadsAtom, squadsMockData]]);
 
     await screen.findByText(/no results/i);
     screen.getAllByTestId('InfoIcon');
   });
 
   it('should display a list of devs', async () => {
+    squadsQueryHandler(squadsMockData);
     devsBySquadQueryHandler({ result: devsMockData });
 
-    render();
+    render([[selectedSquadsAtom, squadsMockData]]);
 
     const devs = await screen.findAllByRole('dev');
     expect(devs).toHaveLength(2);
 
-    screen.getByRole('dev', {
-      name: getDevDescription(devsMockData[0]),
-    });
-    screen.getByRole('dev', {
-      name: getDevDescription(devsMockData[1]),
-    });
+    await findDev(devsMockData[0]);
+    await findDev(devsMockData[1]);
   });
 
   it('should open the modal when a dev is selected', async () => {
     devsBySquadQueryHandler({ result: devsMockData });
-    devsQueryHandler(devsMockData, 200);
-    squadsQueryHandler(squadsMockData, 200);
+    devsQueryHandler(devsMockData);
+    squadsQueryHandler(squadsMockData);
 
     const dev = devsMockData[0];
 
-    const { user } = render();
+    const { user } = render([[selectedSquadsAtom, squadsMockData]]);
 
     const button = await screen.findByRole('img', {
       name: dev.firstName,
@@ -119,7 +109,7 @@ describe('DevsList component', () => {
     devsQueryHandler(devsMockData, 200);
     squadsQueryHandler(squadsMockData, 200);
 
-    const { user } = render();
+    const { user } = render([[selectedSquadsAtom, squadsMockData]]);
 
     const devButton = await screen.findByRole('img', {
       name: devsMockData[0].firstName,
@@ -140,7 +130,7 @@ describe('DevsList component', () => {
 
     const dev = devsMockData[0];
 
-    const { user } = render();
+    const { user } = render([[selectedSquadsAtom, squadsMockData]]);
 
     const button = await screen.findByRole('img', {
       name: dev.firstName,
@@ -155,8 +145,8 @@ describe('DevsList component', () => {
 
     screen.getByRole('list', { name: /squads list/i });
 
-    screen.getByRole('button', { name: `Squad 2 1 members` });
-    screen.getByRole('button', { name: `Squad 5 0 members` });
+    screen.getByRole('button', { name: `Cool 1 members` });
+    screen.getByRole('button', { name: `Bros 0 members` });
   });
 
   it('should move the dev to another squad', async () => {
@@ -167,7 +157,7 @@ describe('DevsList component', () => {
 
     const dev = devsMockData[0];
 
-    const { user } = render();
+    const { user } = render([[selectedSquadsAtom, squadsMockData]]);
 
     const button = await screen.findByRole('img', {
       name: dev.firstName,
@@ -176,10 +166,10 @@ describe('DevsList component', () => {
 
     await screen.findByRole('presentation', { name: /change-squad/i });
 
-    const squad5Button = await screen.findByRole('button', {
-      name: `Squad 5 0 members`,
+    const squadButton = await screen.findByRole('button', {
+      name: `Bros 0 members`,
     });
-    await user.click(squad5Button);
+    await user.click(squadButton);
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole('presentation', { name: /change-squad/i })

@@ -3,14 +3,14 @@ import { SquadDto } from '@api/main-backend/specs/api-types';
 export const squadsMockData: Array<SquadDto> = [
   {
     id: 1,
-    squad: 1,
+    name: 'Yolo',
   },
   {
     id: 2,
-    squad: 2,
+    name: 'Cool',
   },
   {
     id: 5,
-    squad: 5,
+    name: 'Bros',
   },
 ];

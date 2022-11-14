@@ -1,3 +1,6 @@
+/* eslint-disable */
+/* tslint:disable */
+
 /** getAllDevelopers
  * verb: get
  * summary: Get all developers
@@ -6,7 +9,7 @@
 
 import { AllDevsResultDto, ApiResponseDto } from './../api-types';
 
-export const path = `${process.env.NEXT_PUBLIC_API_URL}/devs`;
+export const path = `/devs`;
 
 export type GetAllDevelopersSuccess = AllDevsResultDto;
 export type GetAllDevelopersError = ApiResponseDto;
