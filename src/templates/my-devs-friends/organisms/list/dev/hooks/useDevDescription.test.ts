@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react';
 
+import { useDevDescription } from './useDevDescription';
 import {
   devsMockData,
   squadsMockData,
 } from '../../../../../../tests/mock-data';
-import { useDevDescription } from './useDevDescription';
 
 describe('useDevDescription function', () => {
   const { idSquad, firstName } = devsMockData[0];

@@ -1,6 +1,5 @@
 import { Atom } from 'jotai';
 
-import { JotaiProvider } from '../providers/JotaiProvider';
 import {
   EmotionCacheProvider,
   ReactQueryProvider,
@@ -8,6 +7,7 @@ import {
   ThemeProvider,
 } from './../providers';
 import { Wrapper, wrappersToWrapper } from './wrappersToWrapper';
+import { JotaiProvider } from '../providers/JotaiProvider';
 
 export type RenderProviders = 'reactQuery' | 'snackbar' | 'jotai';
 

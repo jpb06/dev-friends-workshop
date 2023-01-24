@@ -1,6 +1,5 @@
 import { useIsFetching } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
-import { mocked } from 'jest-mock';
 
 import { GlobalLoadingIndicator } from './GlobalLoadingIndicator';
 
@@ -8,7 +7,7 @@ jest.mock('@tanstack/react-query');
 
 describe('Global loading indicator component', () => {
   it('should not display a loading indicator when there is no XHR calls', () => {
-    mocked(useIsFetching).mockReturnValueOnce(0);
+    jest.mocked(useIsFetching).mockReturnValueOnce(0);
 
     render(<GlobalLoadingIndicator />);
 
@@ -18,7 +17,7 @@ describe('Global loading indicator component', () => {
   });
 
   it('should display the loading indicator when there is pending XHR calls', () => {
-    mocked(useIsFetching).mockReturnValueOnce(1);
+    jest.mocked(useIsFetching).mockReturnValueOnce(1);
 
     render(<GlobalLoadingIndicator />);
 

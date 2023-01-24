@@ -1,7 +1,7 @@
 import { DefaultBodyType, rest } from 'msw';
 
-import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 import { applyHandlerToServer } from './applyHandlerToServer';
+import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 
 type GenericPostHandlerParams<T> = {
   url: string;

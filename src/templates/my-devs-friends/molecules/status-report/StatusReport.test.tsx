@@ -4,8 +4,8 @@ import React from 'react';
 
 import { appRender } from '@tests/render/appRender';
 
-import { UiStatus, uiStatusAtom } from '../../../../state/ui-status.atom';
 import { StatusReport } from './StatusReport';
+import { UiStatus, uiStatusAtom } from '../../../../state/ui-status.atom';
 
 describe('Status report component', () => {
   const render = (status: UiStatus) =>

@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import { useDevsBySquadQuery } from '@api/main-backend';
 import { GlobalIndicator } from '@molecules';
 
+import { Dev } from './dev/Dev';
+import { DevSkeleton } from './dev-skeleton/DevSkeleton';
+import { useChangeSquadModal } from './hooks/useChangeSquadModal';
 import { useReportOnErrors } from '../../hooks/useReportOnErrors';
 import { useReportOnReady } from '../../hooks/useReportOnReady';
 import { ChangeSquadModal } from '../change-squad-modal/ChangeSquadModal';
-import { DevSkeleton } from './dev-skeleton/DevSkeleton';
-import { Dev } from './dev/Dev';
-import { useChangeSquadModal } from './hooks/useChangeSquadModal';
 
 export const DevsList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
