@@ -4,12 +4,12 @@ import { ChangeEvent } from 'react';
 
 import { appRenderHook } from '@tests/render/appRenderHook';
 
+import { useSquadsFilterForm } from './useSquadsFilterForm';
 import { squadsQueryHandler } from '../../../../../api/main-backend/msw-handlers';
 import { selectedSquadsAtom } from '../../../../../state/selected-squads.atom';
 import { uiStatusAtom } from '../../../../../state/ui-status.atom';
 import { useCheckJotaiState } from '../../../../../tests/hooks/useCheckJotaiState';
 import { squadsMockData } from '../../../../../tests/mock-data';
-import { useSquadsFilterForm } from './useSquadsFilterForm';
 
 const useTest = () => {
   const { selectedSquads, uiStatus } = useCheckJotaiState();

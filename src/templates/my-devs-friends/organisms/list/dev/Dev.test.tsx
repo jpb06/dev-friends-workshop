@@ -4,10 +4,10 @@ import React from 'react';
 
 import { appRender } from '@tests/render';
 
+import { Dev } from './Dev';
 import { squadsQueryHandler } from '../../../../../api/main-backend/msw-handlers';
 import { findDev } from '../../../../../tests/assertions/findDev.assertion';
 import { devsMockData, squadsMockData } from '../../../../../tests/mock-data';
-import { Dev } from './Dev';
 
 describe('Dev component', () => {
   const dev = devsMockData[0];

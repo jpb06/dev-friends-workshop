@@ -11,8 +11,8 @@ import React from 'react';
 import { DevDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
 
-import { useSquadsQuery } from '../../../../../api/main-backend';
 import { useDevDescription } from './hooks/useDevDescription';
+import { useSquadsQuery } from '../../../../../api/main-backend';
 
 interface DevProps extends DevDto {
   onSelected: (id: number) => void;

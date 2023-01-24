@@ -16,9 +16,9 @@ import {
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
+import { DevsList } from './DevsList';
 import { selectedSquadsAtom } from '../../../../state/selected-squads.atom';
 import { findDev } from '../../../../tests/assertions/findDev.assertion';
-import { DevsList } from './DevsList';
 
 describe('DevsList component', () => {
   const render = (initialState?: Array<[Atom<unknown>, unknown]>) => {

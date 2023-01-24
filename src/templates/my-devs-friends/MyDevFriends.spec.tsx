@@ -12,8 +12,8 @@ import {
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
-import { uiStatusAtom } from '../../state/ui-status.atom';
 import { MyDevFriends } from './MyDevFriends';
+import { uiStatusAtom } from '../../state/ui-status.atom';
 
 describe('My dev friends component', () => {
   const render = () => {

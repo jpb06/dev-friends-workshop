@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 
+import { useSquadsData } from './useSquadsData';
 import { SquadDto } from '../../../../../api/main-backend/specs/api-types';
 import { selectedSquadsAtom } from '../../../../../state/selected-squads.atom';
 import { uiStatusAtom } from '../../../../../state/ui-status.atom';
-import { useSquadsData } from './useSquadsData';
 
 export type SquadsFilterFormHookResult = {
   handleChange: (

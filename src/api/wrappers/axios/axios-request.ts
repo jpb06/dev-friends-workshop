@@ -2,8 +2,8 @@ import axios, { AxiosRequestConfig, Method } from 'axios';
 
 import { delay } from '@logic/delay';
 
-import { mainBackendUrl } from '../../main-backend/main-backend-url.constant';
 import { UnWrapResult } from './types/unwrap-result.type';
+import { mainBackendUrl } from '../../main-backend/main-backend-url.constant';
 
 type AxiosRequestProps = {
   url: string;

@@ -5,8 +5,8 @@ import { useDevsQuery, useSquadsQuery } from '@api/main-backend';
 import { DevDto, SquadDto } from '@api/main-backend/specs/api-types';
 import { CircularLoading } from '@molecules';
 
-import { ErrorBlock } from '../../../molecules/error-block/ErrorBlock';
 import { SquadChoice } from './squad-choice/SquadChoice';
+import { ErrorBlock } from '../../../molecules/error-block/ErrorBlock';
 
 interface TargetSquadSelectionProps {
   onSquadChanged: (id: number) => void;

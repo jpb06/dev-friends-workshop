@@ -1,8 +1,8 @@
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import React, { PropsWithChildren } from 'react';
 
-import { appTheme } from '../../../theme/app-theme';
 import { TestWrapper } from './types/test-wrapper.type';
+import { appTheme } from '../../../theme/app-theme';
 
 export const ThemeProvider =
   (): TestWrapper =>

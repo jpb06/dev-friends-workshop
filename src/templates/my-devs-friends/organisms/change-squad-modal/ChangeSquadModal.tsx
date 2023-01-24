@@ -11,9 +11,9 @@ import { DevDto } from '@api/main-backend/specs/api-types';
 import { CircularLoading, DownTransition } from '@molecules';
 import { appTheme } from '@theme';
 
-import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
 import { useModalActions } from './hooks/useModalActions';
 import { TargetSquadSelection } from './target-squad-selection/TargetSquadSelection';
+import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
 
 interface ChangeSquadModalProps {
   onClose: () => void;
