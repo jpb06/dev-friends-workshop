@@ -4,9 +4,9 @@ import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 
 import { path } from './../../specs/DevsController/changeDeveloperSquad';
 
-export const changeDevSquadMutationHandler = (
+export const changeDevSquadMutationHandler = async (
   result: DefaultBodyType,
   status = 200,
-  applyToServer = true
+  applyToServer = true,
 ) =>
   genericPostHandler({ url: path, status, result: { result }, applyToServer });

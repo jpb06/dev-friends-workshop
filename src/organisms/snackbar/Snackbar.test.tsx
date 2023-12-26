@@ -1,6 +1,8 @@
-import { AlertColor, Button } from '@mui/material';
+import type { AlertColor } from '@mui/material';
+import { Button } from '@mui/material';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { useContext } from 'react';
+import { describe, it, expect } from 'vitest';
 
 import { appRender } from '@tests/render';
 
@@ -70,7 +72,7 @@ describe('Snackbar component', () => {
     await user.click(screen.getByRole('button', { name: 'Close' }));
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByText('warning message')
+      screen.queryByText('warning message'),
     );
   });
 });

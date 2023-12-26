@@ -1,12 +1,12 @@
-import { DefaultBodyType, MockedRequest, RestHandler } from 'msw';
-import { SetupServerApi } from 'msw/lib/node';
+import { RequestHandler } from 'msw';
 
-export const applyHandlerToServer = (
-  handler: RestHandler<MockedRequest<DefaultBodyType>>,
-  useServer: boolean
+export const applyHandlerToServer = async (
+  handler: RequestHandler,
+  useServer: boolean,
 ) => {
   if (useServer) {
-    const { server }: { server: SetupServerApi } = require('./../server');
+    const { server } = await import('./../server');
+
     return server.use(handler);
   }
 

@@ -2,7 +2,7 @@
 /* tslint:disable */
 
 /** getAllSquads
- * verb: get
+ * method: get
  * summary: Get all squads
  * description: Retrieves all the squads, but not their members
  */

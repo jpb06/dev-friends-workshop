@@ -1,15 +1,15 @@
 import { List } from '@mui/material';
-import React from 'react';
 
 import { useDevsQuery, useSquadsQuery } from '@api/main-backend';
-import { DevDto, SquadDto } from '@api/main-backend/specs/api-types';
+import type { DevDto, SquadDto } from '@api/main-backend/specs/api-types';
 import { CircularLoading } from '@molecules';
 
-import { SquadChoice } from './squad-choice/SquadChoice';
 import { ErrorBlock } from '../../../molecules/error-block/ErrorBlock';
 
+import { SquadChoice } from './squad-choice/SquadChoice';
+
 interface TargetSquadSelectionProps {
-  onSquadChanged: (id: number) => void;
+  onSquadChanged: (id: number) => Promise<void>;
   dev: DevDto;
 }
 
@@ -32,7 +32,7 @@ export const TargetSquadSelection = ({
     );
   }
 
-  const squad = squads.data.find((s) => s.id === dev.idSquad) as SquadDto;
+  const squad = squads.data!.find((s) => s.id === dev.idSquad) as SquadDto;
 
   return (
     <>
@@ -40,14 +40,14 @@ export const TargetSquadSelection = ({
         {dev.firstName} currently belongs to squad {squad.name}
       </>
       <List aria-label="Squads list">
-        {squads.data
-          .filter((squad) => squad.id !== dev.idSquad)
+        {squads
+          .data!.filter((squad) => squad.id !== dev.idSquad)
           .map((squad) => (
             <SquadChoice
               onSquadSelected={onSquadChanged}
               key={squad.id}
               membersCount={
-                devs.data.filter((el) => el.idSquad === squad.id).length
+                devs.data!.filter((el) => el.idSquad === squad.id).length
               }
               {...squad}
             />

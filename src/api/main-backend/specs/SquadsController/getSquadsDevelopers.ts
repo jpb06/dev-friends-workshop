@@ -2,7 +2,7 @@
 /* tslint:disable */
 
 /** getSquadsDevelopers
- * verb: get
+ * method: get
  * summary: Get the developers belonging to a squad
  * description: Retrieves the squad developers
  */

@@ -1,5 +1,6 @@
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { PropsWithChildren } from 'react';
+import type { EmotionCache } from '@emotion/react';
+import { CacheProvider } from '@emotion/react';
+import type { PropsWithChildren } from 'react';
 
 import { createEmotionCache } from './logic/create-emotion-cache.logic';
 

@@ -1,12 +1,16 @@
 import GroupIcon from '@mui/icons-material/Group';
-import { Avatar, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
-import React from 'react';
+import {
+  Avatar,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+} from '@mui/material';
 
-import { SquadDto } from '@api/main-backend/specs/api-types';
+import type { SquadDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
 
 interface SquadChoiceProps extends SquadDto {
-  onSquadSelected: (id: number) => void;
+  onSquadSelected: (id: number) => Promise<void>;
   membersCount: number;
 }
 
@@ -19,7 +23,7 @@ export const SquadChoice = ({
   const handleClick = () => onSquadSelected(id);
 
   return (
-    <ListItem button onClick={handleClick}>
+    <ListItemButton onClick={handleClick}>
       <ListItemAvatar>
         <Avatar
           sx={{
@@ -34,6 +38,6 @@ export const SquadChoice = ({
         secondary={`${membersCount} members`}
         secondaryTypographyProps={{ color: appTheme.colors.cyan }}
       />
-    </ListItem>
+    </ListItemButton>
   );
 };

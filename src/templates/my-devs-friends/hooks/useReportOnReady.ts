@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { uiStatusAtom } from '../../../state/ui-status.atom';
 
-export const useReportOnReady = (data?: Array<unknown>): void => {
+export const useReportOnReady = (data?: unknown[]): void => {
   const [, setUiStatus] = useAtom(uiStatusAtom);
 
   useEffect(() => {

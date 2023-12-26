@@ -1,17 +1,17 @@
-import { DefaultBodyType, rest } from 'msw';
+import { DefaultBodyType, HttpResponse, http } from 'msw';
 
 import { applyHandlerToServer } from '../../../tests/msw/handlers/applyHandlerToServer';
 import { mainBackendUrl } from '../../main-backend/main-backend-url.constant';
 
 export const genericGetUrl = `${mainBackendUrl}/get`;
 
-export const getHandler = (
+export const getHandler = async (
   status: number,
   result: DefaultBodyType,
-  applyToServer = true
+  applyToServer = true,
 ) => {
-  const handler = rest.get(genericGetUrl, (_, res, ctx) =>
-    res(ctx.status(status), ctx.json(result))
+  const handler = http.get(genericGetUrl, () =>
+    HttpResponse.json(result, { status }),
   );
 
   return applyHandlerToServer(handler, applyToServer);

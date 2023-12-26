@@ -1,15 +1,17 @@
 import { act, waitFor } from '@testing-library/react';
-import { Atom } from 'jotai';
-import { ChangeEvent } from 'react';
+import type { Atom } from 'jotai';
+import type { ChangeEvent } from 'react';
+import { describe, it, vi, expect, beforeEach, afterEach } from 'vitest';
 
+import { squadsQueryHandler } from '@msw';
 import { appRenderHook } from '@tests/render/appRenderHook';
 
-import { useSquadsFilterForm } from './useSquadsFilterForm';
-import { squadsQueryHandler } from '../../../../../api/main-backend/msw-handlers';
 import { selectedSquadsAtom } from '../../../../../state/selected-squads.atom';
 import { uiStatusAtom } from '../../../../../state/ui-status.atom';
 import { useCheckJotaiState } from '../../../../../tests/hooks/useCheckJotaiState';
 import { squadsMockData } from '../../../../../tests/mock-data';
+
+import { useSquadsFilterForm } from './useSquadsFilterForm';
 
 const useTest = () => {
   const { selectedSquads, uiStatus } = useCheckJotaiState();
@@ -29,12 +31,12 @@ describe('useSquadsFilterForm hook', () => {
     });
   }
 
-  beforeEach(() => {
-    squadsQueryHandler(squadsMockData);
+  beforeEach(async () => {
+    await squadsQueryHandler(squadsMockData);
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should return a function and the default selected state for squads', () => {
@@ -52,7 +54,7 @@ describe('useSquadsFilterForm hook', () => {
     act(() => {
       handleChange(
         { target: { name: '1' } } as ChangeEvent<HTMLInputElement>,
-        false
+        false,
       );
     });
 
@@ -60,7 +62,7 @@ describe('useSquadsFilterForm hook', () => {
     expect(values).toStrictEqual([true, false, true, true]);
 
     await waitFor(() =>
-      expect(result.current.selectedSquads).toStrictEqual([1, 3, 4])
+      expect(result.current.selectedSquads).toStrictEqual([1, 3, 4]),
     );
 
     expect(result.current.uiStatus).toBe('loading');
@@ -74,7 +76,7 @@ describe('useSquadsFilterForm hook', () => {
     act(() => {
       handleChange(
         { target: { name: '-94541' } } as ChangeEvent<HTMLInputElement>,
-        false
+        false,
       );
     });
 

@@ -2,7 +2,7 @@
 /* tslint:disable */
 
 /** changeDeveloperSquad
- * verb: post
+ * method: post
  * summary: Moves the developer to another squad
  * description: Changes the squad of the developer
  */

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import React from 'react';
+import { describe, it, expect } from 'vitest';
 
-import { squadsQueryHandler } from '@api/main-backend/msw-handlers';
+import { squadsQueryHandler } from '@msw';
 import { squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
@@ -13,8 +13,8 @@ describe('SquadFilter component', () => {
       providers: ['reactQuery', 'jotai'],
     });
 
-  it('should display nothing if there is no squads', () => {
-    squadsQueryHandler(squadsMockData, 200);
+  it('should display nothing if there is no squads', async () => {
+    await squadsQueryHandler(squadsMockData, 200);
 
     render();
 
@@ -22,7 +22,7 @@ describe('SquadFilter component', () => {
   });
 
   it('should display one checkbox per squad', async () => {
-    squadsQueryHandler(squadsMockData, 200);
+    await squadsQueryHandler(squadsMockData, 200);
 
     render();
 

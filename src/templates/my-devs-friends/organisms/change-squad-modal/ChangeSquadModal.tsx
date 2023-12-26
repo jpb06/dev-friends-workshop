@@ -5,15 +5,16 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material';
-import React from 'react';
+import { match } from 'ts-pattern';
 
-import { DevDto } from '@api/main-backend/specs/api-types';
+import type { DevDto } from '@api/main-backend/specs/api-types';
 import { CircularLoading, DownTransition } from '@molecules';
 import { appTheme } from '@theme';
 
+import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
+
 import { useModalActions } from './hooks/useModalActions';
 import { TargetSquadSelection } from './target-squad-selection/TargetSquadSelection';
-import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
 
 interface ChangeSquadModalProps {
   onClose: () => void;
@@ -28,7 +29,7 @@ export const ChangeSquadModal = ({
 }: ChangeSquadModalProps) => {
   const { handleSquadChanged, handleCancel, status } = useModalActions(
     onClose,
-    dev
+    dev,
   );
 
   if (!dev) {
@@ -51,22 +52,20 @@ export const ChangeSquadModal = ({
         Move {dev.firstName} to another squad
       </DialogTitle>
       <DialogContent dividers>
-        {
-          {
-            idle: (
-              <TargetSquadSelection
-                dev={dev}
-                onSquadChanged={handleSquadChanged}
-              />
-            ),
-            loading: <CircularLoading />,
-            error: (
-              <ErrorBlock title="Oh no!">
-                Something went wrong... Sorry!
-              </ErrorBlock>
-            ),
-          }[status]
-        }
+        {match(status)
+          .with('idle', () => (
+            <TargetSquadSelection
+              dev={dev}
+              onSquadChanged={handleSquadChanged}
+            />
+          ))
+          .with('pending', () => <CircularLoading />)
+          .with('error', () => (
+            <ErrorBlock title="Oh no!">
+              Something went wrong... Sorry!
+            </ErrorBlock>
+          ))
+          .otherwise(() => null)}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel} color="primary">

@@ -1,19 +1,20 @@
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 
-import { useSquadsData } from './useSquadsData';
 import { SquadDto } from '../../../../../api/main-backend/specs/api-types';
 import { selectedSquadsAtom } from '../../../../../state/selected-squads.atom';
 import { uiStatusAtom } from '../../../../../state/ui-status.atom';
 
-export type SquadsFilterFormHookResult = {
+import { useSquadsData } from './useSquadsData';
+
+export interface SquadsFilterFormHookResult {
   handleChange: (
     event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
+    checked: boolean,
   ) => void;
-  formValues: Array<boolean>;
-  squads: Array<SquadDto> | undefined;
-};
+  formValues: boolean[];
+  squads: SquadDto[] | undefined;
+}
 
 export const useSquadsFilterForm = (): SquadsFilterFormHookResult => {
   const [formValues, setFormValues] = useState([true, true, true, true]);
@@ -24,7 +25,7 @@ export const useSquadsFilterForm = (): SquadsFilterFormHookResult => {
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
+    checked: boolean,
   ) => {
     setUiStatus('loading');
 
@@ -37,16 +38,13 @@ export const useSquadsFilterForm = (): SquadsFilterFormHookResult => {
     newValues[index] = checked;
     setFormValues(newValues);
 
-    const selectedSquads = newValues.reduce<Array<number>>(
-      (prev, curr, index) => {
-        if (curr) {
-          return [...prev, index + 1];
-        }
+    const selectedSquads = newValues.reduce<number[]>((prev, curr, index) => {
+      if (curr) {
+        return [...prev, index + 1];
+      }
 
-        return prev;
-      },
-      []
-    );
+      return prev;
+    }, []);
 
     setSelectedSquads(selectedSquads);
   };

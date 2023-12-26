@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import React from 'react';
+import { match } from 'ts-pattern';
 
 import { CircularLoading } from '@molecules';
 
@@ -11,16 +11,12 @@ export const StatusReport = () => {
 
   return (
     <>
-      {
-        {
-          loading: <CircularLoading />,
-          errored: (
-            <ErrorBlock title="Oh no!">
-              Something went wrong... Sorry!
-            </ErrorBlock>
-          ),
-        }[uiStatus]
-      }
+      {match(uiStatus)
+        .with('loading', () => <CircularLoading />)
+        .with('errored', () => (
+          <ErrorBlock title="Oh no!">Something went wrong... Sorry!</ErrorBlock>
+        ))
+        .otherwise(() => null)}
     </>
   );
 };

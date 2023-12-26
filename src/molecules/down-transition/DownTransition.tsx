@@ -1,5 +1,5 @@
 import { Slide } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
+import type { TransitionProps } from '@mui/material/transitions';
 import React from 'react';
 
 export const DownTransition = React.forwardRef<unknown, TransitionProps>(
@@ -7,6 +7,6 @@ export const DownTransition = React.forwardRef<unknown, TransitionProps>(
     <Slide direction="down" ref={ref} {...props}>
       {props.children}
     </Slide>
-  )
+  ),
 );
 DownTransition.displayName = 'DownTransition';

@@ -1,5 +1,4 @@
 import { CardActions, Grid } from '@mui/material';
-import React from 'react';
 
 import { StatusReport } from './molecules/status-report/StatusReport';
 import { SquadFilter, DevsList } from './organisms';

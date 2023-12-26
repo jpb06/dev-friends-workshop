@@ -1,9 +1,20 @@
-import { Atom, Provider } from 'jotai';
-import React, { PropsWithChildren } from 'react';
+import type { Atom } from 'jotai';
+import { Provider } from 'jotai';
+import { useHydrateAtoms } from 'jotai/utils';
+import type { PropsWithChildren } from 'react';
 
-import { TestWrapper } from './types/test-wrapper.type';
+import type { TestWrapper } from './types/test-wrapper.type';
+
+const HydrateAtoms = ({ initialValues, children }) => {
+  useHydrateAtoms(initialValues);
+  return children;
+};
 
 export const JotaiProvider =
   (injectedValues: Iterable<readonly [Atom<unknown>, unknown]>): TestWrapper =>
-  ({ children }: PropsWithChildren<unknown>) =>
-    <Provider initialValues={injectedValues}>{children}</Provider>;
+  // eslint-disable-next-line react/display-name
+  ({ children }: PropsWithChildren<unknown>) => (
+    <Provider>
+      <HydrateAtoms initialValues={injectedValues}>{children}</HydrateAtoms>
+    </Provider>
+  );

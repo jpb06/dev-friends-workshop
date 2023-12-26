@@ -5,14 +5,14 @@ import { axiosRequest } from '../axios/axios-request';
 import { MutationResult } from '../axios/types/mutation-result.type';
 import { UnWrapResult } from '../axios/types/unwrap-result.type';
 
-type AxiosMutationParams<TSuccess, TError, TBody> = {
+interface AxiosMutationParams<TSuccess, TError, TBody> {
   url: string;
   method: Method;
   options?: Omit<
     UseMutationOptions<UnWrapResult<TSuccess>, TError, TBody>,
     'mutationFn'
   >;
-};
+}
 
 export const useAxiosMutation = <TSuccess, TError, TBody>({
   url,
@@ -23,7 +23,7 @@ export const useAxiosMutation = <TSuccess, TError, TBody>({
   TError,
   TBody
 > =>
-  useMutation<UnWrapResult<TSuccess> | undefined, TError, TBody>(
-    (data: TBody) => axiosRequest<TSuccess>({ method, url, data }),
-    options
-  );
+  useMutation<UnWrapResult<TSuccess> | undefined, TError, TBody>({
+    mutationFn: (data: TBody) => axiosRequest<TSuccess>({ method, url, data }),
+    ...options,
+  });

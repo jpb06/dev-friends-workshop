@@ -6,11 +6,11 @@ import {
   CardMedia,
   Grid,
 } from '@mui/material';
-import React from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { Brand, GlobalLoadingIndicator } from '@molecules';
 
-export const FullpageBox = ({ children }) => (
+export const FullpageBox = ({ children }: PropsWithChildren) => (
   <Grid
     container
     spacing={0}

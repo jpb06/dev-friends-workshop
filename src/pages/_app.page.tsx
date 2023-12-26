@@ -1,8 +1,7 @@
-import { EmotionCache } from '@emotion/react';
+import type { EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import React from 'react';
 
 import { FullpageBox, WithSnackbar } from '@organisms';
 import {

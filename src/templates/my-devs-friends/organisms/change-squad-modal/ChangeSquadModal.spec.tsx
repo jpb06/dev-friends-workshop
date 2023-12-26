@@ -1,14 +1,13 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import React from 'react';
+import { describe, it, vi, expect, beforeEach } from 'vitest';
 
+import type { DevDto } from '@api/main-backend/specs/api-types';
 import {
   devsQueryHandler,
   squadsQueryHandler,
   changeDevSquadMutationHandler,
   devsBySquadQueryHandler,
 } from '@msw';
-
-import { DevDto } from '@api/main-backend/specs/api-types';
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
@@ -16,7 +15,7 @@ import { ChangeSquadModal } from './ChangeSquadModal';
 
 describe('Change squad modal component', () => {
   const dev = devsMockData[0];
-  const handleClose = jest.fn();
+  const handleClose = vi.fn();
 
   const render = (isOpen: boolean, dev?: DevDto) =>
     appRender(
@@ -24,21 +23,23 @@ describe('Change squad modal component', () => {
       {
         providers: ['reactQuery'],
         atoms: [],
-      }
+      },
     );
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    devsQueryHandler(devsMockData);
-    squadsQueryHandler(squadsMockData);
-    changeDevSquadMutationHandler({});
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    await Promise.all([
+      devsQueryHandler(devsMockData),
+      squadsQueryHandler(squadsMockData),
+      devsBySquadQueryHandler({ result: devsMockData }),
+    ]);
   });
 
   it('should display nothing if there is no dev', () => {
     render(true);
 
     expect(
-      screen.queryByRole('presentation', { name: /change-squad/i })
+      screen.queryByRole('presentation', { name: /change-squad/i }),
     ).not.toBeInTheDocument();
   });
 
@@ -46,7 +47,7 @@ describe('Change squad modal component', () => {
     render(false, dev);
 
     expect(
-      screen.queryByRole('presentation', { name: /change-squad/i })
+      screen.queryByRole('presentation', { name: /change-squad/i }),
     ).not.toBeInTheDocument();
   });
 
@@ -54,10 +55,10 @@ describe('Change squad modal component', () => {
     render(true, dev);
 
     expect(
-      screen.getByRole('presentation', { name: /change-squad/i })
+      screen.getByRole('presentation', { name: /change-squad/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /Move Yolo man to another squad/i })
+      screen.getByRole('heading', { name: /Move Yolo man to another squad/i }),
     ).toBeInTheDocument();
   });
 
@@ -65,12 +66,12 @@ describe('Change squad modal component', () => {
     render(true, dev);
 
     expect(
-      screen.getByRole('progressbar', { name: /circle-loading/i })
+      screen.getByRole('progressbar', { name: /circle-loading/i }),
     ).toBeInTheDocument();
   });
 
   it('should display an error if data loading failed', async () => {
-    squadsQueryHandler(undefined, 500);
+    await squadsQueryHandler(undefined, 500);
 
     render(true, dev);
 
@@ -90,13 +91,8 @@ describe('Change squad modal component', () => {
     screen.getByText(/yolo man currently belongs to squad yolo/i);
   });
 
-  //https://github.com/mswjs/msw/issues/1143
-  // This test trigger two warnings:
-  // Error: captured a request without a matching request handler:
-  // GET http://localhost:3001/squads
-
   it('should display a loading indicator when changing the dev squad', async () => {
-    devsBySquadQueryHandler({ result: devsMockData });
+    await changeDevSquadMutationHandler({});
 
     const { user } = render(true, dev);
 
@@ -106,21 +102,16 @@ describe('Change squad modal component', () => {
     await user.click(button);
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     expect(
-      screen.getByRole('list', { name: /squads list/i })
+      screen.getByRole('list', { name: /squads list/i }),
     ).toBeInTheDocument();
   });
 
-  //https://github.com/mswjs/msw/issues/1143
-  // This test trigger two warnings:
-  // Error: captured a request without a matching request handler:
-  // GET http://localhost:3001/squads
-
   it('should close the modal once the mutation has completed', async () => {
-    devsBySquadQueryHandler({ result: devsMockData });
+    await changeDevSquadMutationHandler({});
 
     const { user } = render(true, dev);
 
@@ -129,17 +120,15 @@ describe('Change squad modal component', () => {
     const button = screen.getByRole('button', { name: /cool 1 members/i });
     await user.click(button);
 
-    await screen.findByRole('progressbar', { name: /circle-loading/i });
-
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
   it('should display an error message when mutation failed', async () => {
-    changeDevSquadMutationHandler({}, 500);
+    await changeDevSquadMutationHandler({}, 500);
 
     const { user } = render(true, dev);
 
@@ -153,7 +142,7 @@ describe('Change squad modal component', () => {
   });
 
   it('should close the modal', async () => {
-    devsBySquadQueryHandler({ result: devsMockData });
+    await devsBySquadQueryHandler({ result: devsMockData });
 
     const { user } = render(true, dev);
 

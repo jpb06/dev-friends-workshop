@@ -1,6 +1,6 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { Atom } from 'jotai';
-import React from 'react';
+import type { Atom } from 'jotai';
+import { describe, it, vi, expect, beforeEach } from 'vitest';
 
 import {
   changeDevSquadMutationHandler,
@@ -8,12 +8,12 @@ import {
   devsQueryHandler,
   squadsQueryHandler,
 } from '@msw';
-
 import { devsMockData, squadsMockData } from '@tests/mock-data';
 import { appRender } from '@tests/render/appRender';
 
-import { MyDevFriends } from './MyDevFriends';
 import { uiStatusAtom } from '../../state/ui-status.atom';
+
+import { MyDevFriends } from './MyDevFriends';
 
 describe('My dev friends component', () => {
   const render = () => {
@@ -24,10 +24,12 @@ describe('My dev friends component', () => {
     });
   };
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    squadsQueryHandler(squadsMockData, 200);
-    devsBySquadQueryHandler({ result: devsMockData });
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    await Promise.all([
+      squadsQueryHandler(squadsMockData, 200),
+      devsBySquadQueryHandler({ result: devsMockData }),
+    ]);
   });
 
   it('should display a loading indicator while loading squads & devs', async () => {
@@ -40,7 +42,7 @@ describe('My dev friends component', () => {
     render();
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     for (const { name } of squadsMockData) {
@@ -49,27 +51,27 @@ describe('My dev friends component', () => {
   });
 
   it('should display an error message if squads fetching failed', async () => {
-    squadsQueryHandler({}, 500);
+    await squadsQueryHandler({}, 500);
 
     render();
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     await screen.findByText(/oh no!/i);
     expect(
-      screen.getByText(/something went wrong... sorry!/i)
+      screen.getByText(/something went wrong... sorry!/i),
     ).toBeInTheDocument();
   });
 
   it('should display a list of devs once data has been fetched', async () => {
-    devsBySquadQueryHandler({ result: devsMockData });
+    await devsBySquadQueryHandler({ result: devsMockData });
 
     render();
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     for (const { firstName } of devsMockData) {
@@ -78,22 +80,22 @@ describe('My dev friends component', () => {
   });
 
   it('should display an error message if devs fetching failed', async () => {
-    devsBySquadQueryHandler({ result: devsMockData, status: 400 });
+    await devsBySquadQueryHandler({ result: devsMockData, status: 400 });
 
     render();
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     await screen.findByText(/oh no!/i);
     expect(
-      screen.getByText(/something went wrong... sorry!/i)
+      screen.getByText(/something went wrong... sorry!/i),
     ).toBeInTheDocument();
   });
 
   it('should filter devs', async () => {
-    devsBySquadQueryHandler({
+    await devsBySquadQueryHandler({
       result: devsMockData,
       resultFilter: (d) => d.idSquad !== 1,
     });
@@ -101,7 +103,7 @@ describe('My dev friends component', () => {
     const { user } = render();
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     const squad1Checkbox = await screen.findByRole('checkbox', {
@@ -111,37 +113,39 @@ describe('My dev friends component', () => {
     await user.click(squad1Checkbox);
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     const squad1Devs = devsMockData.filter((dev) => dev.idSquad === 1);
 
     for (const { firstName } of squad1Devs) {
       expect(
-        screen.queryByRole('img', { name: firstName })
+        screen.queryByRole('img', { name: firstName }),
       ).not.toBeInTheDocument();
     }
 
     const othersDevs = devsMockData.filter((dev) => dev.idSquad !== 1);
     for (const { firstName } of othersDevs) {
       expect(
-        screen.queryByRole('img', { name: firstName })
+        screen.queryByRole('img', { name: firstName }),
       ).toBeInTheDocument();
     }
   });
 
   it('should change the squad of a developer', async () => {
-    squadsQueryHandler(squadsMockData);
-    devsQueryHandler(devsMockData);
-    devsBySquadQueryHandler({
-      result: devsMockData,
-    });
-    changeDevSquadMutationHandler({});
+    await Promise.all([
+      squadsQueryHandler(squadsMockData),
+      devsQueryHandler(devsMockData),
+      devsBySquadQueryHandler({
+        result: devsMockData,
+      }),
+      changeDevSquadMutationHandler({}),
+    ]);
 
     const { user } = render();
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
+      screen.queryByRole('progressbar', { name: /circle-loading/i }),
     );
 
     const button = await screen.findByRole('img', {
@@ -149,13 +153,10 @@ describe('My dev friends component', () => {
     });
     await user.click(button);
 
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i })
-    );
-
-    screen.getByRole('presentation', { name: /change-squad/i });
+    await screen.findByRole('presentation', { name: /change-squad/i });
     screen.getByRole('heading', { name: /move yolo man to another squad/i });
-    screen.getByRole('list', { name: /squads list/i });
+
+    await screen.findByRole('list', { name: /squads list/i });
 
     const squad2Button = screen.getByRole('button', {
       name: `${squadsMockData[1].name} 1 members`,
@@ -163,7 +164,7 @@ describe('My dev friends component', () => {
     await user.click(squad2Button);
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole('presentation', { name: /change-squad/i })
+      screen.queryByRole('presentation', { name: /change-squad/i }),
     );
   });
 });

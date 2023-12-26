@@ -1,5 +1,6 @@
-import { AlertColor } from '@mui/material';
-import React, { createContext, SyntheticEvent, useState } from 'react';
+import type { AlertColor } from '@mui/material';
+import type { PropsWithChildren, SyntheticEvent } from 'react';
+import React, { createContext, useState } from 'react';
 
 import { Snackbar } from './Snackbar';
 
@@ -7,7 +8,7 @@ export type ShowSnackbarFn = (message: string, severity: AlertColor) => void;
 
 const defaultFunction: ShowSnackbarFn = (_: string, __: AlertColor) => {
   console.error(
-    "Snackbar context wasn't properly initialized (WithSnackbar is not a parent of the component)"
+    "Snackbar context wasn't properly initialized (WithSnackbar is not a parent of the component)",
   );
 };
 
@@ -25,11 +26,11 @@ export type State = {
   messageInfo?: SnackbarMessage;
 };
 
-export const WithSnackbar = ({ children }) => {
+export const WithSnackbar = ({ children }: PropsWithChildren) => {
   const [snackPack, setSnackPack] = useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = useState(false);
   const [messageInfo, setMessageInfo] = useState<SnackbarMessage | undefined>(
-    undefined
+    undefined,
   );
 
   React.useEffect(() => {
@@ -51,7 +52,7 @@ export const WithSnackbar = ({ children }) => {
 
   const handleClose = (
     _: Event | SyntheticEvent<unknown, Event>,
-    reason?: string
+    reason?: string,
   ): void => {
     if (reason === 'clickaway') {
       return;

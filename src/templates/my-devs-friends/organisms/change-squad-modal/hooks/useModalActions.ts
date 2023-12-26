@@ -1,25 +1,22 @@
-import { MutationStatus } from '@tanstack/react-query';
+import { MutationStatus, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
-import {
-  useChangeDevSquadMutation,
-  useDevsBySquadQuery,
-} from '@api/main-backend';
+import { useChangeDevSquadMutation } from '@api/main-backend';
 import { DevDto } from '@api/main-backend/specs/api-types';
 
-type ModalActions = {
-  handleSquadChanged: (id: number) => void;
+interface ModalActions {
+  handleSquadChanged: (id: number) => Promise<void>;
   handleCancel: () => void;
   status: MutationStatus;
-};
+}
 
 export const useModalActions = (
   onClose: () => void,
-  dev?: DevDto
+  dev?: DevDto,
 ): ModalActions => {
-  const { refetch } = useDevsBySquadQuery();
   const { mutateAsync: changeDevSquad, reset } = useChangeDevSquadMutation();
   const [status, setStatus] = useState<MutationStatus>('idle');
+  const queryClient = useQueryClient();
 
   const handleSquadChanged = async (id: number) => {
     if (!dev) {
@@ -27,9 +24,9 @@ export const useModalActions = (
     }
 
     try {
-      setStatus('loading');
+      setStatus('pending');
       await changeDevSquad({ idDev: dev?.id, idSquad: id });
-      await refetch();
+      await queryClient.invalidateQueries({ queryKey: ['devs'] });
     } catch (err) {
       setStatus('error');
       return;
@@ -37,7 +34,10 @@ export const useModalActions = (
 
     reset();
     onClose();
-    setStatus('idle');
+    // force pending state to be visible
+    setTimeout(() => {
+      setStatus('idle');
+    }, 10);
   };
 
   const handleCancel = () => {

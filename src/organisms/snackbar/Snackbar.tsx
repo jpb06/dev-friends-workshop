@@ -1,7 +1,7 @@
 import { Alert, Snackbar as MuiSnackbar } from '@mui/material';
-import { SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 
-import { SnackbarMessage } from './Snackbar.context';
+import type { SnackbarMessage } from './Snackbar.context';
 
 type SnackbarProps = {
   onClose: (_: Event | SyntheticEvent<unknown, Event>, reason?: string) => void;
