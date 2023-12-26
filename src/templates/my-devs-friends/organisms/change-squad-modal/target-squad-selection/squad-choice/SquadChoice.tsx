@@ -10,7 +10,7 @@ import type { SquadDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
 
 interface SquadChoiceProps extends SquadDto {
-  onSquadSelected: (id: number) => void;
+  onSquadSelected: (id: number) => Promise<void>;
   membersCount: number;
 }
 

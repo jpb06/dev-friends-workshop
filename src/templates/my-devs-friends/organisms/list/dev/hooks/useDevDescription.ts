@@ -14,7 +14,7 @@ export const useDevDescription = (
     return { description: '', squad: '' };
   }
 
-  const name = squads.find((s) => s.id === idSquad)?.name || '';
+  const name = squads.find((s) => s.id === idSquad)?.name ?? '';
 
   return {
     description: `${firstName} - ${name}`,

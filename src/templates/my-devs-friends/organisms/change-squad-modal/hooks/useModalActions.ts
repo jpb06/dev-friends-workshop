@@ -5,7 +5,7 @@ import { useChangeDevSquadMutation } from '@api/main-backend';
 import { DevDto } from '@api/main-backend/specs/api-types';
 
 interface ModalActions {
-  handleSquadChanged: (id: number) => void;
+  handleSquadChanged: (id: number) => Promise<void>;
   handleCancel: () => void;
   status: MutationStatus;
 }

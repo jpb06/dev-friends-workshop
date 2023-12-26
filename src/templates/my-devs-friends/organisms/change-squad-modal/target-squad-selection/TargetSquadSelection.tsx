@@ -9,7 +9,7 @@ import { ErrorBlock } from '../../../molecules/error-block/ErrorBlock';
 import { SquadChoice } from './squad-choice/SquadChoice';
 
 interface TargetSquadSelectionProps {
-  onSquadChanged: (id: number) => void;
+  onSquadChanged: (id: number) => Promise<void>;
   dev: DevDto;
 }
 
