@@ -1,5 +1,6 @@
 import { Build } from '@mui/icons-material';
 import { screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 
 import { appRender } from '@tests/render/appRender';
 

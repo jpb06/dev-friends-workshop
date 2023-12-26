@@ -1,7 +1,8 @@
-import type { AlertColor} from '@mui/material';
+import type { AlertColor } from '@mui/material';
 import { Button } from '@mui/material';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { useContext } from 'react';
+import { describe, it, expect } from 'vitest';
 
 import { appRender } from '@tests/render';
 
