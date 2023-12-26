@@ -12,7 +12,7 @@
     "type-check": "tsc --pretty --noEmit --pretty",
     "test": "vitest",
     "test-dev": "vitest --watch --coverage",
-    "test-ci": "vitest --runInBand --ci --coverage",
+    "test-ci": "vitest --run --coverage",
     "test-all": "pnpm lint && pnpm type-check && pnpm test",
     "postinstall": "husky install",
     "sync-api": "generateTypesFromUrl -u https://devfriends-backend.fly.dev/-json -o ./src/api/main-backend/specs && eslint ./src/api/main-backend/specs --fix",

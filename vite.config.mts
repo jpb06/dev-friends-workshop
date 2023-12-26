@@ -34,7 +34,7 @@ export default defineConfig({
     ],
     globals: true,
     coverage: {
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', 'lcov'],
       all: true,
       include: ['src/**/*.ts', 'src/**/*.tsx'],
       exclude: ['src/tests/**/*', 'src/**/*.type.ts', 'src/**/*/index.ts'],
