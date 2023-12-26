@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 
 import { DevDto } from '@api/main-backend/specs/api-types';
 
-export const devsMockData: Array<DevDto> = [
+export const devsMockData: DevDto[] = [
   {
     id: 1,
     idSquad: 1,

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+import { describe, it, expect } from 'vitest';
 
 import { CircularLoading } from './CircularLoading';
 
@@ -8,7 +8,7 @@ describe('CircularLoading component', () => {
     render(<CircularLoading />);
 
     expect(
-      screen.getByRole('progressbar', { name: 'circle-loading' })
+      screen.getByRole('progressbar', { name: 'circle-loading' }),
     ).toBeInTheDocument();
   });
 });

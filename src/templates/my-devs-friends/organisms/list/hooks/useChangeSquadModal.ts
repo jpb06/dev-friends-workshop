@@ -8,8 +8,8 @@ interface ChangeSquadModalHookResult {
 }
 
 export const useChangeSquadModal = (
-  devs: Array<DevDto> | undefined,
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  devs: DevDto[] | undefined,
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
 ): ChangeSquadModalHookResult => {
   const [selectedDev, setSelectedDev] = useState<DevDto | undefined>(undefined);
 

@@ -6,7 +6,7 @@ import { uiStatusAtom } from '../../../state/ui-status.atom';
 export const useReportOnErrors = (
   isError: boolean,
   isFetched: boolean,
-  data?: Array<unknown>
+  data?: unknown[],
 ): void => {
   const [, setUiStatus] = useAtom(uiStatusAtom);
 

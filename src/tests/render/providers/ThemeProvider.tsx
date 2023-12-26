@@ -1,10 +1,13 @@
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
-import { TestWrapper } from './types/test-wrapper.type';
 import { appTheme } from '../../../theme/app-theme';
+
+import type { TestWrapper } from './types/test-wrapper.type';
 
 export const ThemeProvider =
   (): TestWrapper =>
-  ({ children }: PropsWithChildren<unknown>) =>
-    <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>;
+  // eslint-disable-next-line react/display-name
+  ({ children }: PropsWithChildren) => (
+    <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>
+  );

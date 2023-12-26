@@ -1,7 +1,8 @@
-import { Box, SvgIconTypeMap } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import type { SvgIconTypeMap } from '@mui/material';
+import { Box } from '@mui/material';
+import type { OverridableComponent } from '@mui/material/OverridableComponent';
 import { alpha } from '@mui/material/styles';
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { spinKeyframe } from '@logic/keyframes/spin.keyframe';
 import { CenteredBlock } from '@molecules';

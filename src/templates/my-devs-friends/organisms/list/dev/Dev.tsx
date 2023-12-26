@@ -6,13 +6,13 @@ import {
   Typography,
   Zoom,
 } from '@mui/material';
-import React from 'react';
 
-import { DevDto } from '@api/main-backend/specs/api-types';
+import type { DevDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
 
-import { useDevDescription } from './hooks/useDevDescription';
 import { useSquadsQuery } from '../../../../../api/main-backend';
+
+import { useDevDescription } from './hooks/useDevDescription';
 
 interface DevProps extends DevDto {
   onSelected: (id: number) => void;
@@ -37,7 +37,7 @@ export const Dev = ({
     <Grid item xs={12} sm={4} md={3}>
       <Zoom in unmountOnExit mountOnEnter>
         <Card
-          role="dev"
+          role="listitem"
           title={description}
           sx={{
             backgroundColor: '#0d3c59',

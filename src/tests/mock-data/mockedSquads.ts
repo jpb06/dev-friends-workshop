@@ -1,6 +1,6 @@
 import { SquadDto } from '@api/main-backend/specs/api-types';
 
-export const squadsMockData: Array<SquadDto> = [
+export const squadsMockData: SquadDto[] = [
   {
     id: 1,
     name: 'Yolo',

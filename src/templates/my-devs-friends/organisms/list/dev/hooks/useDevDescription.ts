@@ -1,14 +1,14 @@
 import { SquadDto } from '../../../../../../api/main-backend/specs/api-types';
 
-type DevDescriptionHookResult = {
+interface DevDescriptionHookResult {
   description: string;
   squad: string;
-};
+}
 
 export const useDevDescription = (
   idSquad: number,
   firstName: string,
-  squads?: Array<SquadDto>
+  squads?: SquadDto[],
 ): DevDescriptionHookResult => {
   if (!squads) {
     return { description: '', squad: '' };

@@ -1,5 +1,4 @@
 import { Checkbox, FormControlLabel, Grid } from '@mui/material';
-import React from 'react';
 
 import { useSquadsFilterForm } from './hooks/useSquadsFilterForm';
 

@@ -1,32 +1,33 @@
-import { DefaultBodyType, rest } from 'msw';
+import { DefaultBodyType, HttpResponse, http } from 'msw';
 
-import { applyHandlerToServer } from './applyHandlerToServer';
 import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 
-type GenericPostHandlerParams<T> = {
+import { applyHandlerToServer } from './applyHandlerToServer';
+
+interface GenericPostHandlerParams<T> {
   url: string;
   status: number;
   result: DefaultBodyType;
   resultFilter?: (item: T) => boolean;
   applyToServer?: boolean;
-};
+}
 
-export const genericPostHandler = <T>({
+export const genericPostHandler = async <T>({
   url,
   status,
   result,
   resultFilter,
   applyToServer = true,
 }: GenericPostHandlerParams<T>) => {
-  const handler = rest.post(`${mainBackendUrl}${url}`, (_, res, ctx) => {
+  const handler = http.post(`${mainBackendUrl}${url}`, () => {
     if (resultFilter) {
-      return res(
-        ctx.status(status),
-        ctx.json({ result: (result as Array<unknown>).filter(resultFilter) })
+      return HttpResponse.json(
+        { result: (result as unknown[]).filter(resultFilter) },
+        { status },
       );
-    } else {
-      return res(ctx.status(status), ctx.json({ result }));
     }
+
+    return HttpResponse.json({ result }, { status });
   });
 
   return applyHandlerToServer(handler, applyToServer);

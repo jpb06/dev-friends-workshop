@@ -2,17 +2,17 @@ import { DefaultBodyType } from 'msw';
 
 import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 
-import { path } from './../../specs/DevsController/getDevelopersBySquads';
 import { DevDto } from './../../specs/api-types';
+import { path } from './../../specs/DevsController/getDevelopersBySquads';
 
-type DevsBySquadQueryHandlerProps = {
+interface DevsBySquadQueryHandlerProps {
   result: DefaultBodyType;
   resultFilter?: (dev: DevDto) => boolean;
   status?: number;
   applyToServer?: boolean;
-};
+}
 
-export const devsBySquadQueryHandler = ({
+export const devsBySquadQueryHandler = async ({
   result,
   resultFilter,
   status = 200,

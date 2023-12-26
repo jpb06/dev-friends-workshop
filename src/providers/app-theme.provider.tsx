@@ -1,5 +1,5 @@
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { appTheme } from '@theme';
 

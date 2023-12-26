@@ -1,30 +1,30 @@
 import { screen } from '@testing-library/react';
-import { Atom } from 'jotai';
-import React from 'react';
+import type { Atom } from 'jotai';
+import { describe, it, vi, expect, beforeEach } from 'vitest';
 
+import { squadsQueryHandler } from '@msw';
 import { appRender } from '@tests/render';
 
-import { Dev } from './Dev';
-import { squadsQueryHandler } from '../../../../../api/main-backend/msw-handlers';
 import { findDev } from '../../../../../tests/assertions/findDev.assertion';
 import { devsMockData, squadsMockData } from '../../../../../tests/mock-data';
 
+import { Dev } from './Dev';
+
 describe('Dev component', () => {
   const dev = devsMockData[0];
-  const onSelected = jest.fn();
+  const onSelected = vi.fn();
 
   const render = (
     Component: JSX.Element,
-    initialState?: Array<[Atom<unknown>, unknown]>
-  ) => {
-    return appRender(Component, {
+    initialState: Array<[Atom<unknown>, unknown]> = [],
+  ) =>
+    appRender(Component, {
       providers: ['reactQuery', 'jotai'],
       atoms: initialState,
     });
-  };
 
-  beforeEach(() => {
-    squadsQueryHandler(squadsMockData);
+  beforeEach(async () => {
+    await squadsQueryHandler(squadsMockData);
   });
 
   it('should display a dev', async () => {
@@ -37,7 +37,7 @@ describe('Dev component', () => {
     render(<Dev {...dev} onSelected={onSelected} />);
 
     expect(
-      screen.getByRole('img', { name: dev.firstName })
+      screen.getByRole('img', { name: dev.firstName }),
     ).toBeInTheDocument();
   });
 

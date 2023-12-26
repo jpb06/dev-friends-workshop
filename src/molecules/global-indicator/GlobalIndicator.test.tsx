@@ -13,7 +13,7 @@ describe('GlobalIndicator component', () => {
     appRender(
       <GlobalIndicator title={title} Icon={Build}>
         {children}
-      </GlobalIndicator>
+      </GlobalIndicator>,
     );
 
     expect(screen.getByText(title)).toBeInTheDocument();

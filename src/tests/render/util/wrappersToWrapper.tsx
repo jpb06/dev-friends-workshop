@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import type React from 'react';
 
 export type Wrapper = ({ children }: PropsWithChildren<unknown>) => JSX.Element;
 
@@ -16,11 +17,11 @@ export const wrappersToWrapper = (wrappers: Wrapper[]): Wrapper =>
     .reverse()
     .reduce(
       (Acc, Wrapper) =>
-        ({ children }: PropsWithChildren<unknown>) =>
-          (
-            <Wrapper>
-              <Acc>{children}</Acc>
-            </Wrapper>
-          ),
-      ({ children }) => <>{children}</>
+        // eslint-disable-next-line react/display-name
+        ({ children }: PropsWithChildren<unknown>) => (
+          <Wrapper>
+            <Acc>{children}</Acc>
+          </Wrapper>
+        ),
+      ({ children }) => <>{children}</>,
     );
