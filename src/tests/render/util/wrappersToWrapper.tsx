@@ -17,7 +17,6 @@ export const wrappersToWrapper = (wrappers: Wrapper[]): Wrapper =>
     .reverse()
     .reduce(
       (Acc, Wrapper) =>
-        // eslint-disable-next-line react/display-name
         ({ children }: PropsWithChildren<unknown>) => (
           <Wrapper>
             <Acc>{children}</Acc>

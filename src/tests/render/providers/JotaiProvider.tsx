@@ -12,7 +12,6 @@ const HydrateAtoms = ({ initialValues, children }) => {
 
 export const JotaiProvider =
   (injectedValues: Iterable<readonly [Atom<unknown>, unknown]>): TestWrapper =>
-  // eslint-disable-next-line react/display-name
   ({ children }: PropsWithChildren<unknown>) => (
     <Provider>
       <HydrateAtoms initialValues={injectedValues}>{children}</HydrateAtoms>
