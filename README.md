@@ -7,7 +7,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
-![Coverage](./badges/coverage-jest%20coverage.svg)
+![Coverage](./badges/coverage-total.svg)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=jpb06_workshop-react-front&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=jpb06_workshop-react-front)
