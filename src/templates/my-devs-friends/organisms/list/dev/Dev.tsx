@@ -6,6 +6,7 @@ import {
   Typography,
   Zoom,
 } from '@mui/material';
+import type { FunctionComponent } from 'react';
 
 import type { DevDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
@@ -18,13 +19,13 @@ interface DevProps extends DevDto {
   onSelected: (id: number) => void;
 }
 
-export const Dev = ({
+export const Dev: FunctionComponent<DevProps> = ({
   onSelected,
   id,
   idSquad,
   firstName,
   avatar,
-}: DevProps) => {
+}) => {
   const { data: squads } = useSquadsQuery();
 
   const { squad, description } = useDevDescription(idSquad, firstName, squads);
@@ -34,8 +35,8 @@ export const Dev = ({
   };
 
   return (
-    <Grid item xs={12} sm={4} md={3}>
-      <Zoom in unmountOnExit mountOnEnter>
+    <Grid size={{ xs: 12, md: 3, sm: 4 }}>
+      <Zoom in={true} unmountOnExit={true} mountOnEnter={true}>
         <Card
           role="listitem"
           title={description}

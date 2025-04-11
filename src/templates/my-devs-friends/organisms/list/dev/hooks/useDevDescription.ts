@@ -1,4 +1,4 @@
-import { SquadDto } from '../../../../../../api/main-backend/specs/api-types';
+import type { SquadDto } from '../../../../../../api/main-backend/specs/api-types';
 
 interface DevDescriptionHookResult {
   description: string;

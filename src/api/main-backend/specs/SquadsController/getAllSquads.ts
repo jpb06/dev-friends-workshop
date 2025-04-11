@@ -7,7 +7,7 @@
  * description: Retrieves all the squads, but not their members
  */
 
-import { AllSquadsResultDto, ApiResponseDto } from './../api-types';
+import type { AllSquadsResultDto, ApiResponseDto } from './../api-types';
 
 export const path = `/squads`;
 

@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
-import type { Atom } from 'jotai';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { appRender } from '@tests/render/appRender';
 
@@ -13,7 +12,7 @@ describe('Status report component', () => {
   const render = (status: UiStatus) =>
     appRender(<StatusReport />, {
       providers: ['jotai'],
-      atoms: [[uiStatusAtom, status]] as Array<[Atom<unknown>, unknown]>,
+      atoms: [[uiStatusAtom, status]] as never,
     });
 
   it('should display an error', () => {

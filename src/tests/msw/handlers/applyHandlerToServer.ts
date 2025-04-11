@@ -1,4 +1,4 @@
-import { RequestHandler } from 'msw';
+import type { RequestHandler } from 'msw';
 
 export const applyHandlerToServer = async (
   handler: RequestHandler,

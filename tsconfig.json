@@ -1,34 +1,34 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["node"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "strictNullChecks": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@api/*": ["src/api/*"],
-      "@msw": ["src/api/main-backend/msw-handlers.ts"],
-      "@templates": ["src/templates/index.ts"],
-      "@organisms": ["src/organisms/index.ts"],
-      "@molecules": ["src/molecules/index.ts"],
-      "@providers": ["src/providers/index.ts"],
-      "@logic/*": ["src/logic/*"],
-      "@tests/*": ["src/tests/*"],
-      "@theme": ["src/theme"]
-    },
-    "incremental": true
-  },
-  "exclude": ["node_modules", ".next", "out"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./shared/**/*.ts"]
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"types": ["node"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"strictNullChecks": true,
+		"jsx": "preserve",
+		"baseUrl": ".",
+		"paths": {
+			"@api/*": ["src/api/*"],
+			"@msw": ["src/api/main-backend/msw-handlers.ts"],
+			"@templates": ["src/templates/index.ts"],
+			"@organisms": ["src/organisms/index.ts"],
+			"@molecules": ["src/molecules/index.ts"],
+			"@providers": ["src/providers/index.ts"],
+			"@logic/*": ["src/logic/*"],
+			"@tests/*": ["src/tests/*"],
+			"@theme": ["src/theme"]
+		},
+		"incremental": true
+	},
+	"exclude": ["node_modules", ".next", "out"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./shared/**/*.ts"]
 }

@@ -2,8 +2,8 @@ import { useAxiosQuery } from '@api/wrappers/react-query/useAxiosQuery';
 
 import {
   path,
-  GetAllDevelopersSuccess,
-  GetAllDevelopersError,
+  type GetAllDevelopersSuccess,
+  type GetAllDevelopersError,
 } from './../../specs/DevsController/getAllDevelopers';
 
 export const useDevsQuery = () =>

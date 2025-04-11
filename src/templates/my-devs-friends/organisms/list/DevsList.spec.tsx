@@ -4,7 +4,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import type { Atom } from 'jotai';
-import { describe, it, vi, expect, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   changeDevSquadMutationHandler,
@@ -21,7 +21,7 @@ import { findDev } from '../../../../tests/assertions/findDev.assertion';
 import { DevsList } from './DevsList';
 
 describe('DevsList component', () => {
-  const render = (initialState: Array<[Atom<unknown>, unknown]> = []) =>
+  const render = (initialState: [Atom<unknown>, unknown][] = []) =>
     appRender(<DevsList />, {
       providers: ['reactQuery', 'jotai'],
       atoms: initialState,
@@ -146,8 +146,8 @@ describe('DevsList component', () => {
     await screen.findByRole('presentation', { name: /change-squad/i });
     await screen.findByRole('list', { name: /squads list/i });
 
-    screen.getByRole('button', { name: `Cool 1 members` });
-    screen.getByRole('button', { name: `Bros 0 members` });
+    screen.getByRole('button', { name: 'Cool 1 members' });
+    screen.getByRole('button', { name: 'Bros 0 members' });
   });
 
   it('should move the dev to another squad', async () => {
@@ -170,7 +170,7 @@ describe('DevsList component', () => {
     await screen.findByRole('presentation', { name: /change-squad/i });
 
     const squadButton = await screen.findByRole('button', {
-      name: `Bros 0 members`,
+      name: 'Bros 0 members',
     });
     await user.click(squadButton);
 

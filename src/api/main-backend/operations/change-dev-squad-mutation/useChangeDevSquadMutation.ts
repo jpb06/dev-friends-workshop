@@ -2,9 +2,9 @@ import { useAxiosMutation } from '@api/wrappers/react-query/useAxiosMutation';
 
 import {
   path,
-  ChangeDeveloperSquadSuccess,
-  ChangeDeveloperSquadError,
-  RequestBody,
+  type ChangeDeveloperSquadSuccess,
+  type ChangeDeveloperSquadError,
+  type RequestBody,
 } from './../../specs/DevsController/changeDeveloperSquad';
 
 export const useChangeDevSquadMutation = () => {

@@ -7,7 +7,12 @@
  * description: Changes the squad of the developer
  */
 
-import { ChangeSquadBodyDto, ChangeSquadResultDto, BadRequestDto, ApiResponseDto } from './../api-types';
+import type {
+  ChangeSquadBodyDto,
+  ChangeSquadResultDto,
+  BadRequestDto,
+  ApiResponseDto,
+} from './../api-types';
 
 export const path = `/devs/change-squad`;
 

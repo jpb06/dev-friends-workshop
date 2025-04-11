@@ -17,7 +17,6 @@ const createTestQueryClient = () =>
 
 export const ReactQueryProvider =
   (): TestWrapper =>
-  // eslint-disable-next-line react/display-name
   ({ children }: PropsWithChildren<unknown>) => {
     // Create client in render to prevent cache sharing accross the tests
     const queryClient = createTestQueryClient();

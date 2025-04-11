@@ -1,13 +1,16 @@
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 
 import { GlobalIndicator } from '@molecules';
 
-type ErrorBlockProps = {
+type ErrorBlockProps = PropsWithChildren<{
   title: string;
-  children: React.ReactNode;
-};
+}>;
 
-export const ErrorBlock = ({ title, children }: ErrorBlockProps) => (
+export const ErrorBlock: FunctionComponent<ErrorBlockProps> = ({
+  title,
+  children,
+}: ErrorBlockProps) => (
   <GlobalIndicator title={title} Icon={SentimentDissatisfiedIcon}>
     {children}
   </GlobalIndicator>

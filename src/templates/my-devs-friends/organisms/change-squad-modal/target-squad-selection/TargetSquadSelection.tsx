@@ -1,4 +1,5 @@
 import { List } from '@mui/material';
+import type { FunctionComponent } from 'react';
 
 import { useDevsQuery, useSquadsQuery } from '@api/main-backend';
 import type { DevDto, SquadDto } from '@api/main-backend/specs/api-types';
@@ -13,10 +14,9 @@ interface TargetSquadSelectionProps {
   dev: DevDto;
 }
 
-export const TargetSquadSelection = ({
-  onSquadChanged,
-  dev,
-}: TargetSquadSelectionProps) => {
+export const TargetSquadSelection: FunctionComponent<
+  TargetSquadSelectionProps
+> = ({ onSquadChanged, dev }) => {
   const squads = useSquadsQuery();
   const devs = useDevsQuery();
 

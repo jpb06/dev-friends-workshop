@@ -1,9 +1,9 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { Method } from 'axios';
+import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
+import type { Method } from 'axios';
 
 import { axiosRequest } from '../axios/axios-request';
-import { QueryResult } from '../axios/types/query-result.type';
-import { UnWrapResult } from '../axios/types/unwrap-result.type';
+import type { QueryResult } from '../axios/types/query-result.type';
+import type { UnWrapResult } from '../axios/types/unwrap-result.type';
 
 interface AxiosQueryParams<TSuccess, TError> {
   key: unknown[];

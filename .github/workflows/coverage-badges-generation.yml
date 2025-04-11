@@ -1,41 +1,38 @@
-name: Coverage badges generation
+name: ⚡ Coverage badges generation
 
 on:
   push:
     branches:
       - master
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  badges:
+  coverage-badges-generation:
+    name: 📣 Coverage badges generation
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
-        with:
-          access_token: ${{ github.token }}
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Check out repository code
-        uses: actions/checkout@v3
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
 
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: latest
-
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.node-version'
           cache: 'pnpm'
+          cache-dependency-path: ./package.json
 
-      - name: Installing dependencies
+      - name: 📥 Install deps
         run: pnpm install --frozen-lockfile
 
-      - name: Tests
+      - name: 🧪 Tests
         run: pnpm test-ci
 
-      - name: Generating coverage badges
-        uses: jpb06/jest-badges-action@v1.9.5
+      - name: ⚙️ Generating coverage badges
+        uses: jpb06/coverage-badges-action@latest

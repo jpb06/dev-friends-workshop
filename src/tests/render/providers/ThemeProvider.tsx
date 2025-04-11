@@ -7,7 +7,6 @@ import type { TestWrapper } from './types/test-wrapper.type';
 
 export const ThemeProvider =
   (): TestWrapper =>
-  // eslint-disable-next-line react/display-name
   ({ children }: PropsWithChildren) => (
     <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>
   );

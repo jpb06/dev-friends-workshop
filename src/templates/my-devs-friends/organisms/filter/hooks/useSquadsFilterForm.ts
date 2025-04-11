@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
-import { SquadDto } from '../../../../../api/main-backend/specs/api-types';
+import type { SquadDto } from '../../../../../api/main-backend/specs/api-types';
 import { selectedSquadsAtom } from '../../../../../state/selected-squads.atom';
 import { uiStatusAtom } from '../../../../../state/ui-status.atom';
 
@@ -9,7 +9,7 @@ import { useSquadsData } from './useSquadsData';
 
 export interface SquadsFilterFormHookResult {
   handleChange: (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) => void;
   formValues: boolean[];
@@ -24,7 +24,7 @@ export const useSquadsFilterForm = (): SquadsFilterFormHookResult => {
   const squads = useSquadsData();
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) => {
     setUiStatus('loading');

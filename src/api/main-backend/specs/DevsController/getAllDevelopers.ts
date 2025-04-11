@@ -7,7 +7,7 @@
  * description: Retrieves all developers, but not their squad
  */
 
-import { AllDevsResultDto, ApiResponseDto } from './../api-types';
+import type { AllDevsResultDto, ApiResponseDto } from './../api-types';
 
 export const path = `/devs`;
 

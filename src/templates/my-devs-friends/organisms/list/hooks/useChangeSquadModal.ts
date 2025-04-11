@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { type Dispatch, type SetStateAction, useState } from 'react';
 
-import { DevDto } from '@api/main-backend/specs/api-types';
+import type { DevDto } from '@api/main-backend/specs/api-types';
 
 interface ChangeSquadModalHookResult {
   handleDevSelected: (id: number) => void;
@@ -9,7 +9,7 @@ interface ChangeSquadModalHookResult {
 
 export const useChangeSquadModal = (
   devs: DevDto[] | undefined,
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>,
 ): ChangeSquadModalHookResult => {
   const [selectedDev, setSelectedDev] = useState<DevDto | undefined>(undefined);
 

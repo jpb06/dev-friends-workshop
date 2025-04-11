@@ -1,13 +1,13 @@
-import { QueryKey, UseQueryOptions } from '@tanstack/react-query';
+import type { QueryKey, UseQueryOptions } from '@tanstack/react-query';
 
 import { useAxiosQuery } from '@api/wrappers/react-query/useAxiosQuery';
 
-import { ApiResponseDto, SquadDto } from '../../specs/api-types';
+import type { ApiResponseDto, SquadDto } from '../../specs/api-types';
 
 import {
   path,
-  GetAllSquadsSuccess,
-  GetAllSquadsError,
+  type GetAllSquadsSuccess,
+  type GetAllSquadsError,
 } from './../../specs/SquadsController/getAllSquads';
 
 export const useSquadsQuery = (

@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react';
 import type { Atom } from 'jotai';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import type { JSX } from 'react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { squadsQueryHandler } from '@msw';
 import { appRender } from '@tests/render';
@@ -16,7 +17,7 @@ describe('Dev component', () => {
 
   const render = (
     Component: JSX.Element,
-    initialState: Array<[Atom<unknown>, unknown]> = [],
+    initialState: [Atom<unknown>, unknown][] = [],
   ) =>
     appRender(Component, {
       providers: ['reactQuery', 'jotai'],

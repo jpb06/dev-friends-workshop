@@ -7,7 +7,11 @@
  * description: Retrieves the squad developers
  */
 
-import { SquadsDevelopersResultDto, BadRequestDto, ApiResponseDto } from './../api-types';
+import type {
+  SquadsDevelopersResultDto,
+  BadRequestDto,
+  ApiResponseDto,
+} from './../api-types';
 
 export const getPath = (id: number): string => `/squads/${id}/devs`;
 

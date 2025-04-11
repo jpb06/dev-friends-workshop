@@ -1,8 +1,13 @@
 import type { AlertColor } from '@mui/material';
-import type { PropsWithChildren, SyntheticEvent } from 'react';
+import type {
+  FunctionComponent,
+  PropsWithChildren,
+  SyntheticEvent,
+} from 'react';
 import React, { createContext, useState } from 'react';
 
 import { Snackbar } from './Snackbar';
+import type { SnackbarMessage } from './snackbar.types';
 
 export type ShowSnackbarFn = (message: string, severity: AlertColor) => void;
 
@@ -14,19 +19,9 @@ const defaultFunction: ShowSnackbarFn = (_: string, __: AlertColor) => {
 
 export const SnackbarContext = createContext(defaultFunction);
 
-export type SnackbarMessage = {
-  message: string;
-  severity: AlertColor;
-  key: number;
-};
-
-export type State = {
-  open: boolean;
-  snackPack: readonly SnackbarMessage[];
-  messageInfo?: SnackbarMessage;
-};
-
-export const WithSnackbar = ({ children }: PropsWithChildren) => {
+export const WithSnackbar: FunctionComponent<PropsWithChildren> = ({
+  children,
+}) => {
   const [snackPack, setSnackPack] = useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = useState(false);
   const [messageInfo, setMessageInfo] = useState<SnackbarMessage | undefined>(
