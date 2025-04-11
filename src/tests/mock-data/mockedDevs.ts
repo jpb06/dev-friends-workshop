@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { DevDto } from '@api/main-backend/specs/api-types';
+import type { DevDto } from '@api/main-backend/specs/api-types';
 
 export const devsMockData: DevDto[] = [
   {

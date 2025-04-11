@@ -24,13 +24,13 @@ describe('Brand component', () => {
   });
 
   it('should display sandbox in big text', () => {
-    render(<Brand color="white" big />);
+    render(<Brand color="white" big={true} />);
 
     expect(screen.getByText(/my dev friends/i)).toHaveClass('MuiTypography-h4');
   });
 
   it('should display centered content', () => {
-    render(<Brand color="white" centered withBottomMargin />);
+    render(<Brand color="white" centered={true} withBottomMargin={true} />);
 
     expect(screen.getByText('Sandbox')).toBeInTheDocument();
   });

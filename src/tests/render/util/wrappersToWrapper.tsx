@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { JSX, PropsWithChildren } from 'react';
 import type React from 'react';
 
 export type Wrapper = ({ children }: PropsWithChildren<unknown>) => JSX.Element;

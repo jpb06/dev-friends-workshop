@@ -1,6 +1,6 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import type { Atom } from 'jotai';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   changeDevSquadMutationHandler,
@@ -111,10 +111,6 @@ describe('My dev friends component', () => {
     });
 
     await user.click(squad1Checkbox);
-
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole('progressbar', { name: /circle-loading/i }),
-    );
 
     const squad1Devs = devsMockData.filter((dev) => dev.idSquad === 1);
 

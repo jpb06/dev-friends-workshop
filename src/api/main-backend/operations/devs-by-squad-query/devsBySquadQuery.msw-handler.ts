@@ -1,8 +1,8 @@
-import { DefaultBodyType } from 'msw';
+import type { DefaultBodyType } from 'msw';
 
 import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 
-import { DevDto } from './../../specs/api-types';
+import type { DevDto } from './../../specs/api-types';
 import { path } from './../../specs/DevsController/getDevelopersBySquads';
 
 interface DevsBySquadQueryHandlerProps {

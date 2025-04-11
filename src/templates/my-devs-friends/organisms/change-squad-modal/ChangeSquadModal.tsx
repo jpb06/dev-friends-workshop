@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material';
+import type { FunctionComponent } from 'react';
 import { match } from 'ts-pattern';
 
 import type { DevDto } from '@api/main-backend/specs/api-types';
@@ -12,7 +13,6 @@ import { CircularLoading, DownTransition } from '@molecules';
 import { appTheme } from '@theme';
 
 import { ErrorBlock } from '../../molecules/error-block/ErrorBlock';
-
 import { useModalActions } from './hooks/useModalActions';
 import { TargetSquadSelection } from './target-squad-selection/TargetSquadSelection';
 
@@ -22,11 +22,11 @@ interface ChangeSquadModalProps {
   dev?: DevDto;
 }
 
-export const ChangeSquadModal = ({
+export const ChangeSquadModal: FunctionComponent<ChangeSquadModalProps> = ({
   onClose,
   isOpen,
   dev,
-}: ChangeSquadModalProps) => {
+}) => {
   const { handleSquadChanged, handleCancel, status } = useModalActions(
     onClose,
     dev,
@@ -38,7 +38,7 @@ export const ChangeSquadModal = ({
 
   return (
     <Dialog
-      disableEscapeKeyDown
+      disableEscapeKeyDown={true}
       maxWidth="xs"
       aria-label="change-squad"
       open={isOpen}
@@ -51,7 +51,7 @@ export const ChangeSquadModal = ({
       >
         Move {dev.firstName} to another squad
       </DialogTitle>
-      <DialogContent dividers>
+      <DialogContent dividers={true}>
         {match(status)
           .with('idle', () => (
             <TargetSquadSelection

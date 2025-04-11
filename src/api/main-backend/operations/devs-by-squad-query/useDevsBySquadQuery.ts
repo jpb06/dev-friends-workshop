@@ -6,8 +6,8 @@ import { selectedSquadsAtom } from '../../../../state/selected-squads.atom';
 
 import {
   path,
-  GetDevelopersBySquadsSuccess,
-  GetDevelopersBySquadsError,
+  type GetDevelopersBySquadsSuccess,
+  type GetDevelopersBySquadsError,
 } from './../../specs/DevsController/getDevelopersBySquads';
 
 export const useDevsBySquadQuery = () => {

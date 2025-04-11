@@ -1,18 +1,20 @@
 import {
-  alpha,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Grid,
+  alpha,
 } from '@mui/material';
-import type { PropsWithChildren } from 'react';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 
 import { Brand, GlobalLoadingIndicator } from '@molecules';
 
-export const FullpageBox = ({ children }: PropsWithChildren) => (
+export const FullpageBox: FunctionComponent<PropsWithChildren> = ({
+  children,
+}) => (
   <Grid
-    container
+    container={true}
     spacing={0}
     direction="column"
     alignItems="center"
@@ -41,8 +43,8 @@ export const FullpageBox = ({ children }: PropsWithChildren) => (
       />
       <GlobalLoadingIndicator />
       <CardContent>
-        <Grid container justifyContent="center" direction="row">
-          <Brand color="amber" centered big />
+        <Grid container={true} justifyContent="center" direction="row">
+          <Brand color="amber" centered={true} big={true} />
         </Grid>
       </CardContent>
       <CardActions
@@ -52,7 +54,7 @@ export const FullpageBox = ({ children }: PropsWithChildren) => (
         }}
       >
         <Grid
-          container
+          container={true}
           direction="column"
           justifyContent="center"
           alignItems="center"

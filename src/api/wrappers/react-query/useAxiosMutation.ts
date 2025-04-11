@@ -1,9 +1,9 @@
-import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { Method } from 'axios';
+import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
+import type { Method } from 'axios';
 
 import { axiosRequest } from '../axios/axios-request';
-import { MutationResult } from '../axios/types/mutation-result.type';
-import { UnWrapResult } from '../axios/types/unwrap-result.type';
+import type { MutationResult } from '../axios/types/mutation-result.type';
+import type { UnWrapResult } from '../axios/types/unwrap-result.type';
 
 interface AxiosMutationParams<TSuccess, TError, TBody> {
   url: string;

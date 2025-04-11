@@ -2,19 +2,24 @@ import type { EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import type { FunctionComponent } from 'react';
 
 import { FullpageBox, WithSnackbar } from '@organisms';
 import {
+  AppThemeProvider,
   EmotionCacheProvider,
   ReactQueryProvider,
-  AppThemeProvider,
 } from '@providers';
 
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;
 }
 
-const MyApp = ({ Component, emotionCache, pageProps }: EmotionAppProps) => (
+const MyApp: FunctionComponent<EmotionAppProps> = ({
+  Component,
+  emotionCache,
+  pageProps,
+}) => (
   <EmotionCacheProvider emotionCache={emotionCache}>
     <Head>
       <title>My dev friends</title>
@@ -34,4 +39,5 @@ const MyApp = ({ Component, emotionCache, pageProps }: EmotionAppProps) => (
   </EmotionCacheProvider>
 );
 
+// biome-ignore lint/style/noDefaultExport: next
 export default MyApp;

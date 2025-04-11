@@ -4,6 +4,7 @@
 export interface SquadDto {
   id: number;
   name: string;
+  devsCount: number;
 }
 export interface AllSquadsResultDto {
   result: Array<SquadDto>;
@@ -19,6 +20,11 @@ export interface DevDto {
   avatar: string;
 }
 export interface SquadsDevelopersResultDto {
+  PreviousPage?: number;
+  currentPage: number;
+  nextPage?: number;
+  lastPage: number;
+  total: number;
   result: Array<DevDto>;
 }
 export interface BadRequestDto {
@@ -27,6 +33,11 @@ export interface BadRequestDto {
   error: string;
 }
 export interface AllDevsResultDto {
+  PreviousPage?: number;
+  currentPage: number;
+  nextPage?: number;
+  lastPage: number;
+  total: number;
   result: Array<DevDto>;
 }
 export interface ChangeSquadBodyDto {
@@ -40,5 +51,10 @@ export interface DevelopersBySquadsBodyDto {
   idSquads: Array<number>;
 }
 export interface DevelopersBySquadsResultDto {
+  PreviousPage?: number;
+  currentPage: number;
+  nextPage?: number;
+  lastPage: number;
+  total: number;
   result: Array<DevDto>;
 }

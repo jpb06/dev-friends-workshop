@@ -1,7 +1,8 @@
 import { Card, CardContent, Grid, Skeleton } from '@mui/material';
+import type { FunctionComponent } from 'react';
 
-export const DevSkeleton = () => (
-  <Grid item xs={12} sm={4} md={3}>
+export const DevSkeleton: FunctionComponent = () => (
+  <Grid size={{ xs: 12, md: 3, sm: 4 }}>
     <Card
       sx={{
         backgroundColor: '#0d3c59',

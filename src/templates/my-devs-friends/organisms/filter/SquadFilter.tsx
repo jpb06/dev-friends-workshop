@@ -1,8 +1,9 @@
 import { Checkbox, FormControlLabel, Grid } from '@mui/material';
+import type { FunctionComponent } from 'react';
 
 import { useSquadsFilterForm } from './hooks/useSquadsFilterForm';
 
-export const SquadFilter = () => {
+export const SquadFilter: FunctionComponent = () => {
   const { handleChange, formValues, squads } = useSquadsFilterForm();
 
   if (!squads) {
@@ -10,9 +11,14 @@ export const SquadFilter = () => {
   }
 
   return (
-    <Grid container spacing={1} justifyContent="center" alignItems="center">
+    <Grid
+      container={true}
+      spacing={1}
+      justifyContent="center"
+      alignItems="center"
+    >
       {squads.map(({ id, name }, index) => (
-        <Grid item key={id}>
+        <Grid key={id}>
           <FormControlLabel
             control={
               <Checkbox

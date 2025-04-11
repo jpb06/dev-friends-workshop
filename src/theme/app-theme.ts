@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material';
 import { amber, cyan, orange, red, teal } from '@mui/material/colors';
 
-import { AppTheme } from './types/app-theme.type';
+import type { AppTheme } from './types/app-theme.type';
 
 export const appTheme: AppTheme = {
   ...createTheme({

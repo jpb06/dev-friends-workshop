@@ -5,6 +5,7 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+import type { FunctionComponent } from 'react';
 
 import type { SquadDto } from '@api/main-backend/specs/api-types';
 import { appTheme } from '@theme';
@@ -14,12 +15,12 @@ interface SquadChoiceProps extends SquadDto {
   membersCount: number;
 }
 
-export const SquadChoice = ({
+export const SquadChoice: FunctionComponent<SquadChoiceProps> = ({
   onSquadSelected,
   id,
   name,
   membersCount,
-}: SquadChoiceProps) => {
+}) => {
   const handleClick = () => onSquadSelected(id);
 
   return (

@@ -1,4 +1,4 @@
-import { DefaultBodyType, HttpResponse, http } from 'msw';
+import { type DefaultBodyType, HttpResponse, http } from 'msw';
 
 import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 

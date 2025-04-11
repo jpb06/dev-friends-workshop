@@ -1,4 +1,4 @@
-import { Atom } from 'jotai';
+import type { Atom } from 'jotai';
 
 import { JotaiProvider } from '../providers/JotaiProvider';
 
@@ -8,7 +8,7 @@ import {
   SnackbarProvider,
   ThemeProvider,
 } from './../providers';
-import { Wrapper, wrappersToWrapper } from './wrappersToWrapper';
+import { type Wrapper, wrappersToWrapper } from './wrappersToWrapper';
 
 export type RenderProviders = 'reactQuery' | 'snackbar' | 'jotai';
 

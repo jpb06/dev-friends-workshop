@@ -1,4 +1,4 @@
-import { DefaultBodyType } from 'msw';
+import type { DefaultBodyType } from 'msw';
 
 import { genericPostHandler } from '@tests/msw/handlers/generic-post.handler';
 

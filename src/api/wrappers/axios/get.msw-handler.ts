@@ -1,4 +1,4 @@
-import { DefaultBodyType, HttpResponse, http } from 'msw';
+import { type DefaultBodyType, HttpResponse, http } from 'msw';
 
 import { applyHandlerToServer } from '../../../tests/msw/handlers/applyHandlerToServer';
 import { mainBackendUrl } from '../../main-backend/main-backend-url.constant';

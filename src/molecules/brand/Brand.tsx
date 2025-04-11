@@ -1,5 +1,6 @@
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import { Grid, Typography } from '@mui/material';
+import type { FunctionComponent } from 'react';
 
 import type { AppColor } from '@theme';
 
@@ -12,12 +13,12 @@ export type BrandProps = {
   big?: boolean;
 };
 
-export const Brand = ({
+export const Brand: FunctionComponent<BrandProps> = ({
   color,
   centered = false,
   withBottomMargin = false,
   big = false,
-}: BrandProps) => {
+}) => {
   const withMainColor = withThemeColor(color);
 
   const justifyContent = centered ? 'center' : 'flex-start';
@@ -25,16 +26,16 @@ export const Brand = ({
   return (
     <>
       <Grid
-        container
+        container={true}
         direction="row"
         justifyContent={justifyContent}
         alignItems="flex-start"
         sx={{ mb: withBottomMargin ? 2 : 0 }}
       >
-        <Grid item>
+        <Grid>
           <EmojiPeopleIcon sx={withMainColor} />
         </Grid>
-        <Grid item>
+        <Grid>
           <Typography
             variant={big ? 'h4' : 'h6'}
             sx={{
@@ -46,9 +47,8 @@ export const Brand = ({
           </Typography>
         </Grid>
       </Grid>
-      <Grid container justifyContent={justifyContent}>
+      <Grid container={true} justifyContent={justifyContent}>
         <Grid
-          item
           sx={{
             fontSize: 15,
             ...withThemeColor('darkCyan'),
