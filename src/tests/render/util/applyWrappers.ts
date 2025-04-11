@@ -21,8 +21,8 @@ export interface ApplyWrappersProps {
 export const applyWrappers = (props?: ApplyWrappersProps) => {
   const defaultProviders = ['emotionCache', 'theme'];
 
-  const providers = props?.providers || [];
-  const additionalWrappers = props?.additionalWrappers || [];
+  const providers = props?.providers ?? [];
+  const additionalWrappers = props?.additionalWrappers ?? [];
 
   const wrappers: Wrapper[] = [...defaultProviders, ...providers].map((key) => {
     switch (key) {
