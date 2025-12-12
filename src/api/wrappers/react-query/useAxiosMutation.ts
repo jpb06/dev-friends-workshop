@@ -1,4 +1,4 @@
-import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
+import { type UseMutationOptions, useMutation } from '@tanstack/react-query';
 import type { Method } from 'axios';
 
 import { axiosRequest } from '../axios/axios-request';
@@ -23,7 +23,7 @@ export const useAxiosMutation = <TSuccess, TError, TBody>({
   TError,
   TBody
 > =>
-  useMutation<UnWrapResult<TSuccess> | undefined, TError, TBody>({
+  useMutation<UnWrapResult<TSuccess>, TError, TBody>({
     mutationFn: (data: TBody) => axiosRequest<TSuccess>({ method, url, data }),
     ...options,
   });

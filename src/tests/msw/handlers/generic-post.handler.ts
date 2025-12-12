@@ -1,4 +1,4 @@
-import { type DefaultBodyType, HttpResponse, http } from 'msw';
+import { http, type DefaultBodyType, HttpResponse } from 'msw';
 
 import { mainBackendUrl } from '../../../api/main-backend/main-backend-url.constant';
 
@@ -22,7 +22,7 @@ export const genericPostHandler = async <T>({
   const handler = http.post(`${mainBackendUrl}${url}`, () => {
     if (resultFilter) {
       return HttpResponse.json(
-        { result: (result as unknown[]).filter(resultFilter) },
+        { result: (result as unknown[]).filter(resultFilter as never) },
         { status },
       );
     }
