@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
+import { type UseQueryOptions, useQuery } from '@tanstack/react-query';
 import type { Method } from 'axios';
 
 import { axiosRequest } from '../axios/axios-request';
@@ -20,7 +20,7 @@ export const useAxiosQuery = <TSuccess, TError>({
   data,
   options,
 }: AxiosQueryParams<TSuccess, TError>): QueryResult<TSuccess, TError> =>
-  useQuery<UnWrapResult<TSuccess> | undefined, TError, UnWrapResult<TSuccess>>({
+  useQuery<UnWrapResult<TSuccess>, TError, UnWrapResult<TSuccess>>({
     queryKey: key,
     queryFn: () => axiosRequest<TSuccess>({ method, url, data }),
     ...options,

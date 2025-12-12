@@ -27,7 +27,7 @@ export const axiosRequest = async <TResult>({
   method,
   data = {},
   config = {},
-}: AxiosRequestProps): Promise<UnWrapResult<TResult> | undefined> => {
+}: AxiosRequestProps): Promise<UnWrapResult<TResult>> => {
   try {
     const [response] = await Promise.all([
       axios.request<WithResult<UnWrapResult<TResult>>>({
